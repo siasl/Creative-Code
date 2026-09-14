@@ -1,8 +1,5 @@
 var offset = 0
 var strum = 1
-const circles = []
-
-
 //["#606c38","#283618","#fefae0","#dda15e","#bc6c25"]
 
 async function setup () {
@@ -50,26 +47,6 @@ function scaleCanvas (displayScale) {
   let cnv = select('canvas').elt
   cnv.style.setProperty('transform', 'scale(' + displayScale + ')')
   cnv.style.setProperty('transform-origin', 'left top')
-}
-
-function drawWaves () {
-  //based on https://editor.p5js.org/stevenraysimon/sketches/HyTseadOg
-  strokeWeight(2)
-  stroke('#9CB9E8')
-  noFill()
-  for (let yAdj = -300; yAdj < height; yAdj += 50) {
-    beginShape()
-    vertex(0, height)
-    for (var x = 0; x < width; x++) {
-      //var angle = map(x, 0, width, 0, TWO_PI);
-      var angle = offset + x * 0.01
-      // map x between 0 and width to 0 and Two Pi
-      var y = map(sin(angle), -strum, strum, 150, 250) + yAdj
-      vertex(x, y)
-    }
-    vertex(width, height)
-    endShape()
-  }
 }
 
 function drawPads ({ x, y, size, arcStart, arcEnd }) {
@@ -189,7 +166,7 @@ function draw () {
   drawFish(510, 1700, 210, fish5)
   
 
-  randomSeed(11)
+  randomSeed(19)
   for (let i = 0; i < 25; i++) {
     let allFish = [fish1, fish2, fish3, fish4, fish5]
     drawFish(random(10,width-10), random(10, height-10), random(0,360),random(allFish) )
