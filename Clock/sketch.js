@@ -15,8 +15,10 @@ let world
 let circles = []
 let boundaries = []
 let cups = []
+let current_second
 function setup () {
   createCanvas(1000, 400)
+  current_second = second()
   // create an engine
   engine = Engine.create()
   world = engine.world // the root composite
@@ -62,16 +64,17 @@ function moveBoundary (boundary) {
 
 function draw () {
   background(51)
-  if (mouseIsPressed) {
-    let newBall = new Circle(mouseX, mouseY, random(5, 10))
-    console.log(newBall)
-    console.log(newBall.body)
-    Body.setVelocity(newBall.body, {x:40, y:0})
+  // if (mouseIsPressed) {
+  //   circles.push(newBall)
+  // }
+  let now_second = second()
+  if(now_second != current_second){
+    let newBall = new Circle(0, 20, random(5, 10))
+    Body.setVelocity(newBall.body, { x: 2, y: 0 })
     circles.push(newBall)
+    current_second = now_second
   }
-  //circles.push(new Circle(0,90, random(5, 10)))
-  fill(255)
-  text(circles.length, 100, 100)
+  
   for (let i = 0; i < circles.length; i++) {
     circles[i].show()
   }
