@@ -24,7 +24,7 @@ function setup () {
   boundaries.push(new Boundary(40, 300, 110, 20, 0.4, true))
   boundaries.push(new Boundary(100, height / 1.2, 30, height, 0, false))
   boundaries.push(new Boundary(10, height / 2, 30, height, 0, false))
-  cups.push( new Cup(400, 200, 100, 100, 10))
+  cups.push(new Cup(400, 200, 100, 100, 10, true))
 }
 
 // function mousePressed () {
@@ -57,6 +57,17 @@ function draw () {
       })
     }
     boundaries[i].show()
+  }
+  for (let i = 0; i < cups.length; i++) {
+    const newHeight = height - (((frameCount / 60) * 6.67) % height)
+    if (cups[i].moves) {
+      console.log(cups[i])
+      const dy = newHeight - cups[i].y
+
+      Composite.translate(cups[i].composite, { x: frameCount/100 %width, y: dy })
+      cups[i].y = newHeight
+    }
+    cups[i].show()
   }
   Engine.update(engine) //
 

@@ -1,6 +1,6 @@
 // a mix of AI assistance on this file and pulling from what I learned from boundary.js
 class Cup {
-  constructor (x, y, width = 120, height = 140, wallThickness = 12) {
+  constructor (x, y, width = 120, height = 140, wallThickness = 12, moves) {
     this.composite = Matter.Composite.create({
       label: 'Cup'
     })
@@ -42,6 +42,7 @@ class Cup {
     this.bottom = bottom
     this.leftWall = leftWall
     this.rightWall = rightWall
+    this.moves = moves
 
     Matter.Composite.add(this.composite, [bottom, leftWall, rightWall])
     Matter.Composite.add(world, this.composite)
