@@ -1,10 +1,10 @@
 class Boundary {
-    constructor(x, y, w, h, a, m) {
+    constructor(x, y, w, h, a, moves) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.m = m
+        this.moves = moves
         let options = {
             friction: 0,
             restitution: 0.6,
