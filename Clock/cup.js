@@ -1,6 +1,6 @@
 // a mix of AI assistance on this file and pulling from what I learned from boundary.js
 class Cup {
-  constructor (x, y, width = 120, height = 140, wallThickness = 12, moves) {
+  constructor ({ x, y, width = 120, height = 140, wallThickness = 12, moves }) {
     this.composite = Matter.Composite.create({
       label: 'Cup'
     })
@@ -49,7 +49,7 @@ class Cup {
   }
 
   show () {
-    console.log(this.bottom)
+    //console.log(this.bottom)
     this.showBody(this.bottom, this.width, this.wallThickness)
     this.showBody(this.leftWall, this.wallThickness, this.height)
     this.showBody(this.rightWall, this.wallThickness, this.height)
@@ -58,7 +58,8 @@ class Cup {
   showBody (body, width, height) {
     const pos = body.position
     const angle = body.angle
-
+    textSize(24)
+    fill(255)
     push()
     translate(pos.x, pos.y)
     rotate(angle)
@@ -67,10 +68,19 @@ class Cup {
     rect(0, 0, width, height)
     pop()
   }
-  open () {
-    Body.setAngle(this.bottom, lerp(this.bottom.angle,2,0.1))
+  bottom_open (target_angle) {
+    Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
   }
-  close () {
-    Body.setAngle(this.bottom, lerp(this.bottom.angle,0,0.1))
+  bottom_close (target_angle) {
+    Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
+  }
+  right_open (target_angle) {
+    Body.setAngle(this.rightWall, lerp(this.rightWall.angle, target_angle, 0.1))
+  }
+  right_close (target_angle) {
+    Body.setAngle(this.rightWall, lerp(this.rightWall.angle, target_angle, 0.1))
+  }
+  update_text (itext) {
+    text(itext, this.x, this.y-this.height/2)
   }
 }

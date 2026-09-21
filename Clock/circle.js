@@ -1,5 +1,5 @@
 class Circle{
-    constructor(x, y, r, restitution = 0.6, friction = 0) {
+    constructor(x, y, r, restitution = 0.6, friction = 0, color = 127) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -8,6 +8,7 @@ class Circle{
             restitution
         }
         this.body = Bodies.circle(this.x, this.y, this.r,  options);
+        this.color = color
         Composite.add(world, this.body);
     }
 
@@ -20,7 +21,7 @@ class Circle{
         rectMode(CENTER);
         strokeWeight(1);
         stroke(255)
-        fill(127);
+        fill(this.color);
         ellipse(0, 0, this.r*2);
         pop();
     }
