@@ -49,6 +49,7 @@ class Cup {
   }
 
   show () {
+    console.log(this.bottom)
     this.showBody(this.bottom, this.width, this.wallThickness)
     this.showBody(this.leftWall, this.wallThickness, this.height)
     this.showBody(this.rightWall, this.wallThickness, this.height)
@@ -65,5 +66,11 @@ class Cup {
     fill(0)
     rect(0, 0, width, height)
     pop()
+  }
+  open () {
+    Body.setAngle(this.bottom, lerp(this.bottom.angle,2,0.1))
+  }
+  close () {
+    Body.setAngle(this.bottom, lerp(this.bottom.angle,0,0.1))
   }
 }

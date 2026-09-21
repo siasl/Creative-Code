@@ -17,19 +17,16 @@ let boundaries = []
 let cups = []
 let current_second
 function setup () {
-  createCanvas(1000, 400)
+  createCanvas(1000, 1000)
   current_second = second()
   // create an engine
   engine = Engine.create()
   world = engine.world // the root composite
-  //boundaries.push(new Boundary(150, 100, width * 0.6, 20, 0.3))
-  // boundaries.push(new Boundary(40, 300, 110, 20, 0.4, true))
-  // boundaries.push(new Boundary(100, height / 1.2, 30, height, 0, false))
-  // boundaries.push(new Boundary(10, height / 2, 30, height, 0, false))
-  // cups.push(new Cup(400, 100, 100, 100, 10, true))
-  boundaries.push(new Boundary(0, 60, 300, 20, 0.1)) // right edge at 150
-  let gap = 10
-  for (let i = 0; i < 4; i++) {
+
+  cups.push(new Cup(400, 300, 150, 150, 10, true))
+  boundaries.push(new Boundary(0, 260, 300, 20, 0.3)) // right edge at 150
+  let gap = 30
+  for (let i = 0; i < 1; i++) {
     last_bound = boundaries[boundaries.length - 1]
     console.log(last_bound)
     new_coords = calcBoundary(
@@ -40,7 +37,9 @@ function setup () {
       last_bound.body.angle,
       gap // gap
     )
-    boundaries.push(new Boundary(new_coords.x, new_coords.y, 100, 20, new_coords.a))
+    boundaries.push(
+      new Boundary(new_coords.x, new_coords.y, 100, 20, new_coords.a)
+    )
     gap += 10
   }
 
@@ -55,11 +54,13 @@ function setup () {
 //     circles.push(new Circle(mouseX, mouseY, random(5, 10)))
 //   }
 // }
+//AI helped me come up with this formula. I don't remember Trig.
 function calcBoundary (prev_x, prev_y, prev_w, new_w, a, gap) {
   dX = prev_w / 2 + gap + new_w / 2
   yNext = prev_y + tan(a) * dX
   return { x: prev_x + dX, y: yNext, a: a }
 }
+
 function moveCup (cup) {
   const newHeight = cup.y - (((frameCount / 60) * 6.67) % height)
   if (cup.moves) {
@@ -93,20 +94,24 @@ function draw () {
   let now_second = second()
   let big_second = second()
   if (now_second != current_second) {
-    let newBall = new Circle(0, 50, 10)
-    Body.setVelocity(newBall.body, { x: 3, y: 0 })
+    let newBall = new Circle(140, 50, 10, 0.9)
+    Body.setVelocity(newBall.body, { x: 0, y: 10 })
     circles.push(newBall)
-    if (now_second % 2) {
-      let newBall2 = new Circle(0, 50, 20)
-      Body.setVelocity(newBall2.body, { x: 3, y: 0 })
-      circles.push(newBall2)
-    }
+    // if (now_second %3) {
+    //   let newBall2 = new Circle(50, 50, 20, 0.9)
+    //   Body.setVelocity(newBall2.body, { x: 0, y: 10 })
+    //   circles.push(newBall2)
+    // }
     current_second = now_second
   }
+  console.log(now_second)
+  if (now_second == 58) {
+    cups[0].open()
+  }
+  if (now_second % 3 == 1) {
+    cups[0].close()
+  }
 
-  console.log('current: ' + current_second)
-  console.log('now: ' + now_second)
-  console.log('big: ' + big_second)
   for (let i = 0; i < circles.length; i++) {
     circles[i].show()
   }
@@ -118,10 +123,15 @@ function draw () {
   for (let i = 0; i < boundaries.length; i++) {
     moveBoundary(boundaries[i])
   }
-  for (let i = 0; i < cups.length; i++) {
-    moveCup(cups[i])
+  for (let i = circles.length - 1; i > 0; i--) {
+    // console.log(circles[0])
+    if (circles[i].body.position.y > 400) {
+      circles.splice(i, 1)
+    }
   }
-  Engine.update(engine) //
 
-  // circles.push(new Circle(mouseX, mouseY, random(5, 10)));
+  // for (let i = 0; i < cups.length; i++) {
+  //   moveCup(cups[i])
+  // }
+  Engine.update(engine) //
 }

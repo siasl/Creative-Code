@@ -1,11 +1,11 @@
 class Circle{
-    constructor(x, y, r) {
+    constructor(x, y, r, restitution = 0.6, friction = 0) {
         this.x = x;
         this.y = y;
         this.r = r;
         let options = {
-            friction: 0,
-            restitution: 0.6
+            friction,
+            restitution
         }
         this.body = Bodies.circle(this.x, this.y, this.r,  options);
         Composite.add(world, this.body);
