@@ -69,10 +69,19 @@ class Cup {
     pop()
   }
   bottom_open (target_angle) {
-    Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
+    //Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
+    Body.setPosition(this.bottom, {
+      x: this.x + 60,
+      y: this.bottom.position.y
+    })
   }
   bottom_close (target_angle) {
-    Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
+    //Body.setAngle(this.bottom, lerp(this.bottom.angle, target_angle, 0.1))
+    let starting_x = this.bottom.position.x
+    Body.setPosition(this.bottom, {
+      x: this.x,
+      y: this.bottom.position.y
+    })
   }
   right_open (target_angle) {
     Body.setAngle(this.rightWall, lerp(this.rightWall.angle, target_angle, 0.1))
@@ -81,6 +90,6 @@ class Cup {
     Body.setAngle(this.rightWall, lerp(this.rightWall.angle, target_angle, 0.1))
   }
   update_text (itext) {
-    text(itext, this.x, this.y-this.height/2)
+    text(itext, this.x, this.y - this.height / 2)
   }
 }

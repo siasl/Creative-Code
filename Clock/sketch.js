@@ -24,17 +24,18 @@ let oc = 'close'
 let min_sec
 let start_ball = true
 let cupAnimationStartedAt = [null, null]
-const cupOpenTargets = [{ bottom: 0.99 }, { bottom: 0.8, right: -0.6 }]
+const cupOpenTargets = [{ bottom: 1.6 }, { bottom: 0.8, right: -0.6 }]
 const cupTiming = {
   button: [
     { openDuration: 1000, holdDuration: 1000, closeDuration: 1000 },
     { openDuration: 1000, holdDuration: 1500, closeDuration: 1000 }
   ],
   secondCup: { openAtSecond: 59, closeAtSecond: 1 },
-  minuteCup: { openAtMinute: 20, closeAtSecond: 3 }
+  minuteCup: { openAtMinute: 59, closeAtSecond: 3 },
+  hourCup: { openAtHour: 0, closeAtSecond: 5 }
 }
 function setup () {
-  createCanvas(1000, 2000)
+  createCanvas(1000, 5500)
   current_second = second()
   current_minute = minute()
   current_hour = hour()
@@ -54,66 +55,96 @@ function setup () {
     count: 1
   })
 
+  // line_boundaries({
+  //   x1: 470,
+  //   y1: 490,
+  //   w1: 300,
+  //   h1: 20,
+  //   a1: -0.8,
+  //   gap: 39,
+  //   gap_growth: 10,
+  //   count: 1
+  // })
+  // line_boundaries({
+  //   x1: 530,
+  //   y1: 375,
+  //   w1: 100,
+  //   h1: 20,
+  //   a1: 0,
+  //   gap: 39,
+  //   gap_growth: 10,
+  //   count: 1
+  // })
   line_boundaries({
-    x1: 470,
-    y1: 490,
-    w1: 300,
+    x1: 260,
+    y1: 1660,
+    w1: 140,
     h1: 20,
-    a1: -0.8,
+    a1: 0.8,
     gap: 39,
     gap_growth: 10,
     count: 1
   })
   line_boundaries({
-    x1: 530,
-    y1: 375,
-    w1: 100,
+    x1: 380,
+    y1: 1660,
+    w1: 340,
     h1: 20,
-    a1: 0,
+    a1: PI/2,
     gap: 39,
     gap_growth: 10,
     count: 1
   })
   line_boundaries({
-    x1: 670,
-    y1: 990,
-    w1: 450,
+    x1: 450,
+    y1: 3710,
+    w1: 180,
     h1: 20,
-    a1: -0.8,
+    a1: PI/2,
     gap: 39,
     gap_growth: 10,
     count: 1
   })
-
+  line_boundaries({
+    x1: 320,
+    y1: 3750,
+    w1: 160,
+    h1: 20,
+    a1: .8,
+    gap: 39,
+    gap_growth: 10,
+    count: 1
+  })
+  // second cup
   cups.push(
     new Cup({
-      x: 400,
-      y: 300,
-      width: 150,
-      height: 150,
-      wallThickness: 10,
+      x: 250,
+      y: 950,
+      width: 55,
+      height: 1300,
+      wallThickness: 30,
       moves: true
     })
   )
   //minute cup
   cups.push(
     new Cup({
-      x: 290,
-      y: 700,
-      width: 300,
-      height: 300,
-      wallThickness: 10,
+      x: 340,
+      y: 2700,
+      width: 68,
+      height: 2000,
+      wallThickness: 30,
       moves: true
     })
   )
   //hour cup
   cups.push(
     new Cup({
-      x: 300,
-      y: 1400,
-      width: 400,
-      height: 400,
-      wallThickness: 10,
+      x: 410,
+      y: 4350,
+      width: 70,
+      height: 1100,
+      wallThickness: 30,
       moves: true
     })
   )
@@ -173,9 +204,9 @@ function moveBoundary (boundary) {
   }
   boundary.show()
 }
-function new_sec_ball (x, y, r, res, color) {
+function new_sec_ball (x, y, r, res, xv, yv, color) {
   let newBall = new Circle(x, y, r, res, 0, color)
-  Body.setVelocity(newBall.body, { x: 0, y: 10 })
+  Body.setVelocity(newBall.body, { x: xv, y: yv })
   second_cir.push(newBall)
 }
 function new_min_ball (x, y, r, res, xv, yv, color) {
@@ -263,7 +294,7 @@ function draw () {
 
   // draw second balls every second
   if (now_second != current_second) {
-    new_sec_ball(140, 50, 10, 0.9, 'red')
+    new_sec_ball(140, 50, 10, 0.6, 0, 1, 'red')
     current_second = now_second
   }
 
@@ -280,19 +311,20 @@ function draw () {
   // populate second cup with right number of balls
   if (start_ball) {
     if (second_cir.length < now_second && now_second !== min_sec) {
-      new_sec_ball(400, 200, 10, 0.9, 'red')
+      new_sec_ball(250, 290, 10, 0.6, 0, 1, 'red')
+      min_sec= current_second
     }
   }
   // populate minute cup with right number of balls
   if (start_ball) {
-    if (minute_cir.length < now_minute && now_second !== min_sec) {
-      new_min_ball(290, 600, 15, 0.9, 1, 2, 'blue')
+    if (minute_cir.length < now_minute ) {
+      new_min_ball(340, 1800, 15, 0.1, 1, 2, 'blue')
     }
   }
   //populate hour cup with right number of balls
   if (start_ball) {
-    if (hour_cir.length < now_hour && now_second !== min_sec) {
-      new_hour_ball(290, 1200, 20, 0.9, 1, 2, 'green')
+    if (hour_cir.length < now_hour ) {
+      new_hour_ball(400, 3900, 20, 0.1, 1, 2, 'green')
     }
   }
 
@@ -304,33 +336,48 @@ function draw () {
   if (now_second == cupTiming.secondCup.closeAtSecond) {
     cups[0].bottom_close(0)
   }
-  
+
   // add new minute ball
   if (now_minute != current_minute && now_second == 1) {
-    new_min_ball(100, 420, 15, 0.9, 8, 2, 'blue')
+    new_min_ball(340, 1600, 15, 0.6, 0, 2, 'blue')
     current_minute = now_minute
+  }
+
+  // add new hour ball
+  if (now_hour != current_hour && now_minute == 0 && now_second == 1) {
+    if (now_hour != 0) {
+      new_hour_ball(400, 3700, 20, 0.6, 0, 2, 'green')
+    }
+    current_hour = now_hour
   }
 
   if (now_minute == cupTiming.minuteCup.openAtMinute) {
     if (now_second == 0) {
-      cups[1].right_open(cupOpenTargets[1].right)
-      cups[1].bottom_open(cupOpenTargets[1].bottom)
+      cups[1].bottom_open()
     }
     if (now_second == cupTiming.minuteCup.closeAtSecond) {
-      cups[1].bottom_close(0)
-      cups[1].right_close(0)
+      cups[1].bottom_close()
+    }
+  }
+  // open and close the hour cup at midnight
+  if (now_hour == cupTiming.hourCup.openAtHour && now_minute == 0) {
+    if (now_second == 0) {
+      cups[2].bottom_open()
+    }
+    if (now_second == cupTiming.hourCup.closeAtSecond) {
+      cups[2].bottom_close()
     }
   }
   if (cupAnimationStartedAt[0] !== null) {
     animateCupButton(0, cupOpenTargets[0].bottom)
   }
   if (cupAnimationStartedAt[1] !== null) {
-    animateCupButton(1, cupOpenTargets[1].bottom, cupOpenTargets[1].right)
+    animateCupButton(1, cupOpenTargets[1].bottom)
   }
   //remove second balls from board
   for (let i = second_cir.length - 1; i >= 0; i--) {
     // console.log(circles[0])
-    if (second_cir[i].body.position.y > 600) {
+    if (second_cir[i].body.position.y > 1680) {
       Composite.remove(world, second_cir[i].body)
       second_cir.splice(i, 1)
     }
@@ -338,7 +385,7 @@ function draw () {
   //remove minute circles
   for (let i = minute_cir.length - 1; i >= 0; i--) {
     // console.log(circles[0])
-    if (minute_cir[i].body.position.y > 1300) {
+    if (minute_cir[i].body.position.y > 3760) {
       Composite.remove(world, minute_cir[i].body)
       minute_cir.splice(i, 1)
     }
@@ -346,7 +393,7 @@ function draw () {
   //remove hour circles
   for (let i = hour_cir.length - 1; i >= 0; i--) {
     // console.log(circles[0])
-    if (hour_cir[i].body.position.y > 1600) {
+    if (hour_cir[i].body.position.y > 5400) {
       Composite.remove(world, hour_cir[i].body)
       hour_cir.splice(i, 1)
     }
