@@ -25,6 +25,7 @@ let min_sec
 let start_ball = true
 let cupAnimationStartedAt = [null, null]
 const cupOpenTargets = [{ bottom: 1.6 }, { bottom: 0.8, right: -0.6 }]
+//ai wrote this because I had it create the buttons for me so I could just test the opening and closing functionality 
 const cupTiming = {
   button: [
     { openDuration: 1000, holdDuration: 1000, closeDuration: 1000 },
@@ -33,6 +34,12 @@ const cupTiming = {
   secondCup: { openAtSecond: 59, closeAtSecond: 1 },
   minuteCup: { openAtMinute: 59, closeAtSecond: 3 },
   hourCup: { openAtHour: 0, closeAtSecond: 5 }
+}
+
+function scaleCanvas (displayScale) {
+  let cnv = select('canvas').elt
+  cnv.style.setProperty('transform', 'scale(' + displayScale + ')')
+  cnv.style.setProperty('transform-origin', 'left top')
 }
 function setup () {
   createCanvas(1000, 5500)
@@ -43,6 +50,7 @@ function setup () {
   // create an engine
   engine = Engine.create()
   world = engine.world // the root composite
+  scaleCanvas(0.5)
 
   line_boundaries({
     x1: 0,
@@ -133,7 +141,7 @@ function setup () {
       y: 2700,
       width: 68,
       height: 2000,
-      wallThickness: 30,
+      wallThickness: 32,
       moves: true
     })
   )
@@ -288,9 +296,9 @@ function draw () {
     moveBoundary(boundaries[i])
   }
   //make sure cup text is correct
-  cups[0].update_text(second())
-  cups[1].update_text(minute())
-  cups[2].update_text(hour())
+  cups[0].update_text("Second")
+  cups[1].update_text("Minute")
+  cups[2].update_text("Hour")
 
   // draw second balls every second
   if (now_second != current_second) {
@@ -318,7 +326,7 @@ function draw () {
   // populate minute cup with right number of balls
   if (start_ball) {
     if (minute_cir.length < now_minute ) {
-      new_min_ball(340, 1800, 15, 0.1, 1, 2, 'blue')
+      new_min_ball(340, 2100, 15, 0.1, 0, 0, 'blue')
     }
   }
   //populate hour cup with right number of balls
