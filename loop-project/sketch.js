@@ -11,8 +11,10 @@ let decrease = false
 let startSecond
 let shuffled_array
 let final_shake = false
+let waveShakeX = 0
+let waveShakeY = 0
 async function setup () {
-  randomSeed("silas")
+  randomSeed('silas')
 
   createCanvas(windowWidth, windowHeight)
   startSecond = second()
@@ -26,16 +28,18 @@ async function setup () {
     simplifyThreshold: 0
   })
   shuffled_array = shuffle(contours)
-  console.log(contours)
-  console.log(shuffled_array)
 }
 
 function draw () {
   background('black')
+  drawTriangleWavePattern(80, 20, 60, 'gray', waveShakeX, waveShakeY)
   //noFill()
   //   stroke("red")
   fill(255)
   text('SILAS', silas_location.x, silas_location.y)
+  // Shake offsets are recalculated below only while a shake is active.
+  waveShakeX = 0
+  waveShakeY = 0
   //move text
   if (silas_location.x < width / 2 && !final_shake) {
     silas_location.x += 10
@@ -57,7 +61,8 @@ function draw () {
   if (silas_location.y >= height / 2 && decrease == false) {
     let xOffset = random(-shakeAmount, shakeAmount)
     let yOffset = random(-shakeAmount, shakeAmount)
-
+    waveShakeX = xOffset
+    waveShakeY = yOffset
     // Apply the shake by translating the canvas
     //translate(xOffset, yOffset)
     silas_location.x += xOffset
@@ -285,10 +290,12 @@ function draw () {
     silas_location.y += yOffset
     //rotate(yOffset)
     shakeAmount2 *= decayFactor2
+    waveShakeX = xOffset
+    waveShakeY = yOffset
   }
-//   if (final_shake && shakeAmount2 <= 0.02) {
-//     silas_location.x -= 10
-//   }
+  //   if (final_shake && shakeAmount2 <= 0.02) {
+  //     silas_location.x -= 10
+  //   }
   if (final_shake && shakeAmount2 <= 0.02) {
     new_y = lerp(
       silas_location.y,
@@ -336,4 +343,48 @@ function circularInOut (t) {
     t = (t - 0.5) * 2
     return 0.5 + sqrt(1 - (1 - t) * (1 - t)) * 0.5
   }
+}
+//chat GPT wrote this function in totality becuase I realized I wanted to add "more juice" right before class
+// and having a background that shakes with the text seemed like a good way to do that. 
+function drawTriangleWavePattern (
+  waveLength = 80,
+  amplitude = 20,
+  rowSpacing = 60,
+  strokeColor = 'white',
+  xOffset = 0,
+  yOffset = 0
+) {
+  push()
+  translate(xOffset, yOffset)
+
+  noFill()
+  stroke(strokeColor)
+  strokeWeight(1)
+
+  // Extend beyond the canvas so shaking doesn't reveal empty edges.
+  for (
+    let rowY = -rowSpacing * 2;
+    rowY <= height + rowSpacing * 2;
+    rowY += rowSpacing
+  ) {
+    beginShape()
+
+    let pointNumber = 0
+    const pointSpacing = waveLength / 2
+
+    for (
+      let x = -waveLength * 2;
+      x <= width + waveLength * 2;
+      x += pointSpacing
+    ) {
+      const yOffsetFromRow = pointNumber % 2 === 0 ? -amplitude : amplitude
+
+      vertex(x, rowY + yOffsetFromRow)
+      pointNumber += 1
+    }
+
+    endShape()
+  }
+
+  pop()
 }
