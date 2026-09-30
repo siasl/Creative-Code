@@ -60,36 +60,40 @@ function worldMouse () {
     y: height / 2 - mouseY
   }
 }
-function mouseClicked() {
-  const mouse = worldMouse()
-
-  if (draft === null) {
-    draft = { x: mouse.x, y: mouse.y, diameter: null }
-    return
+function mouseClicked () {
+  let mouse = worldMouse()
+  if (new_circle == 0) {
+    drawing_circle.push({
+      x: mouse.x,
+      y: mouse.y,
+      size: 2
+    })
+  } else if (new_circle == 1) {
+    drawing_circle[0].h = Math.hypot(
+      2 * (drawing_circle[0].x - mouse.x),
+      2 * (drawing_circle[0].y - mouse.y)
+    )
+    drawing_line.push({
+      x1: drawing_circle[0].x,
+      y1: drawing_circle[0].y,
+      x2: mouse.x,
+      y2: mouse.y
+    })
+  } else if (new_circle == 2) {
+    cells.push(
+      new Cell(
+        drawing_circle[0].x,
+        drawing_circle[0].y,
+        drawing_circle[0].h,
+        drawing_circle[0].h,
+        '#0f4a9c',
+        { x: 0, y: -3 },
+        cells
+      )
+    )
   }
 
-  if (draft.diameter === null) {
-    draft.diameter = 2 * Math.hypot(mouse.x - draft.x, mouse.y - draft.y)
-    return
-  }
-
-  const dx = mouse.x - draft.x
-  const dy = mouse.y - draft.y
-  const length = Math.hypot(dx, dy)
-  if (length === 0) return // wait for a direction
-
-  const speed = 3
-  const velocity = {
-    x: (dx / length) * speed,
-    y: (dy / length) * speed
-  }
-
-  cells.push(new Cell(
-    draft.x, draft.y,
-    draft.diameter, draft.diameter,
-    '#0f4a9c', velocity, cells
-  ))
-  draft = null
+  new_circle += 1
 }
 
 class Cell {
