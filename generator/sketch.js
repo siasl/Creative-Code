@@ -1,6 +1,8 @@
 //debugger
 let cells = []
 let old_cells = []
+let new_circle = 0
+let draft = null
 function setup () {
   cells.push(
     new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
@@ -13,38 +15,81 @@ function setup () {
 }
 
 function draw () {
+  let mouse = worldMouse()
+
   background(255)
   translate(width / 2, height / 2)
+  scale(1, -1)
 
-for (const [index, old_cell] of old_cells.entries()) {
-    old_cell.fade =Math.min(1, old_cell.fade + 1 / 360)
+  for (const [index, old_cell] of old_cells.entries()) {
+    old_cell.fade = Math.min(1, old_cell.fade + 1 / 360)
     push()
     noStroke()
     fill(lerpColor(color(old_cell.color), color(255), old_cell.fade))
     ellipse(old_cell.x, old_cell.y, old_cell.w, old_cell.h)
-    pop() 
-    if(old_cell.fade >= 1){
-        old_cells.splice(index,1)
+    pop()
+    if (old_cell.fade >= 1) {
+      old_cells.splice(index, 1)
     }
   }
   for (const cell of cells) {
     cell.draw()
     //cell.checkSurroundings()
   }
+  if (new_circle == 1) {
+    for (const d_circ of drawing_circle) {
+      ellipse(
+        d_circ.x,
+        d_circ.y,
+        Math.hypot(2 * (d_circ.x - mouse.x), 2 * (d_circ.y - mouse.y))
+      )
+      console.log(d_circ.x, d_circ.y, mouse.x, mouse.y)
+    }
+  }
+  if (new_circle == 2) {
+    ellipse(drawing_circle[0].x, drawing_circle[0].y, drawing_circle[0].h)
+    for (const d_line of drawing_line) {
+      line(d_line.x1, d_line.y1, mouse.x, mouse.y)
+    }
+  }
 }
 
-function mouseClicked () {
-  cells.push(
-    new Cell(
-      mouseX - width / 2,
-      mouseY - height / 2,
-      10,
-      10,
-      '#0f4a9c',
-      { x: 0, y: -3 },
-      cells
-    )
-  )
+function worldMouse () {
+  return {
+    x: mouseX - width / 2,
+    y: height / 2 - mouseY
+  }
+}
+function mouseClicked() {
+  const mouse = worldMouse()
+
+  if (draft === null) {
+    draft = { x: mouse.x, y: mouse.y, diameter: null }
+    return
+  }
+
+  if (draft.diameter === null) {
+    draft.diameter = 2 * Math.hypot(mouse.x - draft.x, mouse.y - draft.y)
+    return
+  }
+
+  const dx = mouse.x - draft.x
+  const dy = mouse.y - draft.y
+  const length = Math.hypot(dx, dy)
+  if (length === 0) return // wait for a direction
+
+  const speed = 3
+  const velocity = {
+    x: (dx / length) * speed,
+    y: (dy / length) * speed
+  }
+
+  cells.push(new Cell(
+    draft.x, draft.y,
+    draft.diameter, draft.diameter,
+    '#0f4a9c', velocity, cells
+  ))
+  draft = null
 }
 
 class Cell {
@@ -88,7 +133,7 @@ class Cell {
    * Builds the trail that goes behind each cell
    */
   buildTrail () {
-    if (frameCount % 3 === 0) {
+    if (frameCount % 1 === 0) {
       old_cells.push({
         x: this.x,
         y: this.y,
@@ -121,6 +166,7 @@ class Cell {
             this.w = new_r
             this.h = new_r
             this.area = PI * this.w * this.h
+            this.color = this.getImpactColor(other.color, other.area)
             const index = cells.indexOf(other)
             if (index !== -1) cells.splice(index, 1)
             console.log('new r = ' + new_r)
@@ -131,14 +177,51 @@ class Cell {
       }
     }
     //bounce back if hitting edge of canvas
-    if (
-      this.x >= width / 2 ||
-      this.x <= -1 * (width / 2) ||
-      this.y >= height / 2 ||
-      this.y <= -1 * (height / 2)
-    ) {
-      this.velocity.x *= -1
-      this.velocity.y *= -1
+    // I originally had a rudimentary velocity reversing formula,
+    // but I wanted something that would have it bounce off at the correct angle.
+    // AI generated this code for me.
+    const halfW = this.w / 2
+    const halfH = this.h / 2
+
+    if (this.x + halfW >= width / 2) {
+      this.x = width / 2 - halfW
+      this.velocity.x = -Math.abs(this.velocity.x)
+    } else if (this.x - halfW <= -width / 2) {
+      this.x = -width / 2 + halfW
+      this.velocity.x = Math.abs(this.velocity.x)
     }
+
+    if (this.y + halfH >= height / 2) {
+      this.y = height / 2 - halfH
+      this.velocity.y = -Math.abs(this.velocity.y)
+    } else if (this.y - halfH <= -height / 2) {
+      this.y = -height / 2 + halfH
+      this.velocity.y = Math.abs(this.velocity.y)
+    }
+  }
+  /**
+   * Figure out what the new color is after impact. It's changed based on
+   * The size differences between the cells
+   * @param {*} otherColor
+   * @param {*} otherArea
+   * @returns
+   */
+  getImpactColor (otherColor, otherArea) {
+    let areaRatio = otherArea / this.area
+    let newColor = lerpColor(color(this.color), color(otherColor), areaRatio)
+    return newColor
+  }
+  // Got this from the AI overview when
+  // googling "p5 js how close colors are"
+  colorDistance (c1, c2) {
+    let r1 = red(c1),
+      g1 = green(c1),
+      b1 = blue(c1)
+    let r2 = red(c2),
+      g2 = green(c2),
+      b2 = blue(c2)
+
+    // Returns a value from 0 (identical) to ~441.67 (opposite)
+    return dist(r1, g1, b1, r2, g2, b2)
   }
 }
