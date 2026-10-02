@@ -4,31 +4,74 @@ let old_cells = []
 let new_circle = 0
 let draft = null
 let myPicker
+let colorThreshold
+let fadeTime
+let playPause
+let mergeBox
+let speedSlider
+let colorSlider
+let blendSelector
 function setup () {
   //myPicker = createColorPicker('deeppink')
-  cells
-    .push
+  cells.push(
     // new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
     // new Cell(40, 120, 10, 10, '#2baa40', { x: -3, y: -2 }, cells),
-    // new Cell(30, -120, 10, 10, '#aa2b2b', { x: 0, y: 2 }, cells),
+    new Cell(0, 0, 10, 10, '#aa2b2b', { x: 0, y: 0 }, cells),
+    new Cell(-300, 0, 10, 10, '#2baa34', { x: 0, y: 0 }, cells),
     // new Cell(-10, 120, 10, 10, '#a8b915', { x: 3, y: -3 }, cells),
-    // new Cell(-40, 230, 10, 10, '#e41bca', { x: 2, y: -1 }, cells)
-    ()
+    new Cell(300, 0, 10, 10, '#e41bca', { x: 0, y: 0 }, cells)
+  )
   canvas = createCanvas(windowWidth, windowHeight)
   canvas.mouseClicked(handleCanvasClick)
+  colorThreshold = createInput(200)
+  colorThreshold.position(10, 100)
+  fadeTime = createInput(300000)
+  fadeTime.position(10, 150)
+  playPause = createButton('Pause', 'red')
+  playPause.position(10, 180)
+  playPause.mousePressed(playPausePressed)
+  mergeBox = createCheckbox('Merge On Collision', true)
+  mergeBox.position(10, 200)
+  speedSlider = createSlider(0.1, 10, 1, 0.1)
+  speedSlider.position(10, 240)
+  colorSlider = createSlider(0.1, 10, 1, 0.1)
+  colorSlider.position(10, 280)
+  myPicker = createColorPicker('deeppink')
+  myPicker.position(10, 10)
+	blendSelector = createSelect()
+	blendSelector.position(10,310)
+	blendSelector.option('Normal',BLEND)
+	blendSelector.option(ADD)
+	blendSelector.option(DARKEST)
+	blendSelector.option(LIGHTEST)
+	blendSelector.option(EXCLUSION)
+	blendSelector.option(MULTIPLY)
+	blendSelector.option(SCREEN)
+	blendSelector.option(REPLACE)
+	blendSelector.option(REMOVE)
+	blendSelector.option(DIFFERENCE)
+	blendSelector.option(OVERLAY)
+	blendSelector.option(HARD_LIGHT)
+	blendSelector.option(SOFT_LIGHT)
+	blendSelector.option(DODGE)
+	blendSelector.option(BURN)
 }
 
 function draw () {
   let mouse = worldMouse()
-
   background(255)
+  textSize(18)
+  text('Color Likeness Sensitivity', 10, 90)
+  text('Fade Time (sec)', 10, 140)
+  text(`Velocity Multiplier: ${speedSlider.value()}`, 10, 235)
+  text(`Color Attraction Multiplier: ${colorSlider.value()}`, 10, 275)
   translate(width / 2, height / 2)
   scale(1, -1)
 
   for (const [index, old_cell] of old_cells.entries()) {
-    old_cell.fade = Math.min(1, old_cell.fade + 1 / 360)
+    old_cell.fade = Math.min(1, old_cell.fade + 1 / (fadeTime.value() * 60))
     push()
-    blendMode(DARKEST)
+    blendMode(blendSelector.selected())
     noStroke()
     fill(lerpColor(color(old_cell.color), color(255), old_cell.fade))
     ellipse(old_cell.x, old_cell.y, old_cell.w, old_cell.h)
@@ -60,6 +103,16 @@ function draw () {
   }
 }
 
+function playPausePressed () {
+  if (playPause.html() === 'Pause') {
+    //noLoop()
+    playPause.html('Play')
+  } else {
+    //loop()
+    playPause.html('Pause')
+  }
+}
+
 function worldMouse () {
   return {
     x: mouseX - width / 2,
@@ -80,24 +133,15 @@ function handleCanvasClick () {
 
   if (draft.diameter === null) {
     draft.diameter = 2 * Math.hypot(mouse.x - draft.x, mouse.y - draft.y)
-    myPicker = createColorPicker('deeppink')
-    myPicker.position(10, 10)
+
     return
   }
-  // if (draft.color === null) {
-  //   myPicker = createColorPicker('deeppink')
-  //   myPicker.position(mouse.x, mouse.y)
-  //   draft.color = myPicker.color
-  //   return
-  // }
 
   const dx = mouse.x - draft.x
   const dy = mouse.y - draft.y
   const length = Math.hypot(dx, dy)
   if (length === 0) return // wait for a direction
   const chosenColor = myPicker.value()
-  myPicker.remove()
-  myPicker = null
   const speed_scale = 10
   const velocity = {
     x: dx / speed_scale,
@@ -144,21 +188,23 @@ class Cell {
    */
   draw () {
     this.buildTrail()
-    push()
-    fill(this.color)
-    let new_x = this.x + this.velocity.x
-    let new_y = this.y + this.velocity.y
-    ellipse(new_x, new_y, this.w, this.h)
-    this.x = new_x
-    this.y = new_y
-    pop()
-    this.checkSurroundings()
+    if (playPause.html() === 'Play') {
+      push()
+      fill(this.color)
+      let new_x = this.x + this.velocity.x * speedSlider.value()
+      let new_y = this.y + this.velocity.y * speedSlider.value()
+      ellipse(new_x, new_y, this.w, this.h)
+      this.x = new_x
+      this.y = new_y
+      pop()
+      this.checkSurroundings()
+    }
   }
   /**
    * Builds the trail that goes behind each cell
    */
   buildTrail () {
-    if (frameCount % 1 === 0) {
+    if (frameCount % 3 === 0) {
       old_cells.push({
         x: this.x,
         y: this.y,
@@ -185,16 +231,19 @@ class Cell {
           this.velocity.x *= -1
           this.velocity.y *= -1
           this.nearbyCells.add(other)
-          if (this.area >= other.area) {
-            const newArea = this.area + other.area
-            const newDiameter = 2 * Math.sqrt(newArea / PI)
+          //merge the colliding cells
+          if (mergeBox.checked()) {
+            if (this.area >= other.area) {
+              const newArea = this.area + other.area
+              const newDiameter = 2 * Math.sqrt(newArea / PI)
 
-            this.w = newDiameter
-            this.h = newDiameter
-            this.area = newArea
-            this.color = this.getImpactColor(other.color, other.area)
-            const index = cells.indexOf(other)
-            if (index !== -1) cells.splice(index, 1)
+              this.w = newDiameter
+              this.h = newDiameter
+              this.area = newArea
+              this.color = this.getImpactColor(other.color, other.area)
+              const index = cells.indexOf(other)
+              if (index !== -1) cells.splice(index, 1)
+            }
           }
         }
       } else {
@@ -203,19 +252,18 @@ class Cell {
       // have the cells move towards each other based on how similar their colors
       // are and what their size is.
       let colorScale = this.colorDistance(this.color, other.color)
-			console.log(colorScale)
-      if (colorScale < 100) {
+      if (colorScale > 0) {
         if (this.x > other.x) {
-          this.velocity.x -= colorScale / this.area
+          this.velocity.x -= (colorScale / this.area) * colorSlider.value()
         }
         if (this.x < other.x) {
-          this.velocity.x += colorScale / this.area
+          this.velocity.x += (colorScale / this.area) * colorSlider.value()
         }
         if (this.y > other.y) {
-          this.velocity.y -= colorScale / this.area
+          this.velocity.y -= (colorScale / this.area) * colorSlider.value()
         }
         if (this.y < other.y) {
-          this.velocity.y += colorScale / this.area
+          this.velocity.y += (colorScale / this.area) * colorSlider.value()
         }
       }
     }
@@ -257,21 +305,17 @@ class Cell {
   // Got this from the AI overview when
   // googling "p5 js how close colors are"
   colorDistance (c1, c2) {
-    let r1 = red(c1),
-      g1 = green(c1),
-      b1 = blue(c1)
-    let r2 = red(c2),
-      g2 = green(c2),
-      b2 = blue(c2)
+    const distance = dist(
+      red(c1),
+      green(c1),
+      blue(c1),
+      red(c2),
+      green(c2),
+      blue(c2)
+    )
+    const threshold = Number(colorThreshold.value())
+    if (threshold <= 0) return 0
 
-    // Returns a value from 0 (identical) to ~441.67 (opposite)
-    let distance = dist(r1, g1, b1, r2, g2, b2)
-
-    let tolerance = 200
-    if (distance < tolerance) {
-      return (tolerance - distance) / 100
-    } else {
-      return 1
-    }
+    return Math.max(0, 1 - distance / threshold)
   }
 }
