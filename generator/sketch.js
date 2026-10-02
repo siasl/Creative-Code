@@ -3,7 +3,8 @@ let cells = []
 let old_cells = []
 let new_circle = 0
 let draft = null
-let myPicker
+let ballPicker
+let bgPicker
 let colorThreshold
 let fadeTime
 let playPause
@@ -11,17 +12,20 @@ let mergeBox
 let speedSlider
 let colorSlider
 let blendSelector
+let trails
+
 function setup () {
-  //myPicker = createColorPicker('deeppink')
   cells.push(
     // new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
     // new Cell(40, 120, 10, 10, '#2baa40', { x: -3, y: -2 }, cells),
-    new Cell(0, 0, 10, 10, '#aa2b2b', { x: 0, y: 0 }, cells),
+    new Cell(0, 0, 10, 10, '#aa2b2b', { x: 0, y: 0.1 }, cells),
     new Cell(-300, 0, 10, 10, '#2baa34', { x: 0, y: 0 }, cells),
     // new Cell(-10, 120, 10, 10, '#a8b915', { x: 3, y: -3 }, cells),
-    new Cell(300, 0, 10, 10, '#e41bca', { x: 0, y: 0 }, cells)
+    new Cell(300, 0, 10, 10, '#e41bca', { x: 0, y: -0.1 }, cells)
   )
   canvas = createCanvas(windowWidth, windowHeight)
+  trails = createGraphics(width, height)
+  //trails.background(255)
   canvas.mouseClicked(handleCanvasClick)
   colorThreshold = createInput(200)
   colorThreshold.position(10, 100)
@@ -36,31 +40,36 @@ function setup () {
   speedSlider.position(10, 240)
   colorSlider = createSlider(0.1, 10, 1, 0.1)
   colorSlider.position(10, 280)
-  myPicker = createColorPicker('deeppink')
-  myPicker.position(10, 10)
-	blendSelector = createSelect()
-	blendSelector.position(10,310)
-	blendSelector.option('Normal',BLEND)
-	blendSelector.option(ADD)
-	blendSelector.option(DARKEST)
-	blendSelector.option(LIGHTEST)
-	blendSelector.option(EXCLUSION)
-	blendSelector.option(MULTIPLY)
-	blendSelector.option(SCREEN)
-	blendSelector.option(REPLACE)
-	blendSelector.option(REMOVE)
-	blendSelector.option(DIFFERENCE)
-	blendSelector.option(OVERLAY)
-	blendSelector.option(HARD_LIGHT)
-	blendSelector.option(SOFT_LIGHT)
-	blendSelector.option(DODGE)
-	blendSelector.option(BURN)
+  ballPicker = createColorPicker('deeppink')
+  ballPicker.position(70, 10)
+  bgPicker = createColorPicker('white')
+  bgPicker.position(10, 10)
+  blendSelector = createSelect()
+  blendSelector.position(10, 310)
+  blendSelector.option('Normal', BLEND)
+  blendSelector.option(ADD)
+  blendSelector.option(DARKEST)
+  blendSelector.option(LIGHTEST)
+  blendSelector.option(EXCLUSION)
+  blendSelector.option(MULTIPLY)
+  blendSelector.option(SCREEN)
+  blendSelector.option(REPLACE)
+  blendSelector.option(REMOVE)
+  blendSelector.option(DIFFERENCE)
+  blendSelector.option(OVERLAY)
+  blendSelector.option(HARD_LIGHT)
+  blendSelector.option(SOFT_LIGHT)
+  blendSelector.option(DODGE)
+  blendSelector.option(BURN)
 }
 
 function draw () {
   let mouse = worldMouse()
-  background(255)
+  background(bgPicker.value())
+  image(trails, 0, 0)
   textSize(18)
+  text('BG', 10, 55)
+  text('Ball', 70, 55)
   text('Color Likeness Sensitivity', 10, 90)
   text('Fade Time (sec)', 10, 140)
   text(`Velocity Multiplier: ${speedSlider.value()}`, 10, 235)
@@ -141,7 +150,7 @@ function handleCanvasClick () {
   const dy = mouse.y - draft.y
   const length = Math.hypot(dx, dy)
   if (length === 0) return // wait for a direction
-  const chosenColor = myPicker.value()
+  const chosenColor = ballPicker.value()
   const speed_scale = 10
   const velocity = {
     x: dx / speed_scale,
@@ -204,16 +213,16 @@ class Cell {
    * Builds the trail that goes behind each cell
    */
   buildTrail () {
-    if (frameCount % 3 === 0) {
-      old_cells.push({
-        x: this.x,
-        y: this.y,
-        w: this.w,
-        h: this.h,
-        color: this.color,
-        fade: 0
-      })
-    }
+    if (frameCount % 1 !== 0) return
+
+    trails.push()
+    trails.translate(width / 2, height / 2)
+    trails.scale(1, -1)
+    trails.blendMode(blendSelector.value())
+    trails.noStroke()
+    trails.fill(this.color)
+    trails.ellipse(this.x, this.y, this.w, this.h)
+    trails.pop()
   }
   /**
    * Checks for other cells nearby
@@ -231,6 +240,16 @@ class Cell {
           this.velocity.x *= -1
           this.velocity.y *= -1
           this.nearbyCells.add(other)
+          push()
+          noFill()
+          stroke('red')
+          strokeWeight(5)
+          // rect(0,0,width,height)
+          line(width / 2, height / 2, width / 2, -height / 2)
+          line(-width / 2, height / 2, width / 2, height / 2)
+          line(width / 2, -height / 2, -width / 2, -height / 2)
+          line(-width / 2, height / 2, -width / 2, -height / 2)
+          pop()
           //merge the colliding cells
           if (mergeBox.checked()) {
             if (this.area >= other.area) {
