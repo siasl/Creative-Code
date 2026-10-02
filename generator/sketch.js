@@ -6,13 +6,14 @@ let draft = null
 let myPicker
 function setup () {
   //myPicker = createColorPicker('deeppink')
-  cells.push(
+  cells
+    .push
     // new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
     // new Cell(40, 120, 10, 10, '#2baa40', { x: -3, y: -2 }, cells),
     // new Cell(30, -120, 10, 10, '#aa2b2b', { x: 0, y: 2 }, cells),
     // new Cell(-10, 120, 10, 10, '#a8b915', { x: 3, y: -3 }, cells),
     // new Cell(-40, 230, 10, 10, '#e41bca', { x: 2, y: -1 }, cells)
-  )
+    ()
   canvas = createCanvas(windowWidth, windowHeight)
   canvas.mouseClicked(handleCanvasClick)
 }
@@ -136,7 +137,7 @@ class Cell {
     this.velocity = velocity
     this.cells = cells
     this.nearbyCells = new Set()
-    this.area = PI * (w/2) * (h/2)
+    this.area = PI * (w / 2) * (h / 2)
   }
   /**
    * Draw the cell
@@ -185,34 +186,37 @@ class Cell {
           this.velocity.y *= -1
           this.nearbyCells.add(other)
           if (this.area >= other.area) {
-            let new_area = this.area + other.area
-            let new_r = sqrt(new_area / PI)
-            this.w = new_r
-            this.h = new_r
-            this.area = PI * this.w * this.h
+            const newArea = this.area + other.area
+            const newDiameter = 2 * Math.sqrt(newArea / PI)
+
+            this.w = newDiameter
+            this.h = newDiameter
+            this.area = newArea
             this.color = this.getImpactColor(other.color, other.area)
             const index = cells.indexOf(other)
             if (index !== -1) cells.splice(index, 1)
-            console.log('new r = ' + new_r)
           }
         }
       } else {
         this.nearbyCells.delete(other)
       }
-			// have the cells move towards each other based on how similar their colors
-			// are and what their size is.
+      // have the cells move towards each other based on how similar their colors
+      // are and what their size is.
       let colorScale = this.colorDistance(this.color, other.color)
-      if (this.x > other.x) {
-        this.velocity.x -= colorScale/this.area
-      }
-      if (this.x < other.x) {
-        this.velocity.x += colorScale/this.area
-      }
-      if (this.y > other.y) {
-        this.velocity.y -= colorScale/this.area
-      }
-      if (this.y < other.y) {
-        this.velocity.y += colorScale/this.area
+			console.log(colorScale)
+      if (colorScale < 100) {
+        if (this.x > other.x) {
+          this.velocity.x -= colorScale / this.area
+        }
+        if (this.x < other.x) {
+          this.velocity.x += colorScale / this.area
+        }
+        if (this.y > other.y) {
+          this.velocity.y -= colorScale / this.area
+        }
+        if (this.y < other.y) {
+          this.velocity.y += colorScale / this.area
+        }
       }
     }
     //bounce back if hitting edge of canvas
@@ -263,11 +267,11 @@ class Cell {
     // Returns a value from 0 (identical) to ~441.67 (opposite)
     let distance = dist(r1, g1, b1, r2, g2, b2)
 
-    let tolerance = 100
+    let tolerance = 200
     if (distance < tolerance) {
       return (tolerance - distance) / 100
     } else {
-      return 100
+      return 1
     }
   }
 }
