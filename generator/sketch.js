@@ -1,4 +1,15 @@
 //debugger
+/**
+ * For this project, we had to build a generator. I was inspired by planets orbiting
+ * each other. I was also inspired by Agar.io and other similar games.
+ * As a result, I made this generator that has balls that are attracted to each other
+ * based on color. The close a color is to another color, the more those balls are drawn
+ * to each other. Size plays a role as well. As balls move around the canvas, they 
+ * leave a trail which generates the "art". 
+ * There are different parameters to play with such as the color likeness sensitivity, 
+ * the velocity multiplier, and the color attraction multiplier. You can also choose to have the balls merge on 
+ * collision or bounce off the walls.
+ */
 let cells = []
 let old_cells = []
 let new_circle = 0
@@ -15,8 +26,10 @@ let blendSelector
 let trails
 let wallCheckbox
 let saveButton
+let clearButton
 let showUI = true
 let exportPending = false
+let hasStarted = false
 function setup () {
   cells.push(
     // new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
@@ -52,6 +65,9 @@ function setup () {
   saveButton = createButton('Save JPG')
   saveButton.position(10, 370)
   saveButton.mousePressed(saveImage)
+  clearButton = createButton('Clear Balls')
+  clearButton.position(100, 370)
+  clearButton.mousePressed(clearBalls)
 
   blendSelector = createSelect()
   blendSelector.position(10, 310)
@@ -154,6 +170,7 @@ function playPausePressed () {
   if (playPause.html() === 'Paused') {
     //noLoop()
     playPause.html('Playing')
+    hasStarted = true
   } else {
     //loop()
     playPause.html('Paused')
@@ -214,6 +231,16 @@ function saveImage () {
   toggleUI()
 }
 
+function clearBalls () {
+  // empty in place: each Cell keeps a reference to this array
+  cells.length = 0
+  draft = null
+  // before the first Play, also wipe the trails for a fresh start
+  if (!hasStarted) {
+    trails.clear()
+  }
+}
+
 function toggleUI () {
   showUI = !showUI
   const controls = [
@@ -226,6 +253,7 @@ function toggleUI () {
     ballPicker,
     bgPicker,
     saveButton,
+    clearButton,
     blendSelector
   ]
   for (const control of controls) {
