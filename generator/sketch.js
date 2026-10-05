@@ -13,15 +13,18 @@ let speedSlider
 let colorSlider
 let blendSelector
 let trails
-
+let wallCheckbox
+let saveButton
+let showUI = true
+let exportPending = false
 function setup () {
   cells.push(
     // new Cell(30, 10, 10, 10, '#0f4a9c', { x: 0, y: -3 }, cells),
     // new Cell(40, 120, 10, 10, '#2baa40', { x: -3, y: -2 }, cells),
-    new Cell(0, 0, 10, 10, '#aa2b2b', { x: 0, y: 0.1 }, cells),
-    new Cell(-300, 0, 10, 10, '#2baa34', { x: 0, y: 0 }, cells),
+    //new Cell(0, 0, 10, 10, '#aa2b2b', { x: 0, y: 0.1 }, cells),
+    new Cell(-300, 0, 10, 10, '#2baa34', { x: 0.2, y: 0.5 }, cells),
     // new Cell(-10, 120, 10, 10, '#a8b915', { x: 3, y: -3 }, cells),
-    new Cell(300, 0, 10, 10, '#e41bca', { x: 0, y: -0.1 }, cells)
+    new Cell(300, 0, 10, 10, '#1b5be4', { x: -0.2, y: -0.5 }, cells)
   )
   canvas = createCanvas(windowWidth, windowHeight)
   trails = createGraphics(width, height)
@@ -29,13 +32,15 @@ function setup () {
   canvas.mouseClicked(handleCanvasClick)
   colorThreshold = createInput(200)
   colorThreshold.position(10, 100)
-  fadeTime = createInput(300000)
-  fadeTime.position(10, 150)
-  playPause = createButton('Pause', 'red')
-  playPause.position(10, 180)
+  //fadeTime = createInput(300000)
+  //fadeTime.position(10, 150)
+  playPause = createButton('Paused', 'red')
+  playPause.position(10, 170)
   playPause.mousePressed(playPausePressed)
   mergeBox = createCheckbox('Merge On Collision', true)
   mergeBox.position(10, 200)
+  wallCheckbox = createCheckbox('Bouce Off Walls', true)
+  wallCheckbox.position(10, 340)
   speedSlider = createSlider(0.1, 10, 1, 0.1)
   speedSlider.position(10, 240)
   colorSlider = createSlider(0.1, 10, 1, 0.1)
@@ -44,6 +49,10 @@ function setup () {
   ballPicker.position(70, 10)
   bgPicker = createColorPicker('white')
   bgPicker.position(10, 10)
+  saveButton = createButton('Save JPG')
+  saveButton.position(10, 370)
+  saveButton.mousePressed(saveImage)
+
   blendSelector = createSelect()
   blendSelector.position(10, 310)
   blendSelector.option('Normal', BLEND)
@@ -67,18 +76,12 @@ function draw () {
   let mouse = worldMouse()
   background(bgPicker.value())
   image(trails, 0, 0)
-  textSize(18)
-  text('BG', 10, 55)
-  text('Ball', 70, 55)
-  text('Color Likeness Sensitivity', 10, 90)
-  text('Fade Time (sec)', 10, 140)
-  text(`Velocity Multiplier: ${speedSlider.value()}`, 10, 235)
-  text(`Color Attraction Multiplier: ${colorSlider.value()}`, 10, 275)
+  const drawUI = showUI && !exportPending
   translate(width / 2, height / 2)
   scale(1, -1)
 
   for (const [index, old_cell] of old_cells.entries()) {
-    old_cell.fade = Math.min(1, old_cell.fade + 1 / (fadeTime.value() * 60))
+    //old_cell.fade = Math.min(1, old_cell.fade + 1 / (fadeTime.value() * 60))
     push()
     blendMode(blendSelector.selected())
     noStroke()
@@ -91,9 +94,21 @@ function draw () {
   }
   for (const cell of cells) {
     cell.draw()
-    //cell.checkSurroundings()
   }
-  if (draft !== null) {
+  if (draft !== null && !exportPending) {
+    if (drawUI) {
+      push()
+      resetMatrix()
+      const message = 'Hit Escape to leave draw mode'
+      const boxWidth = textWidth(message) + 20
+      noStroke()
+      fill(255)
+      rect(width / 2 - boxWidth / 2, 5, boxWidth, 22)
+      fill(0)
+      textAlign(CENTER)
+      text(message, width / 2, 20)
+      pop()
+    }
     const diameter =
       draft.diameter ?? 2 * Math.hypot(mouse.x - draft.x, mouse.y - draft.y)
 
@@ -104,21 +119,44 @@ function draw () {
     ellipse(draft.x, draft.y, diameter, diameter)
     pop()
   }
-  if (draft === null) {
+  if (draft === null && !exportPending) {
     push()
     noFill()
     ellipse(mouse.x, mouse.y, 13)
     pop()
   }
+  if (drawUI) {
+    // drawn last so the panel sits on top of the cells
+    push()
+    resetMatrix()
+    noStroke()
+    fill(255)
+    rect(0, 0, 280, 405)
+    fill(0)
+    text(" press 'h' to hide UI", 130, 30)
+    textSize(18)
+    text('BG', 10, 55)
+    text('Ball', 70, 55)
+    text('Color Likeness Sensitivity', 10, 90)
+    // text('Fade Time (sec)', 10, 140)
+    text(`Velocity Multiplier: ${speedSlider.value()}`, 10, 235)
+    text(`Color Attraction Multiplier: ${colorSlider.value()}`, 10, 275)
+    pop()
+  }
+  if (exportPending) {
+    // this frame was drawn without UI, so save it now
+    saveCanvas('generator-' + frameCount, 'jpg')
+    exportPending = false
+  }
 }
 
 function playPausePressed () {
-  if (playPause.html() === 'Pause') {
+  if (playPause.html() === 'Paused') {
     //noLoop()
-    playPause.html('Play')
+    playPause.html('Playing')
   } else {
     //loop()
-    playPause.html('Pause')
+    playPause.html('Paused')
   }
 }
 
@@ -169,7 +207,40 @@ function handleCanvasClick () {
   )
   draft = null
 }
+function saveImage () {
+  toggleUI()
+  // defer the save to the next draw() so it renders without the UI
+  exportPending = true
+  toggleUI()
+}
 
+function toggleUI () {
+  showUI = !showUI
+  const controls = [
+    colorThreshold,
+    playPause,
+    mergeBox,
+    wallCheckbox,
+    speedSlider,
+    colorSlider,
+    ballPicker,
+    bgPicker,
+    saveButton,
+    blendSelector
+  ]
+  for (const control of controls) {
+    showUI ? control.show() : control.hide()
+  }
+}
+
+window.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    draft = null
+  }
+  if (event.key === 'h' || event.key === 'H') {
+    toggleUI()
+  }
+})
 class Cell {
   /**
    *
@@ -197,7 +268,7 @@ class Cell {
    */
   draw () {
     this.buildTrail()
-    if (playPause.html() === 'Play') {
+    if (playPause.html() === 'Playing') {
       push()
       fill(this.color)
       let new_x = this.x + this.velocity.x * speedSlider.value()
@@ -240,11 +311,12 @@ class Cell {
           this.velocity.x *= -1
           this.velocity.y *= -1
           this.nearbyCells.add(other)
+
+          //draw a red border for a frame when balls crash
           push()
           noFill()
           stroke('red')
           strokeWeight(5)
-          // rect(0,0,width,height)
           line(width / 2, height / 2, width / 2, -height / 2)
           line(-width / 2, height / 2, width / 2, height / 2)
           line(width / 2, -height / 2, -width / 2, -height / 2)
@@ -290,23 +362,25 @@ class Cell {
     // I originally had a rudimentary velocity reversing formula,
     // but I wanted something that would have it bounce off at the correct angle.
     // AI generated this code for me.
-    const halfW = this.w / 2
-    const halfH = this.h / 2
+    if (wallCheckbox.checked()) {
+      const halfW = this.w / 2
+      const halfH = this.h / 2
 
-    if (this.x + halfW >= width / 2) {
-      this.x = width / 2 - halfW
-      this.velocity.x = -Math.abs(this.velocity.x)
-    } else if (this.x - halfW <= -width / 2) {
-      this.x = -width / 2 + halfW
-      this.velocity.x = Math.abs(this.velocity.x)
-    }
+      if (this.x + halfW >= width / 2) {
+        this.x = width / 2 - halfW
+        this.velocity.x = -Math.abs(this.velocity.x)
+      } else if (this.x - halfW <= -width / 2) {
+        this.x = -width / 2 + halfW
+        this.velocity.x = Math.abs(this.velocity.x)
+      }
 
-    if (this.y + halfH >= height / 2) {
-      this.y = height / 2 - halfH
-      this.velocity.y = -Math.abs(this.velocity.y)
-    } else if (this.y - halfH <= -height / 2) {
-      this.y = -height / 2 + halfH
-      this.velocity.y = Math.abs(this.velocity.y)
+      if (this.y + halfH >= height / 2) {
+        this.y = height / 2 - halfH
+        this.velocity.y = -Math.abs(this.velocity.y)
+      } else if (this.y - halfH <= -height / 2) {
+        this.y = -height / 2 + halfH
+        this.velocity.y = Math.abs(this.velocity.y)
+      }
     }
   }
   /**
