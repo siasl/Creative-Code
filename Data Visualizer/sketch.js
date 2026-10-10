@@ -71,6 +71,16 @@ svg
   .attr('y', d => y(d[1]))
   .attr('width', 30)
   .attr('height', d => y(0) - y(d[1]))
+
+svg
+  .append('g')
+  .selectAll('text')
+  .data(yearCountData)
+  .join('text')
+  .attr('x', d => x(new Date(d[0], 0, 1)) + 15)
+  .attr('y', d => y(d[1]) - 5)
+  .attr('text-anchor', 'middle')
+  .text(d => d[1])
 // Append the SVG element.
 const container = document.getElementById('container')
 container.append(svg.node())
