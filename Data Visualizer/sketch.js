@@ -22,20 +22,30 @@ const songs = likedSongs.map(track => {
   }
 })
 console.log(songs)
-const yearCounts = d3.rollup(songs,(group) => group.length, d => d.added_at.getFullYear())
+const yearCounts = d3.rollup(
+  songs,
+  group => group.length,
+  d => d.added_at.getFullYear()
+)
 console.log(yearCounts)
 const minMaxYearCounts = d3.extent(yearCounts.entries())
-console.log(minMaxYearCounts)
+const highestYearCount = d3.max(yearCounts.values())
+console.log(highestYearCount)
 // Declare the x (horizontal position) scale.
+const yearCountData = Array.from(yearCounts)
+console.log(yearCountData)
 const x = d3
   .scaleUtc()
-  .domain([new Date(minMaxYearCounts[0][0],1,1), new Date(minMaxYearCounts[1][0]+1,1,1)])
+  .domain([
+    new Date(minMaxYearCounts[0][0], 0, 1),
+    new Date(minMaxYearCounts[1][0] + 1, 0, 1)
+  ])
   .range([marginLeft, width - marginRight])
 
 // Declare the y (vertical position) scale.
 const y = d3
   .scaleLinear()
-  .domain([0, (Math.round(minMaxYearCounts[1][1]/50)*50)+50])
+  .domain([0, Math.round(highestYearCount / 50) * 50 + 50])
   .range([height - marginBottom, marginTop])
 
 // Create the SVG container.
@@ -52,7 +62,15 @@ svg
   .append('g')
   .attr('transform', `translate(${marginLeft},0)`)
   .call(d3.axisLeft(y))
-
+svg
+  .append('g')
+  .selectAll('rect')
+  .data(yearCountData)
+  .join('rect')
+  .attr('x', d => x(new Date(d[0], 0, 1)))
+  .attr('y', d => y(d[1]))
+  .attr('width', 30)
+  .attr('height', d => y(0) - y(d[1]))
 // Append the SVG element.
 const container = document.getElementById('container')
 container.append(svg.node())
