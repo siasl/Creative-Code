@@ -18,7 +18,7 @@ async function setup () {
 
   createCanvas(windowWidth, windowHeight)
   startSecond = second()
-  font = await loadFont('./assets/oilrig.otf')
+  font = await loadFont('./assets/Oilrig.otf')
   textFont(font)
   textSize(240)
   textAlign(CENTER, CENTER)
