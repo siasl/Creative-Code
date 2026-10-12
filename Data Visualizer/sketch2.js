@@ -61,7 +61,7 @@ function countVowels(title) {
   return counts
 }
 
-const likedSongs = await d3.json('./assets/LikedSongs.json')
+const likedSongs = await d3.json('./LikedSongs.json')
 const songs = likedSongs.map(track => {
   const t = track.track
   return {

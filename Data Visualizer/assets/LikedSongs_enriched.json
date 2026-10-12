@@ -94799,7 +94799,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -94840,6 +94841,11 @@
             "bucket": "yellow"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -262348,13 +262354,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -262395,6 +262402,11 @@
             "bucket": "green"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -265266,13 +265278,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -265313,6 +265326,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -268732,13 +268750,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -268779,6 +268798,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -275566,13 +275590,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -275613,6 +275638,11 @@
             "bucket": "green"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -277161,13 +277191,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -277208,6 +277239,11 @@
             "bucket": "green"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -286249,13 +286285,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -286296,6 +286333,11 @@
             "bucket": "green"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -286425,7 +286467,8 @@
           "techno"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -286466,6 +286509,11 @@
             "bucket": "red"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "techno",
+        "source": "provided by user"
       }
     }
   },
@@ -286575,14 +286623,15 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "r&b & soul",
-        "sub": "r&b",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "disco",
           "r&b"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -286623,6 +286672,11 @@
             "bucket": "white"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -287242,7 +287296,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -287283,6 +287338,11 @@
             "bucket": "orange"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -287377,13 +287437,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -287424,6 +287485,11 @@
             "bucket": "green"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -295334,13 +295400,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -295381,6 +295448,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -312564,13 +312636,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -312611,6 +312684,11 @@
             "bucket": "white"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -376264,15 +376342,16 @@
         ]
       },
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "electronic & dance",
+        "sub": "electronic",
         "all": [
           "pop",
           "pop rap"
         ],
         "sources": [
           "deezer",
-          "wikidata"
+          "wikidata",
+          "user"
         ]
       },
       "cover_color": {
@@ -376313,6 +376392,11 @@
             "bucket": "white"
           }
         ]
+      },
+      "user_override": {
+        "main": "electronic & dance",
+        "sub": "electronic",
+        "source": "provided by user"
       }
     }
   },
@@ -433756,13 +433840,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -433803,6 +433888,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -434315,13 +434405,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -434362,6 +434453,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -434562,7 +434658,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -434603,6 +434700,11 @@
             "bucket": "orange"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -434828,7 +434930,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -434869,6 +434972,11 @@
             "bucket": "yellow"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -473162,7 +473270,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -473203,6 +473312,11 @@
             "bucket": "orange"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -473403,7 +473517,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -473444,6 +473559,11 @@
             "bucket": "orange"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -542312,7 +542432,8 @@
         ],
         "sources": [
           "deezer",
-          "musicbrainz"
+          "musicbrainz",
+          "user"
         ]
       },
       "cover_color": {
@@ -542353,6 +542474,11 @@
             "bucket": "yellow"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
@@ -550463,13 +550589,14 @@
       },
       "wikidata": null,
       "genres": {
-        "main": "pop",
-        "sub": "pop",
+        "main": "rock",
+        "sub": "alternative rock",
         "all": [
           "pop"
         ],
         "sources": [
-          "deezer"
+          "deezer",
+          "user"
         ]
       },
       "cover_color": {
@@ -550510,6 +550637,11 @@
             "bucket": "gray"
           }
         ]
+      },
+      "user_override": {
+        "main": "rock",
+        "sub": "alternative rock",
+        "source": "provided by user"
       }
     }
   },
