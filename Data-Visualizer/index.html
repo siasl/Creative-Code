@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Visualizer</title>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+    <body>
+        <header class="intro">
+            <h1>My Spotify Liked Songs</h1>
+            <p>
+                These charts visualize my Spotify Liked Songs playlist: when I added each song, what genre it is,
+                and how it sounds.
+            </p>
+            <p>
+                I exported the playlist as JSON using an n8n workflow. n8n has a built-in Spotify node, so I didn't
+                have to deal with Spotify's OAuth myself, which is a pain to work with directly.
+            </p>
+            <p>
+                Spotify's API no longer makes it easy to get genres, keys, tempos, or other audio features. I assume
+                they restricted that data to fight AI scraping. So I used Claude to pull the missing metadata from
+                ReccoBeats, MusicBrainz, Deezer, Wikidata, and Wikipedia, and then I filled in the last few gaps myself
+                by looking up those songs.
+            </p>
+            <p>
+                Each chart has a different level of AI assistance. I wrote a little more than half of the first chart myself,
+                starting from an example in the D3 documentation and using AI like a supercharged Stack Overflow:
+                asking how to approach something conceptually or structurally rather than having it write the code.
+                As the weekend went on, I realized I wanted to explore more kinds of visualizations than I had time to
+                build by hand with data this rich, so some of the charts are fully vibe coded just to see what's
+                possible.
+            </p>
+        </header>
+
+        <section id="container" class="chart">
+            <h2>Songs added per month</h2>
+            <p class="description">
+                Bars show how many songs I added each month. The red line shows the running total in the playlist
+                (right axis). It only counts songs I still have liked, since un-liked songs aren't in the export.
+                Hover over a bar or the line for exact numbers.
+            </p>
+            <p class="ai-level">40% vibe coded</p>
+            <script type="module" src="sketch.js"></script>
+        </section>
+
+        <section id="container2" class="chart">
+            <h2>Vowels in song titles</h2>
+            <p class="description">
+                How many songs have a given number of vowels in their title. Each bar is split by vowel to show how
+                much of those titles' vowels are a, e, i, o, or u. Hover over a slice for the exact share.
+            </p>
+            <p class="ai-level">50% vibe coded</p>
+            <script type="module" src="sketch2.js"></script>
+        </section>
+
+        <section id="container3" class="chart">
+            <h2>Average audio features by year added</h2>
+            <p class="description">
+                Each point is the average for the songs I added that year. Hover over a point to see the exact value.
+            </p>
+            <p class="ai-level">95% vibe coded</p>
+            <script type="module" src="sketch3.js"></script>
+        </section>
+
+        <section id="container4" class="chart">
+            <h2>Liked songs by genre</h2>
+            <p class="description">
+                Click a bubble to zoom in, and click the background to zoom out. Hover over a song to see its title
+                and artist at the top of the chart. Each song appears once, under its main genre.
+            </p>
+            <p class="ai-level">100% vibe coded</p>
+            <script type="module" src="sketch4.js"></script>
+        </section>
+
+        <section id="container6" class="chart">
+            <h2>Genres over time</h2>
+            <p class="description">
+                The genre mix of the songs I added each quarter (3 months). Switch to "number of songs" to see the
+                totals instead of percentages. Hover over the chart to see the full breakdown for any quarter. The
+                early quarters have only a few dozen songs, so their shares swing more.
+            </p>
+            <p class="ai-level">100% vibe coded</p>
+            <script type="module" src="sketch6.js"></script>
+        </section>
+
+        <section id="container7" class="chart wide">
+            <h2>Genre universe</h2>
+            <p class="description">
+                Inspired by Nadieh Bremer's
+                <a href="https://www.visualcinnamon.com/portfolio/intangible-cultural-heritage/">Intangible Cultural Heritage</a>
+                piece. Every dot is a genre with at least 10 of my songs, grouped and colored by genre family. A line
+                connects two genres when the same songs are tagged with both; thicker lines mean more shared songs. Hover
+                over a genre to see what it connects to, with album covers from that genre, or click it to keep it
+                selected. Broad labels like "rock" and "alternative" are left out because they'd connect to everything.
+            </p>
+            <p class="ai-level">100% vibe coded</p>
+            <script type="module" src="sketch7.js"></script>
+        </section>
+
+        <section id="container8" class="chart wide">
+            <h2>Civilization of genres</h2>
+            <p class="description">
+                A Civilization VI–style map of my library. Each genre family is a civilization, and its territory has
+                one hex tile per song, so bigger empires have more songs (families with under 20 songs are city-states).
+                Cities are sub-genres; the biggest is the capital (★) and each city's population is its number of songs.
+                Every tile is a song: tiles fill outward from the capital in the order I added them, so the oldest songs
+                are at the capital and the newest are on the frontier. Terrain comes from the song's audio features
+                (see the key below). The leader is my most-liked artist in that family.
+            </p>
+            <p class="ai-level">100% vibe coded</p>
+            <script type="module" src="sketch8.js"></script>
+        </section>
+
+        <section id="container5" class="chart">
+            <h2>Album cover colors</h2>
+            <p class="description">
+                Every song, colored by the most common color in its album cover. Black dominates a third of my covers,
+                so switch to "main accent color" to see the colors underneath. Cover color has almost no relationship
+                to how a song sounds (its energy, mood, or danceability), but it does vary by genre: pop covers lean
+                purple, pink, and blue, folk and country lean brown and green, and hip hop covers are rarely red.
+                Since every song here is one I liked, this can't show whether color affects what I like, only what
+                the songs I like look like.
+            </p>
+            <p class="ai-level">100% vibe coded</p>
+            <script type="module" src="sketch5.js"></script>
+        </section>
+
+    </body>
+
+</html>

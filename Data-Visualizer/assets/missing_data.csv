@@ -1,0 +1,693 @@
+added_at,title,artists,album,has_audio_features,has_genre,deezer,musicbrainz,wikidata,wikipedia,web,isrc
+2026-09-22,Virgin Soil,1000 Rabbits,Virgin Soil,False,True,True,True,False,False,False,UK7MC2600002
+2026-09-21,Strange Powers,The Magnetic Fields,Holiday,False,True,True,False,True,False,False,USMRG0345051
+2026-09-18,High Pressure Days,The Units,High Pressure Days,False,True,True,False,False,False,False,CH3320900008
+2026-09-18,Wish You Luck,"1tbsp, kid on air",Wish You Luck,False,True,True,False,False,False,False,FRX452666928
+2026-09-12,I'm The One You Want,Maara,Ultra Villain,False,True,True,False,False,False,False,CBAUX2622903
+2026-09-11,i like girls (i like boys),"Conrad Taylor, Flash Gea",i like girls (i like boys),False,True,True,False,True,False,False,BE5KW2601073
+2026-09-04,Skin of Tragedy,Decius,Decius Trax EP VI,False,True,True,False,False,False,False,GB9D71300302
+2026-09-04,All In Your Mind,Oslo Twins,All In Your Mind,False,True,True,True,False,False,False,UK6822500096
+2026-09-04,325,Rare DM,Attention,False,True,True,False,False,False,False,QZZ8B2553255
+2026-09-04,Losey,Gnoomes,Losey,False,True,True,False,False,False,False,UK2SX2602053
+2026-09-04,Peter Thiel,Ron Gallo,Peter Thiel,False,True,True,False,False,False,False,QMBZ92683149
+2026-09-04,Made Up In Blue,The Bats,Daddy's Highway,False,True,True,False,True,False,False,AUMUO8700061
+2026-09-04,North By North,The Bats,Daddy's Highway,False,True,True,False,True,False,False,AUMUO8700049
+2026-08-31,Sillage,Brigitte Calls Me Baby,Irreversible,False,True,True,True,False,False,False,USATO2500470
+2026-08-31,Truth is Stranger Than Fiction,Brigitte Calls Me Baby,Irreversible,False,True,True,True,False,False,False,USATO2500468
+2026-08-31,Slumber Party,Brigitte Calls Me Baby,Irreversible,False,True,True,True,False,False,False,USATO2500465
+2026-08-28,Just Cool,Obongjayar,Paradise Now,False,True,True,True,True,False,False,USQX92302484
+2026-08-27,Deceptacon,SPRINTS,Deceptacon,False,True,True,False,False,False,False,DED622500143
+2026-08-27,Matter of Taste,Tyler Ballgame,"For The First Time, Again",False,True,True,True,False,False,False,GBCVZ2500165
+2026-08-27,Armchair,Sailor Honeymoon,The Worst of Sailor Honeymoon,False,True,True,True,False,False,False,GBR9M2503310
+2026-08-26,World Away - Nala Remix,"Etienne de Crécy , Nala, Alexis Taylor",WARM UP REMIXES,False,True,True,False,True,False,False,FRU982600007
+2026-08-24,TTYGF - Junior Sanchez Remix,"Fcukers, Junior Sanchez",nüyork,False,True,True,True,False,False,False,GBCFB2600429
+2026-08-14,Seek And Destroy,mary in the junkyard,Role Model Hermit,False,True,True,True,False,False,False,GX7TZ2600003
+2026-07-29,Spin Wave,MADMADMAD,Spin Wave,False,True,True,False,False,False,False,UK9AV2502102
+2026-07-29,Someone Like You,"Matthew Herbert, Herbert, Momoko Gill",Clay (Bonus Edition),False,True,True,True,False,False,False,GBDJX2100448
+2026-07-29,preTty girl bOY,Andr,SKIN,False,True,True,False,False,False,False,TWIE12600005
+2026-07-29,Brothers,Gracie Terzian,Brothers,False,True,True,False,False,False,False,QM24S2603094
+2026-07-29,Wake Up and Be Gone (feat. adaolisa),"Shake Stew, adaolisa",Wake Up and Be Gone (feat. adaolisa),False,True,True,False,True,False,False,DEE132635223
+2026-07-22,Hustler,Simian Mobile Disco,Attack Decay Sustain Release,False,True,True,True,True,False,False,USUM70748696
+2026-07-22,Make It Up (Hackman Remix),"Tirzah, Hackman",Make It Up,False,True,True,False,True,False,False,GBRTB1500006
+2026-07-21,CASH,Jeane,CASH,False,True,True,True,False,False,False,FR2X42626258
+2026-07-20,Hapsburg,Baxter Dury,Allbarone,False,True,True,True,False,False,False,GBPVV2406295
+2026-07-20,The Others,Way Dynamic,Massive Shoe,False,True,True,True,False,False,False,FRX282576868
+2026-07-20,Falls on me,Sylvie,Sylvie,False,True,True,True,False,False,False,QMBZ92193397
+2026-07-20,Silent Acknowledgement,Darryl Rahn,Darryl,False,True,True,True,False,False,False,QZMEV2579002
+2026-07-18,Ain't Quite Right,Still Blank,Still Blank,False,True,True,False,False,False,False,USUG12504046
+2026-07-16,Dashboard Mary,Modern Woman,Johnny’s Dreamworld,False,True,True,True,False,False,False,GBBTF2500133
+2026-07-16,DIRTY TALK,VON DI,MAKE ME MOVE,False,True,True,False,False,False,False,QZWFW2422097
+2026-07-15,No Mercy,Casablanca Drivers,Tabloid,False,True,True,False,False,False,False,MX2682500001
+2026-07-15,Kick Stones (The Boys),Westside Cowboy,Kick Stones (The Boys),False,True,True,True,True,False,False,GBUM72603070
+2026-07-09,Square Root of None,Ulrika Spacek,EXPO,False,True,True,False,True,False,False,GBJXP2558808
+2026-07-06,Today / Tomorrow,Blind Yeo,Today / Tomorrow,False,True,True,False,False,False,False,GBZDN2500092
+2026-06-17,Chance to Bleed,Kurt Vile,Philadelphia's been good to me,False,True,True,True,True,False,False,USUG12601215
+2026-06-17,Crash Landing,mary in the junkyard,Crash Landing,False,True,True,True,False,False,False,GX7TZ2600007
+2026-06-17,New Muscles,mary in the junkyard,New Muscles,False,True,True,True,False,False,False,GX7TZ2600004
+2026-06-15,Love Is,Dove Ellis,Blizzard,False,True,True,True,False,False,False,USA2P2551925
+2026-06-09,Good God (What Have We Become),Jeane,Good God (What Have We Become),False,True,True,True,False,False,False,FR2X42680501
+2026-06-09,Spirit Adapter,Yin Yin,Yatta!,False,True,True,True,True,False,False,DETP62500122
+2026-06-08,Thelma & Louise,Panic Shack,Panic Shack,False,True,True,True,True,False,False,UKZA22300085
+2026-06-04,Second Skin,The Gits,Frenching the Bully,False,True,True,False,True,False,False,US2A90410313
+2026-06-04,Upstairs,TTSSFU,Upstairs,False,True,True,True,True,False,False,USBQU2500344
+2026-06-04,We Don't Play Guitars,"Peaches, Chicks On Speed",99 Cents,False,True,True,True,True,False,False,DEG120301001
+2026-06-04,ASCEND,Kelly Lee Owens,ASCEND,False,True,True,True,True,False,False,GBK3W2503500
+2026-06-03,Gangsters,"Mark Pritchard, Thom Yorke",Tall Tales,False,True,True,True,True,False,False,GBBPW2401028
+2026-06-03,Vimeo,thredd,"It’s Lovely, Come On In",False,True,True,False,False,False,False,QM24S2504286
+2026-05-28,"Driving Classics, Playing Cars",Water From Your Eyes,It's Beautiful,False,True,True,True,False,False,False,USMTD2500382
+2026-05-28,PIRATE RADIO,Genesis Owusu,REDSTAR WU & THE WORLDWIDE SCOURGE,False,True,True,True,True,False,False,FRX872522991
+2026-05-28,Klouds Will Carry Me To Sleep,Gelli Haha,Switcheroo,False,True,True,False,False,False,False,USD8D2528011
+2026-05-28,ist halt so,"Mandy, Indiana",URGH,False,True,True,True,False,False,False,US5NR2637307
+2026-05-28,Sevastopol,"Mandy, Indiana",URGH,False,True,True,True,False,False,False,US5NR2637301
+2026-05-28,Cursive,"Mandy, Indiana",URGH,False,True,True,True,False,False,False,US5NR2637309
+2026-05-28,Magazine,"Mandy, Indiana",URGH,False,True,True,True,False,False,False,US5NR2637302
+2026-05-28,All Bad Parts,Lime Garden,Maybe Not Tonight,False,True,True,True,True,False,False,GB6TW2500214
+2026-05-27,Rain,PVA,No More Like This,False,True,True,True,False,False,False,QMB622510001
+2026-05-27,Mate,PVA,No More Like This,False,True,True,True,False,False,False,QMB622510003
+2026-05-27,Enough,PVA,No More Like This,False,True,True,True,False,False,False,QMB622510002
+2026-05-27,Send,PVA,No More Like This,False,True,True,True,False,False,False,QMB622510004
+2026-05-26,Only Girl - Single Version,Man/Woman/Chainsaw,Only Girl (Single Version),False,True,True,True,False,False,False,USA2P2556037
+2026-05-26,Nosedive,Man/Woman/Chainsaw,Nosedive,False,True,True,True,False,False,False,USA2P2611915
+2026-05-26,Nudge,Jacana People,Nudge,False,True,True,False,False,False,False,CAN112600188
+2026-05-26,Get A Grip - Radio Edit,"Fundido, Emma Dufaux",Get A Grip,False,True,True,True,False,False,False,US4GE2600012
+2026-05-26,Optimo,Liquid Liquid,Slip In And Out Of Phenomenon,False,True,True,True,True,False,False,GBCEL0800078
+2026-05-26,Don’t Wanna Dance (Mario C Mix),"Automatic, Mario Caldato Jr.",Don’t Wanna Dance (Mario C Mix),False,True,True,False,False,False,False,US2S72508091
+2026-05-24,Changed,Yan Wagner,Forty Eight Hours,False,True,True,False,True,False,False,FRR641200019
+2026-05-21,Something French,Getdown Services,Crumbs 2,False,True,True,True,True,False,False,GXED32500082
+2026-05-18,Bang - Peanut Butter Wolf Remix,Melenas,Bang (Peanut Butter Wolf Remix),False,True,True,False,False,False,False,ES7002473201
+2026-05-15,I Feel So Free - Peggy Gou Energy Mix,"Madonna, Peggy Gou",I Feel So Free (Peggy Gou Energy Mix),False,True,True,True,True,False,False,USWB12601949
+2026-05-04,MY TYPE,Sudan Archives,THE BPM,False,True,True,True,True,False,False,US2S72513007
+2026-05-04,Milk Crisis,The Go! Team,Proof of Youth (Special Edition),False,True,True,True,True,False,False,GBCSG0700092
+2026-05-01,Method Actor,Nilüfer Yanya,My Method Actor,False,True,True,True,True,False,False,GBCFB2400560
+2026-04-14,Hollywood Trash,Together Pangea,Eat Myself,False,True,True,False,False,False,False,CAN112501728
+2026-04-14,Halloween,"Together Pangea, The Red Pears",Eat Myself,False,True,True,False,False,False,False,CAN112501726
+2026-04-11,Doom - Lip Critic Remix,"IDLES, Caught Stealing Movie, Lip Critic",Caught Stealing (The Original Motion Picture Soundtrack - Extended Remix Edition),False,True,True,True,True,False,False,USBQU2500359
+2026-04-10,Wonder,Courtney Barnett,Creature of Habit,False,True,True,True,True,False,False,USQE92500128
+2026-04-07,Beat Bunny,"Povoa, Madge",Beat Bunny,False,True,True,False,False,False,False,USZ4V2500534
+2026-04-06,I See Myself (Live),Geese,Alive & In Person,False,True,True,True,True,False,False,USBQU2400132
+2026-04-06,St. Elmo (Live),Geese,Alive & In Person,False,True,True,True,True,False,False,USBQU2400133
+2026-04-06,Cowboy Nudes (Live),Geese,Alive & In Person,False,True,True,True,True,False,False,USBQU2400131
+2026-04-01,Don't Throw Rocks,Westside Cowboy,Don't Throw Rocks,False,True,True,True,True,False,False,GBUM72505890
+2026-03-28,In This Bih',"Chris Lorenzo, Kah-Lo",In This Bih',False,True,True,True,True,False,False,CBEFB2600558
+2026-03-28,Shut Me Down,Povoa,Clammy,False,True,True,False,False,False,False,USZ4V2600016
+2026-03-27,This Is The Place,Joshua Idehen,"I know you're hurting, everyone is hurting, everyone is trying, you have got to try",False,True,True,True,True,False,False,GBPVV2500030
+2026-03-09,And A Minute,Noah Goin,And A Minute,False,True,True,False,False,False,False,QZNWR2641102
+2026-03-06,REAL MOVE TOUCH - Fcukers Remix,"Confidence Man, Sweetie Irie, Fcukers",5AM (LA LA LA),False,True,True,True,True,False,False,GBUM72501632
+2026-03-05,Wings,"Foxwarren, Andy Shauf, Darryl Kissick",2,False,True,True,True,True,False,False,USEP42504013
+2026-03-05,New Day,Liz Cooper,New Day,False,True,True,True,False,False,False,TCAJZ2596616
+2026-03-05,Do The Du - The Graveyard,A Certain Ratio,The Graveyard And The Ballroom,False,True,True,False,True,False,False,GBYHX0900013
+2026-03-02,Party Rat,Young Lungs,Party Rat,False,True,True,False,False,False,False,USCGJ2648360
+2026-02-25,T00STEP,SEES00000,T00STEP,False,True,True,False,False,False,False,QZTB32537167
+2026-02-17,Simple Feelings,Twerps,Range Anxiety,False,True,True,True,False,False,False,USMRG1553808
+2026-02-17,Terminal,Automatic,Is It Now?,False,True,True,True,False,False,False,US2S72508011
+2026-02-16,Paris,Just For Fun,Paris,False,True,True,False,False,False,False,QT5M52558356
+2026-02-16,People Settle Down,Way Dynamic,Massive Shoe,False,True,False,False,False,True,False,QZHNC2606332
+2026-02-16,Miffed It,Way Dynamic,Massive Shoe,False,True,False,False,False,True,False,QZHNC2606335
+2026-02-12,Sweet Nothing,Saintseneca,Highwalllow & Supermoon Songs,False,True,True,True,False,False,False,USOPM2500517
+2026-02-05,Playing Classics,Water From Your Eyes,It's a Beautiful Place,False,True,True,True,False,False,False,USMTD2400678
+2026-02-05,Spit,Gelli Haha,Switcheroo,False,True,True,True,False,False,False,USD8D2528002
+2026-02-05,Worldwide,Snõõper,Worldwide,False,True,True,False,True,False,False,US3JJ2501223
+2026-02-05,"Eat Quiche, Sleep, Repeat",Getdown Services,"Eat Quiche, Sleep, Repeat",False,True,True,True,True,False,False,GXED32500028
+2026-02-04,Descartes,SPRINTS,All That Is Over,False,True,True,True,False,False,False,DED622500055
+2026-02-02,Overnight Sensation,kate moth,Overnight Sensation,False,True,True,True,True,False,False,DGA062554594
+2026-01-31,Miami,Pigeon,Miami,False,True,True,True,False,False,False,GBCSG2500065
+2026-01-24,People Are Afraid,"Marlon Magnée, La Femme",People Are Afraid,False,True,True,False,True,False,False,FR9W12566207
+2026-01-23,Cobra,Geese,Getting Killed,False,True,True,True,True,False,False,USBQU2500077
+2026-01-16,Traffic Lights (feat. Thom Yorke),"Flea, Thom Yorke",Traffic Lights (feat. Thom Yorke),False,True,True,True,True,False,False,USNO12500454
+2026-01-16,Tomorrow's Crusades,Geese,3D Country,False,True,True,True,True,False,False,USBQU2200177
+2026-01-11,Roobosh,NewDad,Altar,False,True,True,True,False,False,False,GBAHS2500432
+2026-01-08,Sherpa,Angine de Poitrine,Vol.1,False,True,True,True,True,False,False,CBEJ32400001
+2026-01-03,Pale Song,Dove Ellis,Blizzard,False,True,True,True,False,False,False,USA2P2551924
+2026-01-01,Rock Upon The Mic,Bushbaby,Locked On,False,True,True,False,False,False,False,USA2P2357293
+2025-12-28,God's Gonna Give You a Million Dollars,Shallowater,God's Gonna Give You a Million Dollars,False,True,True,True,False,False,False,TCAJZ2543473
+2025-12-23,Islands of Men,Geese,Getting Killed,False,True,True,True,True,False,False,USBQU2500080
+2025-12-19,Detour,La Sécurité,Ketchup / Detour,False,True,True,True,False,False,False,CAPJB2412001
+2025-12-19,Humdrum,ELLiS·D,Humdrum,False,True,True,True,False,False,False,QZFZ62438830
+2025-12-19,Under a Rainbow,"SFJ, Elle Músa",A Room in Europe,False,True,True,False,True,False,False,FRX762284553
+2025-12-04,D.A.N.C.E (From F1® The Movie),"Peggy Gou, F1 The Album",D.A.N.C.E (From F1® The Movie),False,True,False,True,True,False,False,USAT22504044
+2025-12-01,The Velvet Showdown,Velvet Meadow,Saturday Morning Meadowlies,False,True,True,False,False,False,False,QZTBC2561076
+2025-12-01,Mountain Man,"Liz Cooper, The Stampede",Window Flowers,False,True,True,False,False,False,False,TCADC1764323
+2025-11-30,Fantasies / Survival,Geese,Projector,False,True,True,True,True,False,False,GBENL2102891
+2025-11-30,Mysterious Love,Geese,3D Country,False,True,True,True,True,False,False,USBQU2200175
+2025-11-29,Bow Down,Geese,Getting Killed,False,True,True,True,True,False,False,USBQU2500084
+2025-11-26,Ibiza,Way Dynamic,Massive Shoe,False,True,True,True,False,False,False,FRX282576870
+2025-11-26,Miffed It,Way Dynamic,Massive Shoe,False,True,True,True,False,False,False,FRX282576865
+2025-11-25,Easy,Prewn,System,False,True,True,False,False,False,False,USA2B2513859
+2025-11-25,Dirty Dog,Prewn,System,False,True,True,False,False,False,False,USA2B2513865
+2025-11-25,It's Only You,Prewn,System,False,True,True,False,False,False,False,USA2B2513862
+2025-11-25,System,Prewn,System,False,True,True,False,False,False,False,USA2B2513858
+2025-11-25,I Was The Dancer,Way Dynamic,Massive Shoe,False,True,True,True,False,False,False,FRX282576863
+2025-11-23,Trinidad,Geese,Trinidad,False,True,True,True,True,False,False,USBQU2500076
+2025-11-17,Mirror in the Sky,Peaking Lights,Mirror in the Sky,False,True,True,True,True,False,False,QMV8L1725510
+2025-11-11,Talk Olympics,"Obongjayar, Little Simz",Paradise Now,False,True,True,True,True,False,False,USQX92501827
+2025-11-06,Heaven,Whitney K,Bubble,False,True,True,False,False,False,False,GBCKK2578601
+2025-10-25,Crusades,Geese,3D Country,False,True,True,True,True,False,False,USBQU2200173
+2025-10-24,Lick The Bag,Viagra Boys,Common Sense,False,True,True,True,True,False,False,SE5AJ1900844
+2025-10-22,If You Know Me - demo,Hudson Freeman,If You Know Me (demo),False,True,True,True,False,False,False,QMFME2528563
+2025-10-22,When I'm Small,Phantogram,Eyelid Movies,False,True,True,True,True,False,False,USBS50931058
+2025-10-21,Finally Found!,Swordes,Finally Found!,False,True,True,True,False,False,False,QZQAY2566498
+2025-10-19,Dynamite,Gelli Haha,Switcheroo,False,True,True,True,False,False,False,USD8D2528008
+2025-10-15,Free Association,Friendship,Caveman Wakes Up,False,True,True,True,False,False,False,USMRG2586104
+2025-10-15,Resident Evil,Friendship,Caveman Wakes Up,False,True,True,True,False,False,False,USMRG2586109
+2025-10-15,Taxes,Geese,Getting Killed,False,True,True,True,True,False,False,USBQU2500085
+2025-10-14,Made You Look,"ittibitti, Anna Graceman",Made You Look,False,True,False,False,False,True,False,QZZ7S2554340
+2025-10-10,Salted Caramel Ice Cream - 1-800 GIRLS Remix,"Metronomy, 1-800 GIRLS",Salted Caramel Ice Cream (1-800 GIRLS Remix),False,True,True,True,True,False,False,GBMVH2500700
+2025-10-09,mq9,Automatic,Is It Now?,False,True,True,True,False,False,False,US2S72508002
+2025-10-06,Hit My Head All Day,Dry Cleaning,Hit My Head All Day,False,True,True,True,True,False,False,GBAFL2500471
+2025-10-03,Dulcolax,"Sun Kil Moon, Amoeba","Sun Kil Moon and Amoeba, Vol. II",False,True,True,False,True,False,False,QT65Y2535092
+2025-09-29,I Go To Sleep,Anika,Anika,False,True,True,False,True,False,False,US2S71161008
+2025-09-29,The Talking Fish,Ibibio Sound Machine,Ibibio Sound Machine,False,True,True,True,True,False,False,GBUQH1300066
+2025-09-26,Stone Shadow,Glyders,Stone Shadow,False,True,True,True,False,False,False,US58L2596603
+2025-09-25,Lazy,Automatic,Black Box,False,True,True,True,False,False,False,US2S72508004
+2025-09-25,Black Box,Automatic,Black Box,False,True,True,True,False,False,False,US2S72508001
+2025-09-22,Satellite,S.G. Goodman,Planting by the Signs,False,True,True,True,False,False,False,QZ2YT2500001
+2025-09-19,F**K EVERYONE,Lola Young,I’m Only F**king Myself,False,True,True,True,True,False,False,GBUM72503327
+2025-09-19,Batakari,Ata Kak,Batakari,False,True,True,True,False,False,False,QMUGB2505301
+2025-09-18,Everybody Here Hates You,Courtney Barnett,Everybody Here Hates You,False,True,True,True,True,False,False,GBX721900029
+2025-09-18,Kids,"Sextile, Izzy Glaudini","yes, please.",False,True,True,True,False,False,False,US5NR2535706
+2025-09-18,Push Ups,"Sextile, Jehnny Beth","yes, please.",False,True,True,True,False,False,False,US5NR2535705
+2025-09-18,Penny Rose,Sextile,"yes, please.",False,True,True,True,False,False,False,US5NR2535704
+2025-09-17,Vicar Street Days,Brògeal,Go Home Tae Yer Bed,False,True,True,True,False,False,False,GBENL2504321
+2025-09-17,Space Girl,Orion,After Dark 3,False,True,True,True,False,False,False,QZAKB2007296
+2025-09-08,Fun,Deki Alem,Forget In Mass,False,True,True,False,False,False,False,SE6XY2516259
+2025-09-08,Play Me,Fcukers,Play Me,False,True,True,True,False,False,False,GBCFB2500364
+2025-09-08,Schadenfreude,Baxter Dury,Schadenfreude,False,True,True,True,False,False,False,GBPVV2406301
+2025-09-08,Blood on the Dollar,Water From Your Eyes,It's a Beautiful Place,False,True,True,False,False,False,False,USMTD2400680
+2025-09-04,Don't Delete The Kisses,Wolf Alice,Visions Of A Life,False,True,True,True,True,False,False,GBK3W1700561
+2025-09-04,Nights in Armor,Water From Your Eyes,It's a Beautiful Place,False,True,True,True,False,False,False,USMTD2400674
+2025-09-04,White Horses,Wolf Alice,The Clearing,False,True,True,True,True,False,False,GBARL2500442
+2025-09-03,House Fire,Deki Alem,Forget In Mass,False,True,True,True,False,False,False,SE6XX2515920
+2025-09-03,I Wanna Sleep In Your Arms,Housepainters,I Wanna Sleep In Your Arms / What's a Girl To Do,False,True,True,False,False,False,False,NLW042100231
+2025-08-27,I'm in Love,S.G. Goodman,Planting by the Signs,False,True,True,True,False,False,False,QZ2YT2500007
+2025-08-27,Fuckin 'n' Rollin,Phantastic Ferniture,Phantastic Ferniture,False,True,True,False,False,False,False,GBKZV1800037
+2025-08-27,Come Home,Pip Blom,Come Home,False,True,True,False,True,False,False,GBKPL1818325
+2025-08-25,Devils Cut,Fcukers,Mothers,False,True,True,True,False,False,False,QZHN52324585
+2025-08-21,Blue Hill Maine,The River Arkansas,Tin Years,False,True,True,False,False,False,False,USDY42505446
+2025-08-08,Slumlord,Baxter Dury,The Night Chancers,False,True,True,True,False,False,False,FRX851901754
+2025-07-31,Sexy in my Bodyyy,CAPYAC,Sexy in my Bodyyy,False,True,True,False,False,False,False,CAN112500806
+2025-07-29,Got You,Amyl and The Sniffers,Amyl and The Sniffers,False,True,True,True,True,False,False,GBCVZ1900022
+2025-07-28,A Forest - 2006 Remaster,The Cure,Seventeen Seconds (Deluxe Edition),False,True,True,True,True,False,False,USEE10500788
+2025-07-23,Pedestrian at Best,Courtney Barnett,"Sometimes I Sit and Think, and Sometimes I Just Sit",False,True,True,True,True,False,False,GBX721400144
+2025-07-23,Women Respond to Bass,Sextile,"yes, please.",False,True,True,True,False,False,False,US5NR2535702
+2025-07-23,Is It Now?,Automatic,Is It Now?,False,True,True,True,False,False,False,US2S72508006
+2025-06-20,SPANK!,HiTech,HONEYPAQQ Vol. 1,False,True,True,True,False,False,False,USC4R2447272
+2025-06-13,One Stop,"Cooper T, Jason Williamson",One Stop,False,True,True,False,False,False,False,USZXT2556664
+2025-06-12,Like an Outlaw (For You),Cosmic the Cowboy,On Brand,False,True,True,False,False,False,False,QZHN72060479
+2025-06-12,Inside Your Head,Jenna Pascale,Inside Your Head,False,True,True,False,False,False,False,QM6P42460705
+2025-06-12,Boxes,Carabeza,Malagua,False,True,True,False,False,False,False,TCAJG2590129
+2025-06-12,Mudzimu Ndiringe,Hallelujah Chicken Run Band,4-Track Recording Session (Analog Africa No. 1),False,True,True,False,False,True,False,DENR91562001
+2025-06-10,Out The Way,"Marta, Tricky",Out The Way,False,True,True,True,True,False,False,NL8RL2528857
+2025-06-09,A Haunting,DEADLETTER,Hysterical Strength,False,True,True,True,False,False,False,GBAJC2400146
+2025-06-09,More Heat!,DEADLETTER,Hysterical Strength,False,True,True,True,False,False,False,GBAJC2400143
+2025-06-09,Credit to Treason,DEADLETTER,Hysterical Strength,False,True,True,True,False,False,False,GBAJC2400142
+2025-06-09,Crack Up,A.R. Kane,I,False,True,True,False,False,False,False,GBBTF0400072
+2025-06-07,x-ray eyes - extended trash can dub,LCD Soundsystem,x-ray eyes (extended trash can dub),False,True,True,True,True,False,False,USSM12407986
+2025-06-07,Gluten Free (GF),Proper Monday Number,Deep clean your house EP,False,True,True,True,False,False,False,US4GE2500026
+2025-06-07,High horse,Proper Monday Number,Deep clean your house EP,False,True,True,True,False,False,False,US4GE2500025
+2025-06-07,Deep clean,Proper Monday Number,Deep clean your house EP,False,True,True,True,False,False,False,US4GE2500024
+2025-06-05,Lights Up,"Flight Facilities, Channel Tres",FOREVER,False,True,True,True,True,False,False,AUFF02000130
+2025-06-04,Yamerarena-I,Pixeltan,Yamerarena-I,False,True,True,False,False,False,False,US4GE0900091
+2025-06-03,High horse - DFA DJ Edit,"Proper Monday Number, Matt Cash, James Murphy",High horse (DFA DJ Edit),False,True,True,False,True,False,False,US4GE2500049
+2025-06-02,Kare Nanhasi,Hallelujah Chicken Run Band,4-Track Recording Session (Analog Africa No. 1),False,True,True,False,False,True,False,DENR91562002
+2025-05-30,Like I Say (I runaway),Nilüfer Yanya,My Method Actor,False,True,True,True,True,False,False,GBCFB2400367
+2025-05-30,CPR,Wet Leg,CPR,False,True,True,True,True,False,False,GBCEL2400957
+2025-05-30,Paix sociale,Satellite Jockey,Le week-end,False,True,True,False,False,False,False,FR9W12020335
+2025-05-27,Wayside/Back in Time,Gillian Welch,Soul Journey,False,True,True,True,True,False,False,US2AR0130503
+2025-05-06,Tinseltown Swimming in Blood,Destroyer,ken,False,True,True,True,True,False,False,USMRG1759903
+2025-05-04,Mothers,Fcukers,Mothers,False,True,True,True,False,False,False,QZHN52324584
+2025-04-28,Mirror in the Bathroom - 2012 Remaster,The English Beat,I Just Can’t Stop It (2012 Remaster),False,True,True,False,True,False,False,USRH12304476
+2025-04-27,Fail,Boxxer,Veil,False,True,True,False,False,False,False,TCAJN2546475
+2025-04-26,Soapside,Boxxer,Veil,False,True,True,False,False,False,False,TCAJN2546546
+2025-04-04,Capital,Amyl and The Sniffers,Comfort To Me,False,True,True,True,True,False,False,GBCVZ2100091
+2025-04-03,At Rest,Ollella,Antifragile,False,True,True,False,False,False,False,QZDA62534352
+2025-04-03,Optimist,Ollella,Antifragile,False,True,True,False,False,False,False,QZZ7L2450063
+2025-04-01,Jerkin',Amyl and The Sniffers,Cartoon Darkness,False,True,True,True,True,False,False,GBCVZ2400183
+2025-03-16,Oblivion,Grimes,Visions,False,True,True,True,True,False,False,CA21O1200003
+2025-03-13,Soul Lam Plearn,The Petch Phin Thong Band,"Sound of Siam, Vol. 1 - Leftfield Luk Thung, Jazz & Molam in Thailand 1964-1975",False,True,True,False,False,False,True,GBUQH1000131
+2025-03-12,Summertime,Billy Stewart,20th Century Masters: The Millennium Collection: Best Of Billy Stewart,False,True,True,True,True,False,False,USMC10001169
+2025-03-11,Never Come Back,Caribou,Suddenly,False,True,True,True,True,False,False,DED622000007
+2025-03-08,Retna,Boxxer,Plaster,False,True,True,False,False,False,False,TCAJI2546978
+2025-03-07,Plaster,Boxxer,Plaster,False,True,True,False,False,False,False,TCAJH2546929
+2025-03-04,Turn the Page,The Streets,Original Pirate Material,False,True,True,True,True,False,False,GBFFS0200001
+2025-02-27,Robot Rock,Daft Punk,Human After All,False,True,True,True,True,False,False,GBDUW0400103
+2025-02-27,Green & Gold,Lianne La Havas,Blood,False,True,True,True,True,False,False,GBAHT1500206
+2025-02-13,Cavern,Liquid Liquid,Slip In And Out Of Phenomenon,False,True,True,True,True,False,False,GBCEL0800079
+2025-02-10,Street Fighter Mas,Kamasi Washington,Heaven and Earth,False,True,True,True,True,False,False,UK7MC1800011
+2025-02-07,Lips Like Sugar,Echo & the Bunnymen,Echo & The Bunnymen,False,True,True,True,True,False,False,GBAHT0003955
+2025-02-07,A Forest,"The Cure, Mark Saunders",Greatest Hits,False,True,True,True,True,False,False,GBALB8000007
+2025-02-07,Vitamin C,CAN,The Singles,False,True,True,True,True,False,False,DEX171726007
+2025-02-07,Home Computer - 2009 Remaster,Kraftwerk,Computer World (2009 Remaster),False,True,True,True,True,False,False,GB01A0900384
+2025-02-04,Banquet,Bloc Party,Silent Alarm,False,True,True,True,True,False,False,GBDNH0400385
+2025-02-04,Impossible Germany,Wilco,Sky Blue Sky,False,True,True,True,True,False,False,USNO10750505
+2025-01-28,Sweet Baby Dirt Gun,Beats By AI,Sweet Baby Dirt Gun,False,True,True,True,False,False,False,QZDA42564181
+2025-01-18,Lamuka,Zazou/Bikaye/Cy1,Noir Et Blanc,False,True,True,True,False,False,False,BE6F58300450
+2025-01-07,"Back, Baby",Jessica Pratt,On Your Own Love Again,False,True,True,True,True,False,False,US58L1560608
+2025-01-06,Moby Octopad,Yo La Tengo,I Can Hear The Heart Beating As One,False,True,True,True,True,False,False,USMTD9722202
+2024-12-31,Ice Cream,New Young Pony Club,Fantastic Playroom,False,True,True,True,True,False,False,AUUM70700142
+2024-12-29,Autumn Sweater,Yo La Tengo,I Can Hear The Heart Beating As One,False,True,True,True,True,False,False,USMTD9722208
+2024-12-26,Jersey Giant,"Evan Honer, Julia DiGrazia",Jersey Giant,False,True,True,True,False,False,False,QZTB42256705
+2024-12-25,Look At Miss Ohio,Gillian Welch,Soul Journey,False,True,True,True,True,False,False,US2AR0130501
+2024-12-04,Evan Finds the Third Room,Khruangbin,Con Todo El Mundo,False,True,True,True,True,False,False,GB5EM1701751
+2024-12-03,Get Unjaded,The Cool Greenhouse,Sod's Toastie,False,True,True,False,False,False,False,GBJGV2200704
+2024-11-25,Paris 1919,John Cale,Paris 1919,False,True,True,True,True,False,False,USWB10201206
+2024-11-19,"I'm the Man, That Will Find You",Connan Mockasin,Caramel (Special Edition),False,True,True,False,False,False,False,GBTZZ1300054
+2024-11-13,Mistadobalina,Del The Funky Homosapien,I Wish My Brother George Was Here,False,True,True,True,True,False,False,USEE19901059
+2024-11-09,Boys Don't Cry - Single Version,The Cure,Three Imaginary Boys (Deluxe Edition),False,True,True,True,True,False,False,USEE10413404
+2024-11-04,All I Want,LCD Soundsystem,This Is Happening,False,True,True,True,True,False,False,US4GE1000022
+2024-11-04,Everybody Wants to Love You,Japanese Breakfast,Psychopomp,False,True,True,True,True,False,False,USA2P1569461
+2024-11-04,Pressure To Party,Julia Jacklin,Crushing,False,True,True,True,True,False,False,GBKZV1800117
+2024-10-30,Blue Train Lines,"Mount Kimbie, King Krule",Love What Survives,False,True,True,True,True,False,False,GBBPW1700104
+2024-10-28,Chewing Gum,Amyl and The Sniffers,Cartoon Darkness,False,True,True,True,True,False,False,GBCVZ2400184
+2024-10-26,U Should Not Be Doing That,Amyl and The Sniffers,U Should Not Be Doing That / Facts,False,True,True,True,True,False,False,AU2DY2400085
+2024-10-25,The Boy With The Perpetual Nervousness,The Feelies,Crazy Rhythms,False,True,True,True,True,False,False,US37V0919601
+2024-10-21,GFY,Amyl and The Sniffers,Amyl and The Sniffers,False,True,True,True,True,False,False,GBCVZ1900019
+2024-10-21,Gacked On Anger,Amyl and The Sniffers,Amyl and The Sniffers,False,True,True,True,True,False,False,GBCVZ1900017
+2024-10-21,I Trusted You,Gustaf,I Trusted You,False,True,True,False,False,False,False,USZXT2455118
+2024-10-21,U Should Not Be Doing That,Amyl and The Sniffers,Jerkin',False,True,True,True,True,False,False,AU2DY2400085
+2024-09-30,Just like Heaven,The Cure,"Kiss Me, Kiss Me, Kiss Me",False,True,True,True,True,False,False,USEE18700009
+2024-09-28,I Feel Love,Donna Summer,I Feel Love: The Collection,False,True,True,True,True,False,False,USPR39402393
+2024-09-28,Never Come Back (Morgan Geist Remix),"Caribou, Morgan Geist",Suddenly Remixes,False,True,True,True,True,False,False,DED622000070
+2024-09-23,Save It For Later,The English Beat,Special Beat Service (Remastered),False,True,True,False,True,False,False,USSE91232692
+2024-09-13,Love Like Anthrax,Gang Of Four,Entertainment!,False,True,True,False,True,False,False,USWB11506648
+2024-09-13,Contract,Gang Of Four,Entertainment!,False,True,True,False,True,False,False,USWB10500738
+2024-09-13,Guns Before Butter,Gang Of Four,Entertainment!,False,True,True,False,True,False,False,USWB10500730
+2024-09-12,At Home He's A Tourist,Gang Of Four,Entertainment!,False,True,True,False,True,False,False,USWB10501552
+2024-09-12,I Love A Man In Uniform,Gang Of Four,Songs of the Free,False,True,True,False,True,False,False,USWB11506944
+2024-09-12,I Found That Essence Rare,Gang Of Four,Entertainment!,False,True,True,False,True,False,False,USWB10500731
+2024-09-12,Natural's Not In It,Gang Of Four,Entertainment!,False,True,True,True,True,False,False,USWB10501548
+2024-09-10,B'nd,Connan Mockasin,Jassbusters,False,True,True,True,False,False,False,QMV8L1723806
+2024-09-10,Curiosa,Alaï,Curiosa,False,True,True,False,False,False,False,QZNWQ2484593
+2024-08-29,Mr. Fortune,"The Hitchhikers, The Mighty Pope",Jamaica To Toronto: Soul Funk & Reggae 1967-1974,False,True,True,False,False,False,False,USDEA0601914
+2024-08-17,A Love International,Khruangbin,May Ninth,False,True,True,True,True,False,False,USJ5G2335711
+2024-08-14,Jungle,Fred again..,USB,False,True,True,True,True,False,False,GBAHS2200844
+2024-08-12,Let's Dance Raw,Shintaro Sakamoto,Let's Dance Raw,False,True,True,False,True,False,False,USFP71447104
+2024-06-27,Now U Got Me Hooked,Against All Logic,2012 - 2017,False,True,True,True,True,False,False,GBKPL1899471
+2024-06-20,Hertz,Amyl and The Sniffers,Comfort To Me,False,True,True,True,True,False,False,GBCVZ2100088
+2024-06-11,Trouble Sleep Yanga Wake Am,"My Morning Jacket, Brittany Howard, Merrill Garbus",Red Hot + Fela,False,True,True,True,True,False,False,USBQU1300165
+2024-05-28,Blind - Frankie Knuckles Remix,Hercules & Love Affair,Blind,False,True,True,True,False,False,False,US4GE0700155
+2024-05-07,Goin’ Against Your Mind,Built To Spill,You In Reverse,False,True,True,True,True,False,False,USWB10600397
+2024-04-26,Atmosphere,"FISHER, Kita Alexander",Atmosphere,False,True,True,True,True,False,False,QZA742318982
+2024-04-18,Keleya,Moussa Doumbia,World Psychedelic Classics: Love's A Real Thing,False,True,True,True,False,False,False,USLB10210713
+2024-04-17,People Talk Too Much,Bananagun (Aus),The True Story of Bananagun,False,True,True,False,False,False,False,GBJXP2037803
+2024-04-13,No Voodoo,Allah-Las,Allah-Las,False,True,True,True,True,False,False,USD8D2007005
+2024-04-08,Raspberry Jam,Allah-Las,Raspberry Jam,False,True,True,True,True,False,False,QMV8L1725504
+2024-04-08,In Search of Balance,Reginald Omas Mamode IV,Where We Going?,False,True,True,False,False,False,True,GBT7D1100178
+2024-04-08,Love Survive,Michael Nau,Mowing,False,True,True,False,False,False,False,US33X1614112
+2024-04-04,เดี่ยวพิณรถไฟความเร็วสูง,The Paradise Bangkok Molam International Band,21st Century Molam,False,True,True,False,False,False,True,GBGLW1400033
+2024-04-04,ลำสั้นดิสโก้,The Paradise Bangkok Molam International Band,21st Century Molam,False,True,True,False,False,False,True,GBGLW1400034
+2024-04-02,bunnybunnybunny,Mietze Conte,bunnybunnybunny,False,True,True,True,False,False,False,FRX762207877
+2024-03-28,Got It Bad,LEISURE,Leisure,False,True,True,True,False,False,False,TCACF1562385
+2024-03-26,Beige 70 - Domenique Dumont Bilingual Remix,"Cola Boyy, Domenique Dumont",Beige 70 (Domenique Dumont Bilingual Remix),False,True,True,True,False,False,False,FRS711800050
+2024-03-17,Dummy – Chris Lake Remix,"Portugal. The Man, Chris Lake",Dummy – Chris Lake Remix,False,True,True,True,True,False,False,USAT22302416
+2024-03-13,Sawbones,Anna Meredith,FIBS,False,True,True,True,True,False,False,GBGEY1900032
+2024-03-12,What Has Happened,Tonstartssbandht,Petunia,False,True,True,True,False,False,False,QMV8L1725203
+2024-03-12,I Sing In Silence,Goat,Requiem,False,True,False,False,True,False,False,SEUM71600672
+2024-03-12,Cityfade,Against All Logic,2012 - 2017,False,True,True,True,True,False,False,GBKPL1899470
+2024-03-07,i can see my house from here,The Glands,The Glands,False,True,True,False,True,False,False,US27Q1841408
+2024-03-07,Golden (Album Version),My Morning Jacket,It Still Moves,False,True,True,True,True,False,False,USATO0300008
+2024-02-27,Fjellet,Hubbabubbaklubb,Drømmen drømmerne drømmer,False,True,True,False,False,False,False,NORDX1804012
+2024-02-24,Hermès,Vermeer,"Beauty of Obscenity, Vol.1",False,True,True,False,False,False,False,TCAHB2337351
+2024-02-24,You Know What,Ueberrest,R009,False,True,True,False,False,False,False,DEMM42301270
+2024-02-15,The Gloves Don't Bite - Mount Liberation Unlimited's Re-edit for The Dancefloor,"Mildlife, Mount Liberation Unlimited",Mildlife Remixed,False,True,True,False,False,False,False,AUVJL1700012
+2024-02-14,Voodoo Lady,Ween,Chocolate and Cheese,False,True,True,True,True,False,False,USEE19400093
+2024-02-13,Sekou Oumarou,Songhoy Blues,Music In Exile,False,True,True,True,True,False,False,GBKZV1425024
+2024-02-13,Worry,Songhoy Blues,Optimisme,False,True,True,True,True,False,False,GBKZV2000046
+2024-02-13,The Coffee Cola Song,Francis Bebey,African Electronic Music (1975-1982),False,True,True,False,True,False,False,FROQ10900170
+2024-02-13,midnight sun,Nilüfer Yanya,PAINLESS,False,True,True,True,True,False,False,USATO2100307
+2024-02-13,Heroine (Got Nothing on You),Christopher Owens,Chrissybaby Forever,False,True,True,False,False,False,False,GBYPZ1500235
+2024-02-13,Wind It Up,Mumbo Jumbo,Midnite Spares,False,True,True,True,False,False,False,DETB31640037
+2024-02-08,Adult Diversion,Alvvays,Alvvays,False,True,True,True,True,False,False,CA8WH1200031
+2024-02-07,Flyvende Flyndre,Hubbabubbaklubb,Drømmen drømmerne drømmer,False,True,True,False,False,False,False,NORDX1804015
+2024-02-06,Ngwendeire Guita,The Lulus Band,Kenya Special (Selected East African Recordings From The 1970s & '80s),False,True,True,True,False,False,False,GBUQH1300005
+2024-02-06,Nana,The Lulus Band,Kenya Special (Selected East African Recordings From The 1970s & '80s),False,True,True,True,False,False,False,GBUQH1300012
+2024-02-04,Den hvite by,Hubbabubbaklubb,Drømmen drømmerne drømmer,False,True,True,False,False,False,False,NORDX1804018
+2024-01-29,Ragged Wood,Fleet Foxes,Fleet Foxes,False,True,True,True,True,False,False,GBBRP0816703
+2024-01-26,Seven,Rainbow Kitten Surprise,Seven + Mary,False,True,True,True,True,False,False,TCABT1491602
+2024-01-25,Krystle - URL Cyber Palace Mix,Machine Girl,Wlfgrl,False,True,True,True,True,False,False,QZFZ52094705
+2024-01-25,Remember Me - Original Mix,Blue Boy,Remember Me,False,True,True,True,False,False,False,NLML61100073
+2024-01-24,Shark Smile - Edit,Big Thief,Shark Smile (Edit),False,True,True,False,True,False,False,US2U61725512
+2024-01-24,Ubuntu Tutu,Olefonken,Ubuntu Tutu,False,True,True,False,False,False,False,NORDX2101010
+2024-01-24,"Zindagi Meri Dance Dance (From ""Daddy"")","Alisha Chinai, Vijay Benedict, Olefonken, Bappi Lahiri","Zindagi Meri Dance Dance (From ""Daddy"")",False,True,True,False,True,False,False,INS181701498
+2024-01-23,Konkylie,Hubbabubbaklubb,Drømmen drømmerne drømmer,False,True,True,False,False,False,False,NORDX1804011
+2024-01-18,Et annet sted,Hubbabubbaklubb,Drømmen drømmerne drømmer,False,True,True,False,False,False,False,NORDX1804016
+2024-01-15,Problem Number 6,Bruno Pernadas,Those Who Throw Objects at the Crocodiles Will Be Asked to Retrieve Them,False,True,True,True,False,False,False,PTPK11600003
+2024-01-10,Easy,Mata Hari,Easy,False,True,True,False,False,False,False,QMV8L1401703
+2024-01-06,Expect The Bayonet,Sheer Mag,Need to Feel Your Love,False,True,True,True,True,False,False,QM6MZ1721719
+2024-01-06,Shake Shake Shake,White Denim,Workout Holiday,False,True,True,False,True,False,False,GBJXP0805302
+2024-01-04,In Spite of Ourselves (feat. Iris DeMent),"John Prine, Iris DeMent",In Spite of Ourselves,False,True,True,True,True,False,False,USA2A0301915
+2024-01-03,Sexyland,Crepes,Channel Four,False,True,True,False,False,False,False,AUQEO1700067
+2023-12-31,kodak moment,Jane Remover,Frailty,False,True,True,True,True,False,False,QZHZD2104976
+2023-12-30,Groove District,Starjunk 95,Groove District,False,True,True,False,False,False,False,GBWUL2177149
+2023-12-14,,,,True,False,False,False,True,False,False,
+2023-12-14,Culture Vulture,Black Joe Lewis & The Honeybears,The Difference Between Me & You,False,True,True,True,True,False,False,USA2P1860503
+2023-12-13,Satellite Man,The Harpoonist,Satellite Man,False,True,True,False,False,False,False,CA17B2000012
+2023-12-13,Gotta Get To Know Ya,Seratones,POWER,False,True,True,True,True,False,False,US27Q1945605
+2023-12-13,A Todos Los Rumberos,"Los Ángeles Azules, Santana, Panteon Rococo",A Todos Los Rumberos,False,True,True,True,True,False,False,MX1722301718
+2023-12-13,I'm Gettin' Ready To Go,"John Craigie, TK & The Holy Know-Nothings",Good To You,False,True,True,False,True,False,False,USFLB2303450
+2023-12-13,Good To You,"John Craigie, TK & The Holy Know-Nothings",Good To You,False,True,True,False,True,False,False,USFLB2303420
+2023-11-25,Lovers’ Carvings,Bibio,Ambivalence Avenue,False,True,True,True,True,False,False,GBBPW0900007
+2023-11-22,Rhizomes (feat. Nels Cline),"Kris Davis, Nels Cline",Diatom Ribbons,False,True,True,True,True,False,False,QZ3DS1900015
+2023-11-15,Handshake Drugs,Wilco,A Ghost Is Born (Deluxe Version),False,True,True,True,True,False,False,USNO10480906
+2023-11-11,Harlem River,Kevin Morby,Harlem River,False,True,True,True,True,False,False,US2FD1310054
+2023-11-11,Pearly Gates,Kevin Morby,City Music,False,True,True,True,True,False,False,USJ5G1713111
+2023-11-11,Little Mouse,"Mo' Horizons, Mr. Morski",Music Sun Love,False,True,True,False,True,False,False,DEEQ71911708
+2023-11-07,Italians In A Line,Giovanni Damico,The Sounds Of Revolution EP,False,True,True,False,False,False,False,GBKQU1911585
+2023-11-01,Come on Home,The Lijadu Sisters,Horizon Unlimited,False,True,True,True,True,False,False,USBQU1200013
+2023-10-27,Stoned and Starving,Parquet Courts,Light Up Gold,False,True,True,False,False,False,False,USGYG0600710
+2023-10-25,Choking To Death (From The Ties That Bind),Swamp Dogg,Gag a Maggot (Remastered),False,True,True,False,True,False,False,USA2B1301788
+2023-10-21,"The Captain's Daughter, Pt. 1",Marty O'Reilly & the Old Soul Orchestra,Pray for Rain,False,True,True,True,True,False,False,USCGJ1448180
+2023-10-19,Jenny Jenkins (Acoustic),Mt. Joy,Jenny Jenkins (Acoustic),False,True,True,True,False,False,False,USDMG1895901
+2023-10-18,I Don't Know,The Sheepdogs,Learn & Burn,False,True,True,True,False,False,False,USCGH1090771
+2023-10-16,Alligator,The Babies,Our House on the Hill,False,True,True,True,False,False,False,US2FD1210085
+2023-10-13,Memphis Blues Again,"Daniele Luppi, Parquet Courts",Milano,False,True,True,False,False,False,False,USSM11705842
+2023-10-12,Most Events Aren't Planned,Vida Blue,Vida Blue,False,True,True,True,False,False,False,USKF41840801
+2023-10-11,(It Goes Like) Nanana - Edit,Peggy Gou,(It Goes Like) Nanana [Edit],False,True,True,True,True,False,False,GBBKS2300080
+2023-10-06,Instant Disassembly,Parquet Courts,Sunbathing Animal,False,True,True,True,False,False,False,USGYG0600734
+2023-10-03,Avant Gardener,Courtney Barnett,The Double EP: A Sea of Split Peas,False,True,True,True,True,False,False,GBXFC1300066
+2023-10-02,Debbie,Your Smith,Bad Habit,False,True,True,False,True,False,False,QM24S1826555
+2023-10-02,The Spot,Your Smith,The Spot,False,True,True,False,True,False,False,QM24S1816024
+2023-10-02,Head in the Clouds,Ollella,Back Back Back,False,True,True,False,False,False,False,QZFZ42342506
+2023-10-02,Back Back Back,Ollella,Back Back Back,False,True,True,False,False,False,False,QZES72349878
+2023-10-02,My Stove's on Fire,Robert Lester Folsom,Music and Dreams,False,True,True,True,False,False,False,QMV8L1400706
+2023-10-01,Please Don't Go,Wyatt Flores,Please Don't Go,False,True,True,True,False,False,False,USUYG1432379
+2023-09-28,Freaks To The Front,Amyl and The Sniffers,Comfort To Me,False,True,True,True,True,False,False,GBCVZ2100085
+2023-09-28,Got You,Amyl and The Sniffers,Amyl and The Sniffers,False,True,True,True,True,False,False,GBCVZ1900022
+2023-09-26,Horny Hippies,The Dodos,Beware of the Maniacs,False,True,True,True,True,False,False,USTC30765001
+2023-09-25,Dance Now,Girl and Girl,Divorce +,False,True,True,True,False,False,False,USSUB2359602
+2023-09-24,Pictures of You - 2010 Remaster,The Cure,Disintegration (Deluxe Edition),False,True,True,True,True,False,False,USEE10901453
+2023-09-24,Ready Or Not (feat. Sierra Ferrell),"Shakey Graves, Sierra Ferrell",Movie Of The Week,False,True,True,True,True,False,False,USDMG2245501
+2023-09-23,"Pain, Sweet, Pain",Zach Bryan,Boys Of Faith,False,True,True,True,True,False,False,USWB12305750
+2023-09-22,Exactly What Nobody Wanted,Jeffrey Lewis,Bad Wiring,False,True,True,True,False,False,False,USA2B1901741
+2023-09-21,Election Day,Blaze Foley,Sittin' by the Road,False,True,True,False,False,False,False,USZPL1020005
+2023-09-20,Darlin',Houndmouth,Little Neon Limelight,False,True,True,True,True,False,False,GBCVZ1403607
+2023-09-20,The Saint Of Lost Causes,Justin Townes Earle,The Saint Of Lost Causes,False,True,True,True,True,False,False,US27Q1945401
+2023-09-20,Start It Over,Riley Downing,Start It Over,False,True,True,False,False,False,False,US27Q2050906
+2023-09-18,Do You Wanna Live?,Los Porcos,Porco Mio,False,True,True,False,False,False,False,FRPIN1500370
+2023-09-18,Trouble In The Streets,Goat,Requiem,False,True,False,False,True,False,False,SEUM71600652
+2023-09-18,Miles And Miles,The Heavy Heavy,Life and Life Only,False,True,True,True,False,False,False,UKXN21970719
+2023-09-18,Mange,Deer Tick,The Black Dirt Sessions,False,True,True,False,True,False,False,USBQU1000006
+2023-09-18,Chevrolet Van,The Nude Party,The Nude Party,False,True,True,True,False,False,False,US27Q1842403
+2023-09-17,I’m Not Ready,Riley Downing,Start It Over,False,True,True,False,False,False,False,US27Q2050901
+2023-09-17,No Waves,FIDLAR,FIDLAR,False,True,True,True,True,False,False,USQE91200263
+2023-09-17,Guided By Angels,Amyl and The Sniffers,Comfort To Me,False,True,True,True,True,False,False,GBCVZ2100084
+2023-09-17,Hertz,Amyl and The Sniffers,Comfort To Me,False,True,True,True,True,False,False,GBCVZ2100088
+2023-09-15,Aqua Profunda!,Courtney Barnett,"Sometimes I Sit and Think, and Sometimes I Just Sit",False,True,True,True,True,False,False,GBX721400148
+2023-09-15,Elevator Operator,Courtney Barnett,"Sometimes I Sit and Think, and Sometimes I Just Sit",False,True,True,True,True,False,False,GBX721400143
+2023-09-14,Showdown,Electric Light Orchestra,On The Third Day,False,True,True,False,True,False,False,USBMG0701151
+2023-09-12,Holy Grail,Hunters & Collectors,Living In Large Rooms and Lounges,False,True,True,False,True,False,False,AULI00731250
+2023-09-11,California Sunshine,Family Jools,California Sunshine,False,True,True,False,False,False,False,FRX202170670
+2023-09-11,Dirty Love,Mt. Joy,Mt. Joy,False,True,True,True,False,False,False,USDMG1885204
+2023-09-11,My Cousin Greg,Houndmouth,Little Neon Limelight,False,True,True,True,True,False,False,GBCVZ1403603
+2023-08-26,Bizarre Love Triangle - Extended Dance Mix,New Order,Bizarre Love Triangle,False,True,True,True,True,False,False,GBAAP0001137
+2023-08-14,The Visitor,Bicycle,Conversations with a Bigfoot,False,True,True,False,False,False,False,uscgj2253460
+2023-08-14,Famous Last Words,True Loves,Famous Last Words,False,True,True,False,False,False,False,USHM81750128
+2023-08-07,Hustlin',John Craigie,Asterisk The Universe,False,True,True,False,True,False,False,QZF8D2000034
+2023-08-01,Bad Man,Andrew Cashen,The Cosmic Silence,False,True,True,False,False,False,False,USF2M2200973
+2023-07-31,History Eraser,Courtney Barnett,The Double EP: A Sea of Split Peas,False,True,True,True,True,False,False,GBXFC1300067
+2023-07-31,Depreston,Courtney Barnett,"Sometimes I Sit and Think, and Sometimes I Just Sit",False,True,True,True,True,False,False,GBX721400147
+2023-07-31,Write A List of Things To Look Forward To,Courtney Barnett,"Things Take Time, Take Time",False,True,True,True,True,False,False,GBX722100373
+2023-07-31,Pedestrian at Best,Courtney Barnett,"Sometimes I Sit and Think, and Sometimes I Just Sit",False,True,True,True,True,False,False,GBX721400144
+2023-07-25,Pork And Beans,Weezer,Weezer,False,True,True,True,True,False,False,USUM70811232
+2023-07-24,Mommy,"R.I.P., Nick Stratton",Twins in Paradise,False,True,True,False,False,False,False,QZHN82056653
+2023-07-19,"Day In, Day Out",JR JR,Invocations / Conversations,False,True,True,False,True,False,False,QMB621900101
+2023-07-16,"World, Hold On - FISHER Rework","Bob Sinclar, Steve Edwards, FISHER","World, Hold On (FISHER Rework)",False,True,True,True,True,False,False,FR4E42227000
+2023-07-13,Don't Ask,John Craigie,Asterisk The Universe,False,True,True,False,True,False,False,QZF8D2000035
+2023-07-05,Take It Off,"FISHER, Aatig",Take It Off,False,True,True,True,True,False,False,QM24S2302791
+2023-06-17,Chupa Cabra - Fouk Remix,"Magic In Threes, Fouk",Work Tapes EP,False,True,True,True,False,False,False,QMXZD1100350
+2023-06-08,Tap the Phone,Francis and the Lights,It'll Be Better,False,True,True,False,False,False,False,US5U51000020
+2023-06-08,Goodnight Chicago,Rainbow Kitten Surprise,RKS,False,True,True,True,True,False,False,QMAAK1557436
+2023-05-28,Always Alright,Alabama Shakes,Always Alright,False,True,True,True,True,False,False,USATO1200309
+2023-05-13,Don't Ask,John Craigie,Asterisk the Universe,False,True,True,False,True,False,False,QZF8D2000035
+2023-05-02,Hot for Teacher - 2015 Remaster,Van Halen,The Best of Both Worlds,False,True,True,True,True,False,False,USWB11403684
+2023-03-23,The Keys,Matt Duncan,Soft Times,False,True,True,True,False,False,False,USQY51336649
+2023-03-16,Buttercup,Hippo Campus,Landmark,False,True,True,True,True,False,False,QM5BK1600122
+2023-03-15,Big Cheeseburgers & Good French Fries,Blaze Foley,Sittin' by the Road,False,True,True,False,False,False,False,USZPL1020001
+2023-03-13,I Won't Tell,"Baby Rose, Smino",I Won't Tell,False,True,True,True,True,False,False,US38W2246905
+2023-03-13,Havana Burning,Dan Reeder,Dan Reeder,False,True,True,False,False,False,False,USA2A0302714
+2023-03-11,Give Me Back My Loving,Leo Nocentelli,Another Side,False,True,True,False,True,False,False,USDEA2119105
+2023-03-07,(For A While) I Couldn't Play My Guitar Like a Man,FREEMAN,FREEMAN,False,True,True,True,True,False,False,USBQU1400013
+2023-02-17,Out of Sight,Natural Child,Okey Dokey,False,True,True,False,False,False,False,USA2B1601856
+2023-02-17,Brokedown- Parts 1 and 2,The California Honeydrops,A River's Invitation,False,True,True,False,True,False,False,USQXT1500015
+2023-02-16,Sure Is Nice,Natural Child,Okey Dokey,False,True,True,False,False,False,False,USA2B1601854
+2023-02-15,Benny's Here,Natural Child,Okey Dokey,False,True,True,False,False,False,False,USA2B1601862
+2023-02-10,Mo' Liquor,"Kari Faux, Smino",Lowkey Superstar (Deluxe),False,True,True,True,True,False,False,USA2B2102925
+2023-02-10,Sacrifices (with EARTHGANG & J. Cole feat. Smino & Saba),"Dreamville, EARTHGANG, J. Cole, Smino, Saba",Revenge Of The Dreamers III,False,True,True,True,True,False,False,USUM71912972
+2023-02-08,Strange Overtones,"David Byrne, Brian Eno",Everything That Happens Will Happen Today,False,True,True,True,True,False,False,USQJT0800007
+2023-01-13,Tight Tee Shirt,Benji Hughes,A Love Extreme,False,True,True,True,True,False,False,US27Q0861492
+2023-01-09,The Boy with the Arab Strap,Belle and Sebastian,The Boy With The Arab Strap,False,True,True,True,True,False,False,GBCAX9801009
+2023-01-09,Your Cover's Blown,Belle and Sebastian,Books,False,True,True,True,True,False,False,GBCVZ0300858
+2023-01-09,The Mummy,Benji Hughes,A Love Extreme,False,True,True,True,True,False,False,US27Q0814916
+2023-01-04,Love Lost,"Mac Miller, The Temper Trap","I Love Life, Thank You",False,True,True,True,True,False,False,USA2P2212493
+2023-01-04,Hell N Back,Bakar,Hell N Back,False,True,True,True,True,False,False,GBARL1900848
+2022-12-23,Heart It Races - DJ Rupture's Ital Hymn Mix,"Architecture In Helsinki, Mr Lee G",Heart It Races,False,True,True,True,True,False,False,QMFME1528614
+2022-12-12,Let It Roll,The Sheepdogs,Changing Colours,False,True,True,True,False,False,False,CAW111700186
+2022-12-09,Los Aparatos,"El Alfa, Noriel, Trueno",SAGITARIO,False,True,True,False,True,False,False,QM6P42213591
+2022-11-08,Bondurant Women,The Texas Gentlemen,TX Jelly,False,True,True,False,False,False,False,US27Q1740703
+2022-11-07,Peach Fuzz,Caamp,By and By,False,True,True,True,False,False,False,USQE91500931
+2022-10-24,Always Like This,Bombay Bicycle Club,I Had The Blues But I Shook Them Loose,False,True,True,True,True,False,False,GBUM70901126
+2022-10-20,Vagabond,Caamp,Caamp,False,True,True,True,False,False,False,TCACM1659369
+2022-10-18,Flick Of The Finger,Beady Eye,BE,False,True,True,True,True,False,False,GBARL1300467
+2022-10-17,Sunday Afternoon,True Loves,Sunday Afternoon,False,True,True,False,False,False,False,QZJZC1900289
+2022-10-11,Basically,STRFKR,Vault Vol. 1,False,True,True,False,True,False,False,US3R41731704
+2022-10-11,Planet X,Calimossa,Habaneros,False,True,True,True,False,False,False,QZAPG1805859
+2022-10-05,Trippin',Futurebirds,Teamwork,False,True,True,True,True,False,False,QMK3X1200026
+2022-10-03,My Little Japanese Cigarette Case,Spoon,Ga Ga Ga Ga Ga (2017 Remaster),False,True,True,True,True,False,False,USMRG1759508
+2022-10-03,Don't You Evah,Spoon,Ga Ga Ga Ga Ga (2017 Remaster),False,True,True,True,True,False,False,USMRG1759504
+2022-09-30,Habbie Doobie,The Texas Gentlemen,TX Jelly,False,True,True,False,False,False,False,US27Q1740701
+2022-09-27,Don't Take Your Time,Cupid in Denim,Don't Take Your Time,False,True,True,False,False,False,False,AUMEV2272493
+2022-09-12,By and By,Caamp,By and By,False,True,True,True,False,False,False,USQE91500937
+2022-09-12,California,Petey USA,Lean Into Life,False,True,True,False,False,False,False,QMBZ91963094
+2022-09-08,Money,JID,The Forever Story,False,True,True,True,True,False,False,USUM72200952
+2022-09-08,Just In Time (feat. Lil Wayne & Kenny Mason),"JID, Kenny Mason, Lil Wayne",The Forever Story,False,True,True,True,True,False,False,USUM72214830
+2022-09-08,Stars (feat. Yasiin Bey),"JID, Yasiin Bey",The Forever Story,False,True,True,True,True,False,False,USUM72214827
+2022-09-01,South,Hippo Campus,South - Single,False,True,True,True,True,False,False,QM5BK1500003
+2022-08-29,Can’t Punk Me (feat. EARTHGANG),"JID, EARTHGANG",The Forever Story,False,True,True,True,True,False,False,USUM72214819
+2022-08-29,Crack Sandwich,JID,The Forever Story,False,True,True,True,True,False,False,USUM72214814
+2022-08-28,Lauder Too (feat. Ravyn Lenae & Eryn Allen Kane),"JID, Ravyn Lenae, Eryn Allen Kane",The Forever Story,False,True,True,True,True,False,False,USUM72214833
+2022-08-28,Sistanem,JID,The Forever Story,False,True,True,True,True,False,False,USUM72214821
+2022-08-28,Surround Sound (feat. 21 Savage & Baby Tate),"JID, 21 Savage, Baby Tate",The Forever Story,False,True,True,True,True,False,False,USUM72123571
+2022-08-28,Dance Now (feat. Kenny Mason),"JID, Kenny Mason",The Forever Story,False,True,True,True,True,False,False,USUM72214376
+2022-08-24,Too Late,The Happy Fits,Awfully Apeelin',False,True,True,True,False,False,False,GBMJG1610594
+2022-08-24,Fall Into A Dream,Foxwarren,Foxwarren,False,True,True,True,True,False,False,USEP41841009
+2022-08-23,Don't You Evah,Spoon,Ga Ga Ga Ga Ga,False,True,True,True,True,False,False,USMRG0729504
+2022-08-23,Toca La Guitarra,Professor Caveman,"Professor Caveman, Vol. 2",False,True,True,True,False,False,False,GBSMU2404692
+2022-08-23,Fearless - 2011 Remastered Version,Pink Floyd,Meddle (2011 Remastered Version),False,True,True,True,True,False,False,GBN9Y1100062
+2022-08-22,Cigarette Daydreams,Cage The Elephant,Melophobia,False,True,True,True,True,False,False,USRC11301169
+2022-08-22,Laura,Scissor Sisters,Scissor Sisters (NON EU Version),False,True,True,True,True,False,False,GBAKW0300782
+2022-08-17,Surefire,Wilderado,Wilderado,False,True,True,True,False,False,False,USN2F1900031
+2022-08-12,I'm Your Wreck,Mt. Joy,Mt. Joy,False,True,True,True,False,False,False,USDMG1885201
+2022-08-07,As It Was,Harry Styles,As It Was,False,True,True,True,True,False,False,USSM12200612
+2022-08-07,Rio,Low Cut Connie,Get out the Lotion,False,True,True,False,True,False,False,USX9P1095596
+2022-08-04,Down to This,Soul Coughing,Ruby Vroom,False,True,True,False,False,False,False,GBANC9400066
+2022-08-03,True Dreams of Wichita,Soul Coughing,Ruby Vroom,False,True,True,False,False,False,False,GBANC9400060
+2022-08-03,Disseminated,Soul Coughing,Irresistible Bliss,False,True,True,True,False,False,False,GBANC9600008
+2022-08-03,$300,Soul Coughing,El Oso,False,True,True,True,False,False,False,GBAAP0200649
+2022-08-02,Got To Let Go,The Bees,Octopus,False,True,True,False,True,False,False,GBAAA0700669
+2022-08-01,I Need A Woman,Hockey Dad,Dreamin',False,True,True,False,True,False,False,TCABY1421448
+2022-08-01,Home Soon,DOPE LEMON,Hounds Tooth,False,True,True,False,True,False,False,AUUM71601209
+2022-07-28,Left Me Like Summer,Daily J,Venus Ate Mars,False,True,True,False,False,False,False,NZAM01902009
+2022-07-27,Short Song for a Short Mind,Girls In Hawaii,From Here to There,False,True,True,False,True,False,False,FR6V80309802
+2022-07-27,I Like The Way This Is Going,Eels,Tomorrow Morning (Deluxe),False,True,True,True,True,False,False,USDSU1022593
+2022-07-27,That Look You Give That Guy,Eels,Hombre Lobo,False,True,True,True,True,False,False,USVR90953702
+2022-07-27,Mr. E's Beautiful Blues,Eels,Meet The EELS: Essential EELS 1996-2006 Vol. 1,False,True,True,True,True,False,False,USDW10021649
+2022-07-25,No Shade,Violent Soho,WACO,False,True,True,False,True,False,False,AULI01603560
+2022-07-18,MENTHOL*,"Jean Dawson, Mac DeMarco",MENTHOL*,False,True,True,False,True,False,False,QZ9H32100077
+2022-07-18,Sea Sick,binki,Sea Sick,False,True,True,True,False,False,False,QZ93L1954287
+2022-07-18,On A Lock,Winston Surfshirt,Sponge Cake,False,True,True,False,False,False,False,AUDCB1701056
+2022-07-08,Where the Whitetails Go,Mo Lowda & the Humble,Curse the Weather,False,True,True,False,False,False,False,QMJU51310008
+2022-07-08,Regular Pussy,Favored Nations,The Great Unknown,False,True,True,False,False,False,False,AUNV01400155
+2022-07-06,The Breeze,Dr. Dog,Fate,False,True,True,False,True,False,False,TCAFW2146752
+2022-07-06,Put a Light On,Generationals,Heza,False,True,True,True,True,False,False,US3R41325505
+2022-06-30,Strangers,Mt. Joy,Rearrange Us,False,True,True,True,False,False,False,USDMG2000613
+2022-06-23,Surviving,Marc Rebillet,Loop Daddy III,False,True,True,True,True,False,False,QZK6F2042739
+2022-06-23,Snow Beach,RATKING,So It Goes,False,True,True,True,True,False,False,GBBKS1300156
+2022-06-21,Crazy Dream,"Tom Misch, Loyle Carner",Crazy Dream,False,True,True,True,True,False,False,GBWWP1602076
+2022-06-18,Nothing Wrong with Feeling Blue,All Night Boogie Band,Taste These Blues,False,True,True,False,False,False,False,usdy42297075
+2022-06-07,"Julia - Live at Red Rocks, 5/22/21",Mt. Joy,Live at Red Rocks,False,True,True,False,False,False,False,USDMG2138013
+2022-06-04,Wake the Fuck Up,Skegss,Everyone Is Good at Something,False,True,True,True,True,False,False,TCACQ1609975
+2022-06-01,Brother in the Night,The Weeks,Dear Bo Jackson,False,True,True,False,True,False,False,QMRPC1270048
+2022-05-31,Let's Go Surfing,The Drums,Let's Go Surfing,False,True,True,True,True,False,False,GBGEY0900107
+2022-05-31,Mum Stole My Darts,The Chats,The Chats,False,True,True,False,True,False,False,AUBEC1712000
+2022-05-26,Good Time,Brazilian Girls,New York City,False,True,True,True,False,False,False,USUM70819507
+2022-05-26,Good Luck,Broken Bells,Good Luck,False,True,True,True,True,False,False,QMEU31819028
+2022-05-15,Mr. Morale,"Kendrick Lamar, Tanna Leone",Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208990
+2022-05-15,Auntie Diaries,Kendrick Lamar,Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208989
+2022-05-15,Savior,"Kendrick Lamar, Baby Keem, Sam Dew",Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208978
+2022-05-15,Silent Hill,"Kendrick Lamar, Kodak Black",Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208981
+2022-05-15,Count Me Out,Kendrick Lamar,Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208980
+2022-05-15,Father Time (feat. Sampha),"Kendrick Lamar, Sampha",Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208968
+2022-05-15,N95,Kendrick Lamar,Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208963
+2022-05-15,United In Grief,Kendrick Lamar,Mr. Morale & The Big Steppers,False,True,True,True,True,False,False,USUM72208961
+2022-04-24,The Story Of Adidon (Remix),Ombre2Choc Nation,The Story Of Adidon (Remix),False,True,True,False,False,False,True,FRDCX1902290
+2022-03-13,I Don't Know,Wax Tailor,Tales of the Forgotten Melodies,False,True,True,False,True,False,False,FRP180400260
+2022-02-07,Please Don't Lead Me On,The Sheepdogs,Learn & Burn,False,True,True,True,False,False,False,USCGH1090770
+2022-01-31,A Message to You Rudy - 2002 Remaster,The Specials,The Specials (2002 Remaster),False,True,True,True,True,False,False,GBAYK0200020
+2022-01-21,Young Man,Alexander Mack,Young Man,False,True,True,False,False,False,False,QZES82063219
+2022-01-15,Crystal Palace,Mark Lettieri,Spark and Echo,False,True,True,False,True,False,False,US8JA1611006
+2022-01-06,Home,Zach Deputy,Out Of The Water,False,True,True,False,False,True,False,US3E41200101
+2022-01-04,Banana Goo Pie (Bonus Track),"Sam Lachow, Jbyrd, Ryan Campbell, Sky Blaow",Huckleberry,False,True,True,False,False,False,False,TCABY1423459
+2021-11-08,Bamako,Songhoy Blues,Résistance,False,True,True,True,True,False,False,GBKZV1700017
+2021-11-06,サマータイム,SHIGEO SEKITO,華麗なるエレクトーン -サマータイム-,False,True,True,True,False,False,False,JPCO07610030
+2021-11-06,Going Gets Tough,The Growlers,Chinese Fountain,False,True,True,False,True,False,False,USER81404406
+2021-11-03,Show Me Something,"Malik Moses, Bas",Show Me Something,False,True,True,False,True,False,False,USLD91735289
+2021-10-26,Black Friday,The Kendrick,Black Friday,False,True,True,False,False,False,True,QZNWT2067397
+2021-10-26,Home,Knucks,NRG 105,False,True,True,True,False,False,False,GBUM71902688
+2021-10-09,Super,Cordae,Super,False,True,True,True,True,False,False,USAT22106140
+2021-10-09,Hasta La Vista Baby,DURRY,Hasta La Vista Baby,False,True,True,True,False,False,False,QZHNC2153111
+2021-10-09,Losers Club,DURRY,Losers Club,False,True,True,False,False,False,False,QZHN42178714
+2021-10-07,Who's Laughing Now,DURRY,Who's Laughing Now,False,True,True,True,False,False,False,QZNWR2118645
+2021-10-05,Young Blood,The Districts,A Flourish and A Spoil,False,True,True,True,False,False,False,USFP71449709
+2021-10-05,Me and Your Mama,Childish Gambino,"""Awaken, My Love!""",False,True,True,True,True,False,False,USYAH1600102
+2021-10-04,Find Your Cloud,Papadosio,T.E.T.I.O.S,False,True,True,False,False,False,False,USJ441200050
+2021-09-20,God Breathed,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116306
+2021-09-20,Carol,The Peep Tempel,Tales,False,True,True,True,False,False,False,AUXV21400032
+2021-09-20,One Track Mind,Spanish Gold,South Of Nowhere,False,True,True,False,False,False,False,QMRSZ1401033
+2021-09-20,Its Time to Move,SOSA,Its Time to Move,False,True,True,False,False,False,True,FRX452131389
+2021-09-13,Stoney (feat. Phoelix & BJRKNC),"Saba, Phoelix, Bjrknc",Bucket List Project,False,True,True,True,True,False,False,USUYG1115894
+2021-09-13,Meanwhile Back in the City,The Presidents Of The United States Of America,Freaked Out And Small,False,True,True,True,True,False,False,US35G0400052
+2021-09-13,Collapse,Soul Coughing,Irresistible Bliss,False,True,True,True,False,False,False,GBANC9600009
+2021-09-13,Super Bon Bon,Soul Coughing,Irresistible Bliss,False,True,True,True,False,False,False,GBANC9600001
+2021-09-13,"Mr. Jones - Live At Chelsea Studios, New York/1997",Counting Crows,Across A Wire (Live In New York),False,True,True,True,True,False,False,USGF19822205
+2021-09-13,Babylon,David Gray,White Ladder,False,True,True,True,True,False,False,GBDLY0000002
+2021-09-13,Belle,Jack Johnson,In Between Dreams,False,True,True,True,True,False,False,USMC60400031
+2021-09-09,Knock Knock,Mac Miller,K.I.D.S.,False,True,True,True,True,False,False,USA2P1122877
+2021-09-09,Pure Souls,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116299
+2021-09-09,New Again,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116296
+2021-09-09,Heaven and Hell,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116292
+2021-09-09,Praise God,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116287
+2021-09-07,Come to Life,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116280
+2021-09-07,Believe What I Say,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116288
+2021-09-07,Off The Grid,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116304
+2021-09-07,Hurricane,Kanye West,Donda,False,True,True,True,True,False,False,USUM72116311
+2021-09-02,Self,Noname,Room 25,False,True,True,True,True,False,False,QM24S1834470
+2021-08-13,Walden Pond,Atta Boy,Out of Sorts,False,True,True,False,False,False,False,TCABL1202267
+2021-07-14,Money Trees,"Kendrick Lamar, Jay Rock","good kid, m.A.A.d city",False,True,True,True,True,False,False,USUM71210785
+2021-07-02,A Little Bit Of Everything,Dawes,Nothing Is Wrong,False,True,True,True,True,False,False,USATO1000162
+2021-07-02,Silver Lining,Mt. Joy,Mt. Joy,False,True,True,True,False,False,False,USDMG1785501
+2021-07-02,Tomorrow,Shakey Graves,Tomorrow,False,True,True,True,True,False,False,USDMG1677702
+2021-07-02,Lost in My Mind,The Head And The Heart,The Head and the Heart,False,True,True,True,True,False,False,USSUB1191507
+2021-07-02,Only the Wild Ones,DISPATCH,"America, Location 12",False,True,True,True,True,False,False,GBWWP1702594
+2021-07-02,Sedona,Houndmouth,Little Neon Limelight,False,True,True,True,True,False,False,GBCVZ1403597
+2021-07-02,Rivers and Roads,The Head And The Heart,The Head and the Heart,False,True,True,True,True,False,False,USSUB1191505
+2021-06-30,tonight,JKER,tonight,False,True,True,False,False,False,False,QZJG52002203
+2021-06-29,Hold Up,Late Replies,Hold Up,False,True,True,False,False,False,False,FR26V2014775
+2021-06-26,Melanie,TV Girl,Lonely Women,False,True,True,False,True,False,False,ushm21316365
+2021-06-26,Oh Devil,Electric Guest,Plural,False,True,True,True,True,False,False,USUM71614152
+2021-06-26,All in My Mind,Vanilla,Origin,False,True,True,True,False,False,False,DEQ121854453
+2021-06-26,Can't Let You Go (feat. Nick Grant),"Terrace Martin, Nick Grant",Can't Let You Go (feat. Nick Grant),False,True,True,False,True,False,False,QMRSZ2100528
+2021-06-25,Come a Little Closer,Cage The Elephant,Melophobia,False,True,True,True,True,False,False,USRC11301144
+2021-06-22,Pop It,Cloonee,Pop It,False,True,True,False,True,False,False,UKACT2130297
+2021-06-21,Get Stupid - Radio Edit,Cloonee,Get Stupid (Radio Edit),False,True,True,False,True,False,False,UKACT2031571
+2021-06-14,Triple Double (feat. Mac Miller & Curren$y),"French Montana, Mac Miller, Curren$y",Mac & Cheese 3,False,True,True,True,True,False,False,USUYG1340560
+2021-06-13,Genius of Love,Tom Tom Club,Tom Tom Club,False,True,True,True,True,False,False,USWB10106527
+2021-05-18,Road to Nowhere,Talking Heads,Little Creatures,False,True,True,True,True,False,False,USWB19900876
+2021-05-13,Suicide Saturday,Hippo Campus,Bashful Creatures,False,True,True,True,True,False,False,TCACB1435807
+2021-05-09,Look Over Your Shoulder (feat. Kendrick Lamar),"Busta Rhymes, Kendrick Lamar",Look Over Your Shoulder (feat. Kendrick Lamar),False,True,True,True,True,False,False,USUYG1334937
+2021-05-06,idk shit but colors,keni can fly,garden of earthly delights,False,True,True,False,False,False,False,QZ93L2104327
+2021-05-03,Roll Back The Years,Dorsal Fins,Digital Zodiac,False,True,True,False,False,False,False,AUDJ01601510
+2021-05-03,Miami,Parrotfish,Miami,False,True,True,False,False,False,False,QM2PV1898193
+2021-05-03,Doomsday,"MF DOOM, Pebbles The Invisible Girl",Operation: Doomsday (Complete),False,True,True,True,True,False,False,US2S71104002
+2021-04-29,Forest Whitiker,Brother Ali,Shadows On The Sun,False,True,True,True,True,False,False,USBWK0500120
+2021-04-27,The Spins,Mac Miller,K.I.D.S.,False,True,True,True,True,False,False,USA2P2015959
+2021-04-27,People Say,Portugal. The Man,The Satanic Satanist,False,True,True,True,True,False,False,US3X50916401
+2021-04-16,Beverly Blues,Opia,Beverly Blues,False,True,True,True,False,False,False,FR59R1876877
+2021-03-21,Love And Happiness - Recorded at Spotify Studios NYC,Cultura Profética,Spotify Singles,False,True,True,False,True,False,False,QM7CR1900002
+2021-03-12,Cocaine Jesus,Rainbow Kitten Surprise,RKS,False,True,True,True,True,False,False,QMAAK1557434
+2021-03-12,Tired Boy,"Concept Collective, Coolin' Cal","Concept Collective, Vol. 2",False,True,True,True,False,False,False,QZAPG1700192
+2021-01-15,White Shoes,"Kid Quill, Nappy Roots",94.3 the Reel,False,True,True,False,True,False,False,USDHM1716776
+2021-01-12,Addicted Youth,"Hemlock Ernst, Kenny Segal",Back At The House,False,True,True,False,True,False,False,US25X1902731
+2020-12-15,Dalai Lama - Audiotree Live Version,Liz Cooper,Liz Cooper & the Stampede on Audiotree Live,False,True,True,False,False,False,False,QM99V1612403
+2020-11-24,Tokyo Summer,Mounties,Thrash Rock Legacy,False,True,True,True,False,False,False,CAB391301268
+2020-11-24,Bad Bad Freddy,Young Monks,Swamp Creek,False,True,True,True,False,False,False,TCACS1674955
+2020-11-18,DRUGS,Tai Verdes,DRUGS,False,True,True,True,True,False,False,USQX92004562
+2020-11-12,Straight Jacket,Bay Ledges,Fountain Tropical EP,False,True,True,False,True,False,False,QMRSZ1702326
+2020-10-28,Afraid of Us,"Jonwayne, Zeroh",Rap Album Two,False,True,True,True,True,False,False,US25X1090471
+2020-10-20,West End,"J[x]rdan, Stankface",The Heartbreak EP,False,True,True,False,False,False,False,QZK6K2000054
+2020-09-11,Fanfare,Magic City Hippies,Hippie Castle EP,False,True,True,False,True,False,False,QM4DW1568116
+2020-09-09,Song 32,Noname,Song 32,False,True,False,False,True,False,False,SE5VF1902610
+2020-09-09,Bad Idea (feat. Chance the Rapper),"Cordae, Chance the Rapper",Bad Idea (feat. Chance the Rapper),False,True,True,True,True,False,False,USAT21903454
+2020-09-08,Rillo Talk,Wild Child,The Runaround,False,True,True,True,True,False,False,QMT471300010
+2020-09-07,She Came Along,"Sharam, Kid Cudi",Get Wild,False,True,True,False,True,False,False,GRUM70901422
+2020-09-07,"End Of Daze (with EARTHGANG & JID feat. Jurdan Bryant, Mereba & Hollywood JB)","Spillage Village, EARTHGANG, JID, Jurdan Bryant, Mereba, Hollywood JB","End Of Daze (with EARTHGANG & JID feat. Jurdan Bryant, Mereba & Hollywood JB)",False,True,True,True,True,False,False,USUM72010366
+2020-09-07,Pursuit Of Happiness (Nightmare),"Kid Cudi, MGMT, Ratatat",Man On The Moon: The End Of Day,False,True,True,True,True,False,False,USUM70981907
+2020-09-06,Left Hand Free,alt-J,This Is All Yours,False,True,True,True,True,False,False,GBZUZ1400272
+2020-09-06,Everlasting Light,The Black Keys,Brothers,False,True,True,True,True,False,False,USNO11000076
+2020-09-06,Holocene,Bon Iver,Bon Iver,False,True,True,True,True,False,False,US38Y1113503
+2020-09-05,K.,Cigarettes After Sex,Cigarettes After Sex,False,True,True,True,True,False,False,USBQU1600214
+2020-08-07,The Green Superintendent,Mako Road,The Green Superintendent,False,True,True,False,False,False,False,NLS6R1822401
+2020-08-07,Soon To Be Large,"Charizma, Peanut Butter Wolf",Big Shots,False,True,True,False,True,False,False,US2S70477014
+2020-08-07,Putty Boy Strut,BADBADNOTGOOD,Spotify Live,False,True,True,True,True,False,False,USD8D1634015
+2020-07-13,Dennis,Roy Blair,Dennis,False,True,True,True,False,False,False,GBKPL1810690
+2020-06-27,Instead of My Room,Charlie Burg,Live in Peter's Attic,False,True,True,True,False,False,False,QM38J1600014
+2020-06-26,Vultures Of Culture,Nahko And Medicine For The People,On The Verge,False,True,True,True,True,False,False,USQY51432060
+2020-06-26,Heater Beater,Calimossa,Honey Days,False,True,True,True,False,False,False,QZHN71955979
+2020-06-13,Notorious,Malaa,Notorious,False,True,True,True,True,False,False,USLD90817295
+2020-06-13,Jungelknugen - Four Tet Remix,"Todd Terje, Four Tet",Jungelknugen (Remixes),False,True,True,False,True,False,False,NOOLS1701010
+2020-06-05,Frontier Psychiatrist,The Avalanches,Since I Left You,False,True,True,True,True,False,False,AUMP00100108
+2020-05-08,Classics Of Love,Common Rider,Last Wave Rockers,False,True,True,True,False,False,False,US4ZV1200036
+2020-05-04,Illegal Smile - Live,John Prine,John Prine (Live),False,True,True,True,True,False,False,USA2A0300510
+2020-05-04,Astrovan,Mt. Joy,Mt. Joy,False,True,True,True,False,False,False,QM24S1650171
+2020-05-04,Pimps (Free Stylin At The Fortune 500 Club),The Coup,Genocide & Juice,False,True,True,False,False,False,False,USZXT0810186
+2020-04-26,Dramamine,Modest Mouse,This Is a Long Drive for Someone with Nothing to Think About,False,True,True,True,True,False,False,USFP71444501
+2020-04-26,Ocean Man,Ween,The Mollusk,False,True,True,True,True,False,False,USEE19701313
+2020-04-22,Sedona,Kota the Friend,FOTO,False,True,True,True,False,False,False,QZ85M1934917
+2020-04-15,We Will Become Silhouettes (Performed by The Shins) - Remastered,The Shins,Give Up (Deluxe 10th Anniversary Edition),False,True,True,True,True,False,False,USSUB1304524
+2020-04-10,"Sing About Me, I'm Dying Of Thirst",Kendrick Lamar,"good kid, m.A.A.d city (Deluxe)",False,True,True,True,True,False,False,USUM71210783
+2020-04-09,Leave You Alone,Sea of Lettuce,Photos,False,True,True,True,False,False,False,SEYOK1849450
+2020-04-09,Sweetest Kill,Broken Social Scene,Forgiveness Rock Record,False,True,True,True,True,False,False,CAAA11005406
+2020-04-03,Fly Kicks - Wax Motif Remix,"AC Slater, Chris Lorenzo, Wax Motif",Night Bass Remixed Vol. 1,False,True,True,True,True,False,False,USYBL1700770
+2020-03-26,"Boom, Boom, Boom, Boom!!",Vengaboys,"Boom, Boom, Boom, Boom!!",False,True,True,True,True,False,False,NLC529811150
+2020-03-20,Mustache Man (Wasted),CAKE,Showroom Of Compassion,False,True,True,True,True,False,False,USGHH1000005
+2020-02-08,Laid Off,AC Slater,Laid Off,False,True,True,True,True,False,False,USYBL1901418
+2020-01-29,You,Manwolves,You,False,True,True,False,False,False,False,ushm81624862
+2020-01-27,Daydreamin' (feat. Jill Scott),"Lupe Fiasco, Jill Scott",Lupe Fiasco's Food & Liquor,False,True,True,True,True,False,False,USAT20616187
+2020-01-27,My Dick,drkR,My Dick,False,False,False,False,False,False,False,TCADG1774250
+2019-12-31,Mayne Theory,Shwayne,Mayne Theory,False,True,True,False,False,False,True,QZK6P1951940
+2019-12-25,Postal Lady,Atmosphere,Whenever,False,True,True,False,True,False,False,USBWK1900097
+2019-12-16,GEEKIN,"MIA GLADSTONE, Ciscero",GEEKIN,False,True,True,False,False,False,False,FR96X1987275
+2019-12-16,Tell You What I Know,Matt Duncan,Free Music,False,True,True,False,False,False,False,USQY51606292
+2019-12-16,BRNT (feat. The EMEFE Horns),"Magic City Hippies, The EMEFE Horns",BRNT (feat. The EMEFE Horns),False,True,True,False,True,False,True,TCACG1531683
+2019-12-16,Mr Boogie Man,BoomBox,downriverelectric,False,True,True,False,False,False,False,ushm21097105
+2019-12-13,God of Joy,ANTHM,Joy & Pain,False,True,True,False,False,False,True,TCABO1388705
+2019-12-13,Me vs. Me,"Otis Junior, Dr. Dundiff",1Moment2Another,False,True,True,False,False,False,False,DESY21400359
+2019-12-13,Something from Outer Space,Vibe Street,She Makes Me Feel EP,False,True,True,False,False,False,False,TCACE1579200
+2019-12-07,OK Boomer,BionicPIG,OK Boomer,False,True,True,False,False,False,False,TCAEM1998152
+2019-11-12,Island,The Whitest Boy Alive,Rules,False,True,True,False,True,False,False,DEKM50902011
+2019-11-12,Charles De Gaulle To JFK,Bas,Last Winter,False,True,True,True,True,False,False,USUM71404871
+2019-11-12,Wash It All Away,San Cisco,Gracetown,False,True,True,True,True,False,False,AUU221400005
+2019-10-29,Shine,Bishop Gunn,Natchez,False,True,True,False,False,False,False,TCADO1853313
+2019-10-28,Step,"Vampire Weekend, Danny Brown, Heems, Despot",Unbelievers,False,True,True,True,True,False,False,GBBKS1300199
+2019-10-02,Houston,Soul Coughing,El Oso,False,True,True,True,False,False,False,GBAAP0200648
+2019-09-24,Shuggie,Foxygen,We Are the 21st Century Ambassadors of Peace & Magic,False,True,True,True,False,False,False,US38Y1322706
+2019-09-03,5 Thousand Singles,SAINt JHN,Ghetto Lenny's Love Songs,False,True,True,True,True,False,False,USUYG1268275
+2019-08-10,Kingston,Faye Webster,Atlanta Millionaires Club,False,True,True,True,True,False,False,US38W1837601
+2019-07-08,Love Sosa,Chief Keef,Finally Rich (Deluxe),False,True,True,True,True,False,False,USUM71214600
+2019-06-15,Sweet Disposition,The Temper Trap,Sweet Disposition,False,True,True,True,True,False,False,GBZUZ0900013
+2019-05-01,Fear and Loathing,Manwolves,A Safety Meeting,False,True,True,False,False,False,False,ushm81876890
+2019-04-22,Breakdown,Tom Petty and the Heartbreakers,Tom Petty & The Heartbreakers,False,True,True,True,True,False,False,USMC17641689
+2019-04-05,Goodie Bag,Still Woozy,Goodie Bag,False,True,True,True,True,False,False,QZANL1712241
+2019-02-27,Mr Bitterness,Soul Coughing,Ruby Vroom,False,True,True,False,False,False,False,GBANC9400067
+2018-12-16,Frequency Change,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71818560
+2018-12-16,Slick Talk,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71816010
+2018-12-16,Westbrook (with A$AP Ferg),"JID, A$AP Ferg",DiCaprio 2,False,True,True,True,True,False,False,USUM71816007
+2018-12-16,Off Deez (with J. Cole),"JID, J. Cole",DiCaprio 2,False,True,True,True,True,False,False,USUM71816068
+2018-12-16,151 Rum,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71814285
+2018-12-16,Off Da Zoinkys,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71816015
+2018-12-16,Workin Out,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71816023
+2018-12-16,Tiiied (feat. 6LACK & Ella Mai),"JID, 6LACK, Ella Mai",DiCaprio 2,False,True,True,True,True,False,False,USUM71816022
+2018-12-16,Skrawberries (feat. BJ The Chicago Kid),"JID, BJ The Chicago Kid",DiCaprio 2,False,True,True,True,True,False,False,USUM71816019
+2018-12-16,Hot Box (feat. Method Man & Joey Bada$$),"JID, Method Man, Joey Bada$$",DiCaprio 2,False,True,True,True,True,False,False,USUM71820518
+2018-12-16,Mounted Up,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71803153
+2018-12-16,Just Da Other Day,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71816011
+2018-12-16,Despacito Too,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71816018
+2018-12-16,Hasta Luego - Bonus,JID,DiCaprio 2,False,True,True,True,True,False,False,USUM71707454
+2018-12-09,Black River Killer,Blitzen Trapper,Furr,False,True,True,True,True,False,False,USSUB0875507
+2018-12-08,Sunshine,Atmosphere,Sad Clown Bad Summer Number 9,False,True,True,True,True,False,False,USBWK0700052
+2018-10-31,King of Carrot Flowers Pt. 1,Neutral Milk Hotel,In the Aeroplane Over the Sea,False,True,True,True,True,False,False,USMRG0316015
+2018-10-31,Wraith Pinned to the Mist and Other Games,of Montreal,The Sunlandic Twins,False,True,True,True,True,False,False,US3R40500054
+2018-10-31,The Boy With The Arab Strap,Belle and Sebastian,The Boy With The Arab Strap,False,True,True,True,True,False,False,GBCAX9801009
+2018-10-15,Shreddy Krueger,Manwolves,Shreddy Krueger,False,True,True,False,False,False,False,uscgj1795533
+2018-10-01,Blue Sky,Allman Brothers Band,Eat A Peach (Deluxe Edition),False,True,True,False,True,False,False,USA027200080
+2018-09-04,God's Plan,Drake,Scary Hours,False,True,True,True,True,False,False,USCM51800004
+2018-09-02,Good Day,Nappy Roots,The Humdinger,False,True,True,True,True,False,False,USZXT0813935
+2018-08-30,Apocalypse,Cigarettes After Sex,Cigarettes After Sex,False,True,True,True,True,False,False,USBQU1700034
