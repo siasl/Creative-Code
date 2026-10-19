@@ -339,7 +339,7 @@ tr.added td { color: var(--good); }
 .st-pad { position: absolute; left: 22px; width: 64px; bottom: 38px; height: 14px; border-radius: 8px 8px 2px 2px; background: linear-gradient(#ff6a4d, #b8301b); box-shadow: 0 2px 0 rgba(0, 0, 0, .35); transform-origin: 50% 100%; }
 .st-pad.hit { animation: st-pad .45s ease-out; }
 @keyframes st-pad { 0% { transform: scaleY(.45); filter: brightness(1.6); } 100% { transform: scaleY(1); filter: none; } }
-.st-mallet { position: absolute; left: 37px; width: 104px; height: 46px; bottom: 52px; transform-origin: 100% 50%; transform: rotate(62deg); }
+.st-mallet { padding: 0; border: 0; background: none; cursor: pointer; position: absolute; left: 37px; width: 104px; height: 46px; bottom: 52px; transform-origin: 100% 50%; transform: rotate(62deg); }
 .st-mallet::before { content: ""; position: absolute; left: 30px; right: 0; top: 18px; height: 10px; border-radius: 5px; background: linear-gradient(#d9a76a, #8a5a2b); }
 .st-mallet::after { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 46px; border-radius: 8px; background: linear-gradient(90deg, #a8731f, #e2b92e 45%, #8a5a2b); box-shadow: 0 3px 0 rgba(0, 0, 0, .3); }
 .st-mallet.swing { animation: st-swing 1.2s forwards; }
@@ -441,7 +441,7 @@ tr.added td { color: var(--good); }
           <div class="st-base">
             <div class="st-block"></div>
             <div class="st-pad" id="st-pad"></div>
-            <div class="st-mallet" id="st-mallet"></div>
+            <button type="button" class="st-mallet" id="st-mallet" aria-label="Swing the hammer" title="Swing the hammer"></button>
           </div>
         </div>
       </div>
@@ -1096,6 +1096,7 @@ const CBDetect = (() => {
     if (studio && state.res && !state.res.tooShort) { drawSpec(); renderHits(); updateTime(); }
     bruce.say(studio ? (state.res ? 'studio' : 'studioEmpty') : 'back');
   }
+  $('#st-mallet').addEventListener('click', () => striker.replay());
   $('#nav-home').addEventListener('click', () => showScreen('home'));
   $('#nav-studio').addEventListener('click', () => showScreen('studio'));
   $('#to-studio').addEventListener('click', () => showScreen('studio'));
