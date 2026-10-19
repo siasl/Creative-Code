@@ -287,7 +287,7 @@ tr.added td { color: var(--good); }
 .party { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   background: rgba(10, 8, 6, .72); cursor: pointer; animation: party-in .25s ease-out; }
 .party figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.party img { width: min(640px, 92vw); max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.party img, .party video { width: min(640px, 92vw); max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
 .party figcaption { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 6vw, 56px); text-transform: uppercase; color: #F1E9D2; letter-spacing: .02em; text-align: center; }
 @keyframes party-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .bruce .frame { animation: none !important; } .party { animation: none; } }
@@ -325,7 +325,7 @@ tr.added td { color: var(--good); }
   <button class="intro-start" id="intro-start" type="button" hidden>Meet Bruce<small>Sound on</small></button>
   <button class="bruce-show" id="bruce-show" type="button" hidden>Bring back Bruce</button>
   <div class="party" id="party" hidden role="dialog" aria-label="More cowbell!">
-    <figure><img id="party-gif" alt="The band playing with a lot of cowbell"><figcaption>100% cowbell!</figcaption></figure>
+    <figure><video id="party-video" muted playsinline hidden aria-label="The band playing with a lot of cowbell"></video><img id="party-gif" alt="The band playing with a lot of cowbell" hidden><figcaption>100% cowbell!</figcaption></figure>
   </div>
 
   <div class="row">
@@ -929,20 +929,35 @@ const CBDetect = (() => {
   window.bruceIntro = bruce.inIntro;
   let reactedTo = null, firstDemo = true;
 
-  // 100% cowbell: play the GIF once (5 s), shown over the page. Only if more-cowbell.gif sits next to the page.
+  // 100% cowbell: play the clip once (5 s) over the page. Uses more-cowbell.mp4 (small) if it sits next to the page,
+  // else more-cowbell.gif. Preloaded as a blob so it starts instantly (and Safari plays video without range requests).
   const party = (() => {
-    const box = $('#party'), img = $('#party-gif'); let blob = null, timer = 0, url = '';
-    fetch('more-cowbell.gif').then(r => r.ok && (r.headers.get('Content-Type') || '').includes('gif') ? r.blob() : null).then(b => { blob = b; }).catch(() => {});
-    const close = () => { clearTimeout(timer); box.hidden = true; img.removeAttribute('src'); if (url) URL.revokeObjectURL(url); url = ''; };
+    const box = $('#party'), img = $('#party-gif'), video = $('#party-video'); let blob = null, kind = '', timer = 0, url = '';
+    const load = (file, type) => fetch(file).then(r => r.ok && (r.headers.get('Content-Type') || '').includes(type) ? r.blob() : null);
+    load('more-cowbell.mp4', 'mp4').then(b => {
+      if (b) { blob = b; kind = 'video'; video.src = URL.createObjectURL(b); return; }
+      return load('more-cowbell.gif', 'gif').then(g => { if (g) { blob = g; kind = 'gif'; } });
+    }).catch(() => {});
+    video.addEventListener('ended', () => close());
+    const close = () => {
+      clearTimeout(timer); box.hidden = true; video.pause();
+      if (kind === 'gif') { img.removeAttribute('src'); if (url) URL.revokeObjectURL(url); url = ''; }
+    };
     box.addEventListener('click', close);
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
     return {
       play() {
         if (!blob) return;
         close();
-        url = URL.createObjectURL(blob); img.src = url; // a fresh URL restarts the GIF from frame one
-        box.hidden = false;
-        timer = setTimeout(close, 5200);
+        if (kind === 'video') {
+          video.hidden = false; img.hidden = true; box.hidden = false;
+          video.currentTime = 0; video.play().catch(() => {});
+        } else {
+          video.hidden = true; img.hidden = false;
+          url = URL.createObjectURL(blob); img.src = url; // a fresh URL restarts the GIF from frame one
+          box.hidden = false;
+        }
+        timer = setTimeout(close, 5600);
       },
     };
   })();

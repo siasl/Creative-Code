@@ -34,6 +34,10 @@ def main():
         shutil.copy(model, SITE / "model.json")
     elif (SITE / "model.json").exists():
         (SITE / "model.json").unlink()
+    # Bruce and the 100% cowbell clip (the page hides them if they're missing).
+    for name in ("bruce head.png", "bruce mouth.png", "more-cowbell.mp4"):
+        if (ROOT / name).exists():
+            shutil.copy(ROOT / name, SITE / name)
     (SITE / ".nojekyll").write_text("")
     print(f"Built {SITE}: collector {'at ' + api if api else 'not configured (labels stay local)'}, "
           f"{'your retrained model' if model.exists() else 'the original model'}.")
