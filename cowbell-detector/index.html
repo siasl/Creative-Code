@@ -303,6 +303,14 @@ tr.added td { color: var(--good); }
 @media (prefers-reduced-motion: reduce) { .bruce .frame { animation: none !important; } .party { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .busy::before { animation: none; } .st-bulb::before { transition: none; } }
 /* Screens */
+.about-btn { margin-left: auto; align-self: flex-start; }
+dialog.about { width: min(640px, calc(100vw - 32px)); max-height: 85vh; overflow: auto; padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); }
+dialog.about::backdrop { background: rgba(10, 8, 6, .6); }
+dialog.about p { margin: 0 0 14px; }
+.about-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.about-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: .01em; text-transform: uppercase; color: var(--ink); }
+.about-links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-weight: 600; }
+.about-links a { color: var(--brass); text-underline-offset: 3px; }
 .screens { display: flex; gap: 8px; flex-wrap: wrap; }
 .screens button { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 16px; font-weight: 600; }
 .screens small { font: 400 11px/1 var(--font-mono); color: var(--muted); }
@@ -356,7 +364,16 @@ tr.added td { color: var(--good); }
   <nav class="screens" id="screens" aria-label="Screens">
     <button type="button" id="nav-home" aria-pressed="true">Bruce</button>
     <button type="button" id="nav-studio" aria-pressed="false">The studio<small>spectrogram · teach the model</small></button>
+    <button type="button" id="nav-about" class="about-btn" aria-haspopup="dialog">About</button>
   </nav>
+  <dialog class="about" id="about" aria-labelledby="about-h">
+    <div class="about-head"><h2 id="about-h">About this project</h2><button type="button" id="about-close" aria-label="Close">×</button></div>
+    <p class="about-links"><a href="https://github.com/siasl" target="_blank" rel="noopener">GitHub</a><a href="https://silashowe.com" target="_blank" rel="noopener">silashowe.com</a></p>
+    <p>I built this program using Claude Code for my Creative Code class during my Creative Technology and Design Master's program at the ATLAS Institute at the University of Colorado Boulder. I was inspired by the famous SNL sketch More Cowbell.</p>
+    <p>One of my favorite bands, LCD Soundsystem, headed by James Murphy, likes to feature cowbells here and there. One of their most famous uses of it is in the song Daft Punk Is Playing at My House. That song has a great cowbell solo, especially when performed live. He really goes ham and will say something like "bells" or "solo" before going into it. So I wanted to play off of cowbells.</p>
+    <p>With the help of Claude, we built a cowbell-detecting neural network. It seems to be decent at its job, although not anywhere near perfect. When you enter a YouTube link or give an audio file to Bruce Dickinson, he listens to the song, analyzes it for cowbells, and gives it a score based on how much cowbell there is and whether it satisfies him.</p>
+    <p>You can then go over to the studio to look at the spectrogram of the song, see where it identified cowbell hits and how confident it is that each one is a cowbell, and rate them yes or no. Those ratings are stored on a server that I can download from to retrain the model, hopefully for a more accurate detection system.</p>
+  </dialog>
 
   <aside class="bruce" id="bruce" hidden aria-label="Bruce, the producer">
     <div class="bubble away" id="bruce-bubble">
@@ -1097,6 +1114,10 @@ const CBDetect = (() => {
     bruce.say(studio ? (state.res ? 'studio' : 'studioEmpty') : 'back');
   }
   $('#st-mallet').addEventListener('click', () => striker.replay());
+  const aboutBox = $('#about');
+  $('#nav-about').addEventListener('click', () => aboutBox.showModal());
+  $('#about-close').addEventListener('click', () => aboutBox.close());
+  aboutBox.addEventListener('click', e => { if (e.target === aboutBox) aboutBox.close(); }); // click on the backdrop
   $('#nav-home').addEventListener('click', () => showScreen('home'));
   $('#nav-studio').addEventListener('click', () => showScreen('studio'));
   $('#to-studio').addEventListener('click', () => showScreen('studio'));
