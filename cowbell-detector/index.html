@@ -988,10 +988,11 @@ const CBDetect = (() => {
         const res = await CBDetect.analyze(x, sr);
         if (state.token !== token) return;
         state.res = res;
+        // Saved corrections load before the first render, so the verdict and the 100% reaction reflect them.
+        if (canLabel() && state.labelsFor !== res.id) { await loadLabels(res, true); if (state.token !== token) return; }
         if (!sameSong || view.t1 > res.duration) { view.t0 = 0; view.t1 = res.duration || 1; }
         render();
         $('#mark').disabled = false;
-        if (canLabel() && state.labelsFor !== res.id) loadLabels(res);
       } catch (e) { console.error(e); if (state.token === token) setError('Analysis failed on this clip. Try a different file.'); }
     }, 40);
   }
@@ -1189,13 +1190,13 @@ const CBDetect = (() => {
       } catch (e) { console.error(e); showTeachStatus("Couldn't save your labels. Check that python3 server.py is still running."); }
     }, 400);
   }
-  async function loadLabels(r) {
+  async function loadLabels(r, quiet) {
     if (!state.local) {
       let saved = [], sent = {};
       try { saved = JSON.parse(localStorage.getItem('cowbell-labels-' + r.id) || '[]'); sent = JSON.parse(localStorage.getItem('cowbell-sent-' + r.id) || '{}'); } catch (e) {}
       state.labelsFor = r.id; state.labels = new Map(saved);
       state.sent = new Map(sent.sent || []); state.sentPatch = new Set(sent.patch || []);
-      if (state.labels.size) render();
+      if (state.labels.size && !quiet) render();
       return;
     }
     try {
@@ -1204,7 +1205,7 @@ const CBDetect = (() => {
       state.labelsFor = r.id;
       state.labels = new Map((j.labels || []).map(l => [frameOf(l.t), l.y]));
       state.uploaded = (j.labels || []).length > 0;
-      if (state.labels.size) render();
+      if (state.labels.size && !quiet) render();
     } catch (e) { console.error(e); }
   }
   function addMissed(t) {
