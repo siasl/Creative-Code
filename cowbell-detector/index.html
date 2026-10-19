@@ -1,5 +1,6 @@
 <title>Cowbell Detector</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<script>document.documentElement.classList.add('intro-wait');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -199,6 +200,97 @@ tr.added td { color: var(--good); }
 .busy::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--led-2); animation: blink .8s infinite alternate; }
 @keyframes blink { from { opacity: .25; } to { opacity: 1; } }
 .err { color: var(--led-1); margin: 0; }
+/* Bruce: a floating head in the bottom-right corner, cropped from the head image (x 870-1370, y 200-900 of 2094 x 1588),
+   with a separate jaw that drops while he talks. */
+.bruce { position: fixed; z-index: 40; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); display: flex; align-items: flex-end; gap: 12px; pointer-events: none; }
+.bruce > * { pointer-events: auto; }
+.bruce .stage { position: relative; flex: none; width: 150px; aspect-ratio: 500 / 700; overflow: hidden; border-radius: 50% / 46%; background: #111; cursor: pointer; padding: 0; border: 0; display: block;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .35), 0 0 0 3px var(--panel); transition: filter .6s, transform .3s; }
+.bruce .stage:hover { transform: translateY(-3px); }
+.bruce .stage:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+@media (max-width: 600px) { .bruce .stage { width: 104px; } }
+.bruce .frame { position: absolute; width: 418.8%; height: 226.857%; left: -174%; top: -28.571%; transform-origin: 30% 45%; }
+.bruce .frame > * { position: absolute; display: block; max-width: none; }
+.bruce .head { left: 0; top: 0; width: 100%; height: 100%; }
+/* Behind the jaw: skin where the cheeks are, a dark lip-width opening in the middle. Colors sampled from the photo. */
+.bruce .mouth-dark { left: 48.806%; top: 43.640%; width: 8.883%; height: 9.635%;
+  background: radial-gradient(ellipse 29% 24% at 50% 2%, #170707 0 70%, rgba(23, 7, 7, 0) 100%),
+              linear-gradient(#5d3a33, #7a564a 35%, #7a564a); }
+.bruce .jaw { left: 48.806%; top: 43.640%; width: 8.883%; height: 9.635%; will-change: transform; }
+.bruce .bubble { position: relative; width: min(300px, calc(100vw - 210px)); margin-bottom: 46px; display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--panel);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18); transition: opacity .35s, transform .35s, border-color .4s; }
+.bruce .bubble.away { opacity: 0; transform: translateX(8px); pointer-events: none; }
+.bruce .bubble::after { content: ""; position: absolute; right: -9px; bottom: 22px; width: 16px; height: 16px; background: var(--panel); border-right: 1.5px solid var(--line); border-top: 1.5px solid var(--line); transform: rotate(45deg); transition: border-color .4s; }
+@media (max-width: 600px) { .bruce .bubble { width: min(240px, calc(100vw - 150px)); margin-bottom: 30px; } }
+.bruce .say { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 21px; line-height: 1.1; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+.bruce .who { margin: 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.bruce .who span { display: flex; gap: 6px; }
+.bruce .who button { font-size: 11px; padding: 4px 8px; }
+.bruce.gone { display: none; }
+.bruce.yes .bubble, .bruce.yes .bubble::after { border-color: var(--good); }
+.bruce.maybe .bubble, .bruce.maybe .bubble::after { border-color: var(--warn); }
+.bruce.no .bubble, .bruce.no .bubble::after { border-color: var(--led-1); }
+.bruce.yes .stage { filter: saturate(1.25) brightness(1.06); }
+.bruce.no .stage { filter: grayscale(.65) brightness(.9); }
+.bruce.yes .frame { animation: bruce-bob .55s ease-in-out 3; }
+.bruce.no .frame { animation: bruce-shake .7s ease-in-out 2; }
+.bruce.maybe .frame { animation: bruce-tilt 1.6s ease-in-out 1; }
+@keyframes bruce-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.2%) rotate(-1deg); } }
+@keyframes bruce-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-.8%) rotate(-1.5deg); } 75% { transform: translateX(.8%) rotate(1.5deg); } }
+@keyframes bruce-tilt { 0%, 100% { transform: rotate(0); } 40%, 60% { transform: rotate(3deg); } }
+/* Intro: Bruce fills the screen, then opens wide; the upload box is inside his mouth. */
+.intro-wait .wrap, .intro .wrap, .intro .bruce-show { visibility: hidden; }
+.intro .bruce, .intro .intro-skip, .intro .party { visibility: visible; } /* these live inside .wrap */
+.intro body { overflow: hidden; }
+.bruce.big { inset: 0; display: block; z-index: 45; background: #0d0d0d; }
+.bruce.big .stage { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; cursor: default; filter: none; }
+.bruce.big .stage:hover { transform: none; }
+.bruce.big .frame { animation: none !important; }
+.bruce.big .bubble { position: absolute; z-index: 3; margin: 0; top: 24%; width: min(440px, 36vw); left: max(16px, calc(50% - 200px - min(440px, 36vw))); padding: 18px 22px; }
+.bruce.big .bubble::after { right: -9px; bottom: auto; top: 46px; }
+.bruce.big .say { font-size: clamp(24px, 2.8vw, 38px); }
+.bruce.big .who button#bruce-hide { display: none; }
+@media (max-width: 820px) {
+  .bruce.big .bubble { left: 50%; top: max(16px, env(safe-area-inset-top, 0px)); transform: translateX(-50%); width: calc(100vw - 32px); }
+  .bruce.big .bubble::after { right: auto; top: auto; left: 50%; bottom: -9px; transform: translateX(-50%) rotate(135deg); }
+  .bruce.big .say { font-size: clamp(20px, 5.5vw, 28px); }
+}
+.intro-start { position: fixed; z-index: 46; left: 50%; bottom: max(40px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font: 800 clamp(22px, 3vw, 30px)/1 var(--font-display); text-transform: uppercase; letter-spacing: .03em; padding: 16px 30px; border: 0; border-radius: 40px; background: #E2B92E; color: #1a1406;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45); cursor: pointer; animation: start-pulse 1.6s ease-in-out infinite; }
+.intro-start small { font: 500 12px/1 var(--font-body); text-transform: none; letter-spacing: 0; opacity: .75; }
+.intro-start:focus-visible { outline: 3px solid #F1E9D2; outline-offset: 4px; }
+@keyframes start-pulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.04); } }
+@media (prefers-reduced-motion: reduce) { .intro-start { animation: none; } }
+.intro .intro-start { visibility: visible; }
+.intro-skip { position: fixed; z-index: 46; top: max(12px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); font-size: 12px; padding: 6px 10px; background: rgba(20, 20, 20, .6); color: #e8e3d6; border-color: rgba(255, 255, 255, .25); }
+/* Wide open: the dark mouth grows over the chin and neck, the jaw drops below it. */
+.bruce .mouth-dark { transition: left .7s cubic-bezier(.3, 1.3, .5, 1), top .7s cubic-bezier(.3, 1.3, .5, 1), width .7s cubic-bezier(.3, 1.3, .5, 1), height .7s cubic-bezier(.3, 1.3, .5, 1), border-radius .7s; }
+.bruce.wide .mouth-dark { z-index: 1; left: 44.65%; top: 43.4%; width: 17.2%; height: 30%; border-radius: 42% 42% 48% 48% / 26% 26% 58% 58%;
+  background: radial-gradient(ellipse 70% 60% at 50% 30%, #2e0c0c, #0a0303 80%); box-shadow: inset 0 22px 34px rgba(0, 0, 0, .75); }
+.bruce.wide .jaw { z-index: 2; transform: translateY(306%) !important; transition: transform .7s cubic-bezier(.3, 1.3, .5, 1); }
+.mouth-ui { position: absolute; inset: 14% 9% 16%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; color: #F1E9D2;
+  opacity: 0; visibility: hidden; transition: opacity .4s .55s, visibility 0s .55s; }
+.bruce.wide .mouth-ui { opacity: 1; visibility: visible; }
+.mouth-ui .mt { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 2.4vw, 30px); line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+.mouth-ui .mbtn { display: inline-block; font: 600 14px/1 var(--font-body); padding: 11px 16px; border-radius: 5px; background: #E2B92E; color: #1a1406; cursor: pointer; }
+.mouth-ui .mbtn:focus-within { outline: 2px solid #F1E9D2; outline-offset: 2px; }
+.mouth-ui form { display: flex; gap: 6px; width: 100%; max-width: 260px; }
+.mouth-ui input[type=url] { flex: 1; min-width: 0; font: 13px/1.2 var(--font-body); padding: 8px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); color: #F1E9D2; }
+.mouth-ui form button, .mouth-ui .mlink { font-size: 12px; padding: 7px 10px; background: transparent; color: #F1E9D2; border: 1px solid rgba(255, 255, 255, .3); }
+.mouth-ui .mlink { border: 0; text-decoration: underline; text-underline-offset: 3px; padding: 2px; }
+.mouth-ui .mnote { margin: 0; font-size: 12px; line-height: 1.35; color: #d9cfb6; max-width: 260px; min-height: 1em; }
+.mouth-ui .mnote a { color: #E2B92E; }
+.mouth-ui.over { outline: 2px dashed #E2B92E; outline-offset: -6px; border-radius: 30px; }
+.bruce-show { position: fixed; z-index: 50; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font-size: 12px; padding: 6px 10px; }
+/* Full-cowbell celebration */
+.party { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(10, 8, 6, .72); cursor: pointer; animation: party-in .25s ease-out; }
+.party figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.party img { width: min(640px, 92vw); max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.party figcaption { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 6vw, 56px); text-transform: uppercase; color: #F1E9D2; letter-spacing: .02em; text-align: center; }
+@keyframes party-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .bruce .frame { animation: none !important; } .party { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .busy::before { animation: none; } .led { transition: none; } }
 </style>
 
@@ -207,6 +299,34 @@ tr.added td { color: var(--good); }
     <h1>Cowbell <span>Detector</span></h1>
     <p class="tag">A neural net trained on 800 drum-annotated songs</p>
   </header>
+
+  <aside class="bruce" id="bruce" hidden aria-label="Bruce, the producer">
+    <div class="bubble away" id="bruce-bubble">
+      <p class="say" id="bruce-say" aria-live="polite"></p>
+      <p class="who">Bruce Dickinson<span><button id="bruce-voice" type="button" aria-pressed="false">Voice off</button><button id="bruce-hide" type="button" aria-label="Hide Bruce">×</button></span></p>
+    </div>
+    <div class="stage" id="bruce-stage" role="button" tabindex="0" aria-label="Bruce. Click to hear him again.">
+      <div class="frame">
+        <div class="mouth-dark">
+          <div class="mouth-ui" id="mouth-ui">
+            <p class="mt">Drop a song in</p>
+            <label class="mbtn">Choose a song<input type="file" id="mouth-file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac,.aac" hidden></label>
+            <form id="mouth-yt"><input id="mouth-yt-url" type="url" inputmode="url" placeholder="or a YouTube link" autocomplete="off" spellcheck="false" aria-label="YouTube link"><button type="submit">Go</button></form>
+            <button type="button" class="mlink" id="mouth-demo">or try the demo</button>
+            <p class="mnote" id="mouth-note"></p>
+          </div>
+        </div>
+        <img class="head" id="bruce-head" alt="" src="bruce%20head.png">
+        <img class="jaw" id="bruce-jaw" alt="" src="bruce%20mouth.png">
+      </div>
+    </div>
+  </aside>
+  <button class="intro-skip" id="intro-skip" type="button" hidden>Skip intro</button>
+  <button class="intro-start" id="intro-start" type="button" hidden>Meet Bruce<small>Sound on</small></button>
+  <button class="bruce-show" id="bruce-show" type="button" hidden>Bring back Bruce</button>
+  <div class="party" id="party" hidden role="dialog" aria-label="More cowbell!">
+    <figure><img id="party-gif" alt="The band playing with a lot of cowbell"><figcaption>100% cowbell!</figcaption></figure>
+  </div>
 
   <div class="row">
     <section class="panel" aria-labelledby="src-h">
@@ -607,18 +727,228 @@ const CBDetect = (() => {
   };
 
   function setBusy(msg) {
+    if (window.bruceIntro && bruceIntro()) $('#mouth-note').textContent = msg;
     $('#verdict').className = 'big no';
     $('#verdict').innerHTML = '<span class="busy">Listening…</span>';
     $('#verdict-sub').textContent = msg;
   }
   function setError(msg) {
+    if (window.bruceIntro && bruceIntro()) $('#mouth-note').textContent = msg;
     $('#verdict').className = 'big no';
     $('#verdict').textContent = 'No clip';
     $('#verdict-sub').innerHTML = '';
     const p = document.createElement('span'); p.className = 'err'; p.textContent = msg; $('#verdict-sub').appendChild(p);
   }
 
-  function setClip(x, sr, name, sameSong) {
+  // Bruce: a full-screen intro that opens wide to take a song, then a floating head that talks and reacts.
+  // He talks with a typed caption, a flapping jaw and (optionally) browser speech.
+  const bruce = (() => {
+    const el = $('#bruce'), jaw = $('#bruce-jaw'), say = $('#bruce-say'), voiceBtn = $('#bruce-voice'), bubble = $('#bruce-bubble'), frame = el.querySelector('.frame');
+    let ready = false, talking = 0, voice = false, last = { text: '', mood: '' }, awayTimer = 0, hidden = false;
+    const isBig = () => el.classList.contains('big');
+    try { hidden = localStorage.getItem('bruce-hidden') === '1'; } catch (e) {}
+    const setHidden = h => {
+      hidden = h; el.classList.toggle('gone', h); $('#bruce-show').hidden = !h || !ready;
+      try { localStorage.setItem('bruce-hidden', h ? '1' : '0'); } catch (e) {}
+      if (h && window.speechSynthesis) speechSynthesis.cancel();
+    };
+    $('#bruce-hide').addEventListener('click', () => setHidden(true));
+    $('#bruce-show').addEventListener('click', () => { setHidden(false); line(last.text || pick('intro'), last.mood); });
+    const again = () => { if (!isBig()) line(last.text || pick('intro'), last.mood); };
+    $('#bruce-stage').addEventListener('click', e => { if (e.target === e.currentTarget || e.target.closest('.frame') && !e.target.closest('.mouth-ui')) again(); });
+    $('#bruce-stage').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); again(); } });
+    voice = !!window.speechSynthesis;
+    try { if (localStorage.getItem('bruce-voice') === 'off') voice = false; } catch (e) {}
+    // Browsers load their voice list lazily; ask early so the first line already has his voice.
+    if (window.speechSynthesis) { speechSynthesis.getVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices()); }
+    const syncVoice = () => { voiceBtn.setAttribute('aria-pressed', String(voice)); voiceBtn.textContent = voice ? 'Voice on' : 'Voice off'; };
+    syncVoice();
+    voiceBtn.addEventListener('click', () => {
+      voice = !voice; syncVoice();
+      try { localStorage.setItem('bruce-voice', voice ? 'on' : 'off'); } catch (e) {}
+      if (voice) speak(say.textContent); else if (window.speechSynthesis) speechSynthesis.cancel();
+    });
+    // Placeholder lines, grouped by situation. Swap in your own here.
+    const LINES = {
+      hello: ["I'm Bruce Dickinson. Yes, THE Bruce Dickinson. I'm looking for the next Dynamite Sound."],
+      golden: ["Let's make a golden record."],
+      intro: ["I need songs with cowbell. Drop one in and let's hear it."],
+      listening: ['Hold on. Let me listen.', "Let's see what you've got."],
+      // By cowbell meter level (0-16 lit steps).
+      lv0: ["Listen, I put my pants on, just like the rest of you. One leg at a time, except when I put my pants on, I make golden records. This isn't it. I'm gonna need more cowbell."],   // 0-4
+      lv5: ["I'm telling you, you're gonna want that cowbell on the track."],   // 5-6
+      lv7: ['I gotta have more cowbell.'],   // 7-8
+      lv9: ["I'll be honest, it was sounding great, but I could've used a little more cowbell."],   // 9-11
+      lv12: ["Now that's what I'm talking about. That's cowbell!", 'Yes! You really explored the studio space on that one.', "That's the sound. That's the sound I need."],   // 12-14 (placeholders)
+      lv15: ["Babies, before we're done here, y'all gonna be wearing gold-plated diapers."],   // 15-16
+      // Said out of nowhere every so often.
+      random: ['I gotta have more cowbell.', 'Guess what? I have a fever. And the only prescription is more cowbell.', 'Never question Bruce Dickinson.'],
+    };
+    const pick = k => LINES[k][Math.floor(Math.random() * LINES[k].length)];
+    // Jaw: open amount 0..1, eased toward a target that changes several times a second while talking.
+    let open = 0, target = 0, raf = 0;
+    function tick() {
+      open += (target - open) * 0.45;
+      jaw.style.transform = `translateY(${(open * 20).toFixed(2)}%)`;
+      if (talking || open > 0.01) raf = requestAnimationFrame(tick); else { jaw.style.transform = ''; raf = 0; }
+    }
+    function flap(ms) {
+      const id = ++talking, end = performance.now() + ms;
+      const step = () => {
+        if (talking !== id) return;
+        if (performance.now() > end) { target = 0; talking = 0; return; }
+        target = Math.random() < 0.2 ? 0.1 : 0.4 + Math.random() * 0.6;
+        setTimeout(step, 80 + Math.random() * 90);
+      };
+      step();
+      if (!raf) raf = requestAnimationFrame(tick);
+      return id;
+    }
+    function speak(text) {
+      const canSpeak = voice && window.speechSynthesis && (!navigator.userActivation || navigator.userActivation.hasBeenActive);
+      if (!canSpeak) return false;
+      speechSynthesis.cancel();
+      // Speech engines spell out all-caps words ("THE" -> "T H E"); the caption keeps the emphasis, the voice gets lowercase.
+      const u = new SpeechSynthesisUtterance(text.replace(/\b[A-Z]{2,}\b/g, w => w.toLowerCase()));
+      const v = speechSynthesis.getVoices().find(v => /en[-_]US/i.test(v.lang) && /male|daniel|fred|alex|aaron|arthur/i.test(v.name)) || speechSynthesis.getVoices().find(v => /^en/i.test(v.lang));
+      if (v) u.voice = v;
+      u.rate = 0.95; u.pitch = 0.8;
+      const id = flap(60000);
+      u.onend = u.onerror = () => { if (talking === id) { talking = 0; target = 0; } };
+      speechSynthesis.speak(u);
+      return true;
+    }
+    let typing = 0, leaving = false, pending = null, lastSpoke = 0;
+    // Says a line; resolves when the caption has finished typing.
+    function line(text, mood) {
+      if (!ready) return Promise.resolve();
+      if (leaving) { pending = [text, mood]; return Promise.resolve(); }
+      last = { text, mood };
+      if (hidden && !isBig()) return Promise.resolve();
+      clearTimeout(awayTimer); bubble.classList.remove('away');
+      if (!isBig()) awayTimer = setTimeout(() => { if (!bubble.matches(':hover')) bubble.classList.add('away'); }, 9000 + text.length * 45);
+      el.classList.remove('yes', 'maybe', 'no');
+      if (mood) { void el.offsetWidth; el.classList.add(mood); }
+      const id = ++typing, per = 45, spoken = speak(text);
+      lastSpoke = performance.now() + text.length * per;
+      if (!spoken) flap(text.length * per + 150);
+      say.textContent = '';
+      return new Promise(resolve => {
+        let i = 0;
+        const type = () => { if (typing !== id) return resolve(); i++; say.textContent = text.slice(0, i); if (i < text.length) setTimeout(type, per); else resolve(); };
+        type();
+      });
+    }
+    // Full screen: scale the photo to the window, centred on his face with room for the open mouth.
+    function layoutBig() {
+      const vw = innerWidth, vh = innerHeight, s = Math.max(vh / 1250, vw / 2094);
+      Object.assign(frame.style, { width: `${2094 * s}px`, height: `${1588 * s}px`, left: `${vw / 2 - 1115 * s}px`, top: `${vh / 2 - 745 * s}px` });
+    }
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const stillIntro = () => isBig() && !leaving; // stops the intro script once it starts leaving
+    async function intro() {
+      document.documentElement.classList.add('intro');
+      document.documentElement.classList.remove('intro-wait');
+      el.classList.add('big'); layoutBig(); addEventListener('resize', layoutBig);
+      $('#intro-skip').hidden = false;
+      // Browsers only allow speech after the visitor clicks, so the intro starts on "Meet Bruce".
+      const activated = navigator.userActivation ? navigator.userActivation.hasBeenActive : false;
+      if (voice && !activated) {
+        const btn = $('#intro-start'); btn.hidden = false; btn.focus({ preventScroll: true });
+        await new Promise(res => btn.addEventListener('click', res, { once: true }));
+        btn.hidden = true;
+        if (!stillIntro()) return;
+      }
+      await wait(500); if (!stillIntro()) return;
+      await line(pick('hello'));
+      await wait(1300); if (!stillIntro()) return;
+      await line(pick('golden'));
+      await wait(200); if (!stillIntro()) return;
+      el.classList.add('wide');
+    }
+    // Leaving the intro: the full-screen photo zooms into the corner while its edges close in to the
+    // oval around his face, landing exactly where the floating head sits. Then the layouts swap.
+    function exitIntro() {
+      if (!isBig() || leaving) return;
+      const stage = $('#bruce-stage'), vw = innerWidth, vh = innerHeight;
+      const sc = parseFloat(frame.style.width) / 2094, fx = parseFloat(frame.style.left), fy = parseFloat(frame.style.top);
+      const R = { x: fx + 870 * sc, y: fy + 200 * sc, w: 500 * sc, h: 700 * sc }; // the floating head's crop, on screen now
+      const w = matchMedia('(max-width: 600px)').matches ? 104 : 150, h = w * 1.4, k = w / R.w;
+      const tx = vw - Math.max(16, 0) - w, ty = vh - 16 - h;
+      el.classList.remove('wide');
+      $('#intro-skip').hidden = true; $('#intro-start').hidden = true; $('#mouth-note').textContent = '';
+      document.documentElement.classList.remove('intro', 'intro-wait');
+      bubble.classList.add('away');
+      const finish = () => {
+        el.classList.remove('big');
+        removeEventListener('resize', layoutBig);
+        frame.removeAttribute('style'); stage.style.transformOrigin = '';
+        [...stage.getAnimations(), ...el.getAnimations({ subtree: false })].forEach(an => an.cancel());
+        leaving = false;
+        setHidden(hidden);
+        if (pending) { const [t, m] = pending; pending = null; line(t, m); }
+      };
+      if (!stage.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+      leaving = true;
+      const ease = 'cubic-bezier(.65, 0, .25, 1)', duration = 950;
+      stage.style.transformOrigin = '0 0';
+      stage.animate([
+        { transform: 'translate(0px, 0px) scale(1)', clipPath: `inset(0px 0px 0px 0px round 0px / 0px)` },
+        { transform: `translate(${tx - k * R.x}px, ${ty - k * R.y}px) scale(${k})`,
+          clipPath: `inset(${R.y}px ${vw - R.x - R.w}px ${vh - R.y - R.h}px ${R.x}px round ${R.w / 2}px / ${R.h * 0.46}px)` },
+      ], { duration, easing: ease, fill: 'forwards' }).onfinish = finish;
+      el.animate([{ backgroundColor: 'rgba(13, 13, 13, 1)' }, { backgroundColor: 'rgba(13, 13, 13, 0)' }], { duration: duration * 0.8, easing: 'ease-in', fill: 'forwards' });
+      for (const c of $('.wrap').children) if (!c.matches('.bruce, .intro-skip, .party, .bruce-show'))
+        c.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 650, delay: 250, easing: 'ease-out', fill: 'backwards' });
+    }
+    // Only appears when both images load next to the page; otherwise the app shows straight away.
+    let loaded = 0;
+    const showApp = () => { if (!ready) document.documentElement.classList.remove('intro-wait'); };
+    for (const img of [$('#bruce-head'), jaw]) {
+      const done = () => { if (++loaded === 2) { ready = true; el.hidden = false; intro(); } };
+      if (img.complete && img.naturalWidth) done(); else { img.addEventListener('load', done, { once: true }); img.addEventListener('error', showApp, { once: true }); }
+    }
+    setTimeout(showApp, 4000);
+    const LEVELS = [[4, 'lv0', 'no'], [6, 'lv5', 'no'], [8, 'lv7', 'maybe'], [11, 'lv9', 'maybe'], [14, 'lv12', 'yes'], [16, 'lv15', 'yes']];
+    const react = level => { const [, k, mood] = LEVELS.find(([max]) => level <= max); return line(pick(k), mood); };
+    // Every so often, out of nowhere: one of his catchphrases (never twice in a row, never right after he spoke).
+    let lastRandom = '';
+    (function chatter() {
+      setTimeout(() => {
+        const quiet = performance.now() - lastSpoke > 20000;
+        if (ready && quiet && !isBig() && !leaving && !hidden && document.visibilityState === 'visible') {
+          const options = LINES.random.filter(t => t !== lastRandom);
+          lastRandom = options[Math.floor(Math.random() * options.length)];
+          line(lastRandom, last.mood);
+        }
+        chatter();
+      }, 45000 + Math.random() * 55000);
+    })();
+    return { listening: () => line(pick('listening')), react, exitIntro, inIntro: isBig };
+  })();
+  window.bruceIntro = bruce.inIntro;
+  let reactedTo = null, firstDemo = true;
+
+  // 100% cowbell: play the GIF once (5 s), shown over the page. Only if more-cowbell.gif sits next to the page.
+  const party = (() => {
+    const box = $('#party'), img = $('#party-gif'); let blob = null, timer = 0, url = '';
+    fetch('more-cowbell.gif').then(r => r.ok && (r.headers.get('Content-Type') || '').includes('gif') ? r.blob() : null).then(b => { blob = b; }).catch(() => {});
+    const close = () => { clearTimeout(timer); box.hidden = true; img.removeAttribute('src'); if (url) URL.revokeObjectURL(url); url = ''; };
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+    return {
+      play() {
+        if (!blob) return;
+        close();
+        url = URL.createObjectURL(blob); img.src = url; // a fresh URL restarts the GIF from frame one
+        box.hidden = false;
+        timer = setTimeout(close, 5200);
+      },
+    };
+  })();
+  const fullFor = new Map(); // song id -> was the evidence meter already full
+
+  function setClip(x, sr, name, sameSong, auto) {
     stop(true);
     state.x = x; state.sr = sr; state.name = name; state.res = null; state.specImg = null;
     if (!sameSong) { state.labels = new Map(); state.uploaded = false; state.labelsFor = null; state.suggest = []; state.sent = state.sentPatch = null; sel.a = sel.b = null; updateSelBar(); }
@@ -627,6 +957,8 @@ const CBDetect = (() => {
     $('#now').textContent = `${name} · ${fmtT(x.length / sr)}`;
     $('#play').disabled = false;
     setBusy('Running the model. Long songs take a few seconds.');
+    if (auto || sameSong) $('#mouth-note').textContent = ''; // background re-checks aren't news
+    if (!sameSong && !auto) { firstDemo = false; bruce.exitIntro(); bruce.listening(); }
     const token = state.token = {};
     setTimeout(async () => {
       try {
@@ -641,12 +973,13 @@ const CBDetect = (() => {
     }, 40);
   }
 
-  function loadDemo(withCb) {
+  function loadDemo(withCb, auto) {
+    if (!firstDemo) { reactedTo = null; fullFor.clear(); }
     state.demo = withCb;
     $('#demo-yes').setAttribute('aria-pressed', String(withCb));
     $('#demo-no').setAttribute('aria-pressed', String(!withCb));
     const { data, sr } = CB.makeDemo(withCb);
-    setClip(data, sr, withCb ? 'Demo: groove with cowbell' : 'Demo: groove without cowbell');
+    setClip(data, sr, withCb ? 'Demo: groove with cowbell' : 'Demo: groove without cowbell', false, auto);
   }
 
   async function handleFile(file) {
@@ -675,14 +1008,15 @@ const CBDetect = (() => {
   // people download the MP3 there and drop it here.
   const YT_LINK = /^(https?:\/\/)?([a-z0-9-]+\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i;
   function openConverter(url) {
-    const note = $('#yt-note');
+    const note = bruce.inIntro() ? $('#mouth-note') : $('#yt-note');
     if (!YT_LINK.test(url)) { note.textContent = "That doesn't look like a YouTube link. Paste a youtube.com or youtu.be URL."; return; }
     if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
     const target = 'https://vavel.pl/#u=' + encodeURIComponent(url);
     const win = window.open(target, '_blank', 'noopener');
     note.innerHTML = '';
     const a = document.createElement('a'); a.href = target; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open the converter';
-    note.append(win ? 'Opened the converter in a new tab. Download the MP3 there, then drop it in the box above. ' : '', a, win ? '' : ' to download the MP3, then drop it in the box above.');
+    const where = bruce.inIntro() ? 'drop it in here' : 'drop it in the box above';
+    note.append(win ? `Opened the converter in a new tab. Download the MP3 there, then ${where}. ` : '', a, win ? '' : ` to download the MP3, then ${where}.`);
   }
 
   // YouTube links download through the local server (server.py) when it's running.
@@ -717,6 +1051,12 @@ const CBDetect = (() => {
     const v = $('#verdict'), sub = $('#verdict-sub');
     const eff = effectiveHits(r), sc = state.labels.size ? CBDetect.score(eff, r.duration) : r;
     r.view = { eff, ...sc };
+    const initial = firstDemo;
+    if (reactedTo !== r.id) { reactedTo = r.id; if (firstDemo) firstDemo = false; else bruce.react(Math.round(sc.confidence * 16)); }
+    const full = sc.confidence >= 1;
+    if (full && fullFor.get(r.id) === false && !initial) party.play();
+    if (full && !fullFor.has(r.id) && !initial) party.play();
+    fullFor.set(r.id, full);
     v.className = 'big ' + sc.verdict;
     const w = Math.round(sc.windowCount), at = fmtT(sc.winStart).replace(/\.\d$/, '');
     if (sc.verdict === 'yes') {
@@ -1394,6 +1734,16 @@ const CBDetect = (() => {
     loadCustomModel(true).then(() => { if (state.res && state.labelsFor !== state.res.id) loadLabels(state.res); renderHits(); });
   }).catch(() => {}).finally(() => { if (!state.local) initPublic(); });
 
-  loadDemo(true);
+  // Upload box inside Bruce's mouth
+  $('#mouth-file').addEventListener('change', e => { handleFile(e.target.files[0]); e.target.value = ''; });
+  $('#mouth-demo').addEventListener('click', () => loadDemo(true));
+  $('#mouth-yt').addEventListener('submit', e => { e.preventDefault(); const u = $('#mouth-yt-url').value.trim(); if (u) handleYouTube(u); });
+  const mui = $('#mouth-ui');
+  ['dragenter', 'dragover'].forEach(ev => mui.addEventListener(ev, e => { e.preventDefault(); mui.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => mui.addEventListener(ev, () => mui.classList.remove('over')));
+  $('#intro-skip').addEventListener('click', () => bruce.exitIntro());
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && bruce.inIntro()) bruce.exitIntro(); });
+
+  loadDemo(true, true);
 })();
 </script>

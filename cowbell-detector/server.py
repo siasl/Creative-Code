@@ -68,6 +68,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Cache-Control", "no-store")
             self.end_headers()
             return self.wfile.write(body)
+        name = urllib.parse.unquote(parsed.path.lstrip("/"))
+        if name.endswith((".png", ".gif")) and "/" not in name and (ROOT / name).is_file():
+            return super().do_GET()  # page images (Bruce, the cowbell GIF)
         if parsed.path not in ("/", "/index.html"):
             return self.send_json(404, {"error": "Not found"})
         # index.html is written for the artifact host, which adds the document skeleton.
