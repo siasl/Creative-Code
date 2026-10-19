@@ -963,7 +963,7 @@ const CBDetect = (() => {
         speechSynthesis.speak(u);
       });
     }
-    let typing = 0, leaving = false, pending = null, lastSpoke = 0;
+    let typing = 0, leaving = false, pending = null, lastSpoke = 0, busy = Promise.resolve();
     // Says a line; resolves when the caption has finished typing.
     function line(text, mood) {
       if (!ready) return Promise.resolve();
@@ -983,6 +983,7 @@ const CBDetect = (() => {
         const type = () => { if (typing !== id) return resolve(); i++; say.textContent = text.slice(0, i); if (i < text.length) setTimeout(type, per); else resolve(); };
         type();
       });
+      busy = typed;
       // Done when both the caption and the voice have finished.
       return Promise.all([typed, speech || null]);
     }
@@ -992,6 +993,8 @@ const CBDetect = (() => {
       Object.assign(frame.style, { width: `${2094 * s}px`, height: `${1588 * s}px`, left: `${vw / 2 - 1115 * s}px`, top: `${vh / 2 - 745 * s}px` });
     }
     const wait = ms => new Promise(r => setTimeout(r, ms));
+    // Resolves once his caption has finished typing. The model blocks the page while it runs, so it waits for this (up to 4 s).
+    const settled = () => Promise.race([(async () => { while (leaving || pending) await wait(60); await busy; })(), wait(4000)]);
     const stillIntro = () => isBig() && !leaving; // stops the intro script once it starts leaving
     async function intro() {
       document.documentElement.classList.add('intro');
@@ -1077,7 +1080,7 @@ const CBDetect = (() => {
         chatter();
       }, 45000 + Math.random() * 55000);
     })();
-    return { listening: () => line(pick('listening')), react, exitIntro, inIntro: isBig, setCorner, say: k => line(pick(k)) };
+    return { listening: () => line(pick('listening')), settled, react, exitIntro, inIntro: isBig, setCorner, say: k => line(pick(k)) };
   })();
   window.bruceIntro = bruce.inIntro;
   // Two screens: Bruce (home) and the studio (spectrogram, hits and teaching). Bruce moves to the corner for the studio.
@@ -1146,6 +1149,7 @@ const CBDetect = (() => {
     const token = state.token = {};
     setTimeout(async () => {
       try {
+        if (!sameSong && !auto) { await bruce.settled(); if (state.token !== token) return; }
         const res = await CBDetect.analyze(x, sr);
         if (state.token !== token) return;
         state.res = res;
