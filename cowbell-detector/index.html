@@ -113,14 +113,10 @@ button[aria-pressed="true"] { border-color: var(--brass); box-shadow: inset 0 0 
 .verdict .big.maybe { color: var(--warn); }
 .verdict .big.no { color: var(--ink); }
 .verdict .sub { margin: 0; color: var(--muted); max-width: 52ch; }
-.meter { display: flex; flex-direction: column; gap: 6px; }
-.leds { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 4px; }
-.led { height: 22px; border-radius: 2px; background: var(--led-off); transition: background .25s; }
-.led-nums { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 4px; font: 10px/1 var(--font-mono); color: var(--muted); text-align: center; }
 .meter-label { display: flex; justify-content: space-between; font: 12px/1.2 var(--font-mono); color: var(--muted); }
 .meter-label b { color: var(--ink); font-weight: 500; }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; }
-@media (max-width: 520px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .led-nums span:nth-child(even) { visibility: hidden; } }
+@media (max-width: 520px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .stats div { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; }
 .stats dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .stats dd { margin: 0; font: 500 18px/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
@@ -202,13 +198,17 @@ tr.added td { color: var(--good); }
 .err { color: var(--led-1); margin: 0; }
 /* Bruce: a floating head in the bottom-right corner, cropped from the head image (x 870-1370, y 200-900 of 2094 x 1588),
    with a separate jaw that drops while he talks. */
-.bruce { position: fixed; z-index: 40; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); display: flex; align-items: flex-end; gap: 12px; pointer-events: none; }
-.bruce > * { pointer-events: auto; }
-.bruce .stage { position: relative; flex: none; width: 150px; aspect-ratio: 500 / 700; overflow: hidden; border-radius: 50% / 46%; background: #111; cursor: pointer; padding: 0; border: 0; display: block;
+/* Home screen: Bruce sits in the page, big, with his bubble beside him. On the studio screen he drops into the bottom-right corner. */
+.bruce { position: relative; z-index: 5; display: flex; flex-direction: row-reverse; align-items: center; justify-content: center; gap: 28px; margin: 4px 0; }
+.bruce.corner { position: fixed; z-index: 40; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: 12px; margin: 0; pointer-events: none; }
+.bruce.corner > * { pointer-events: auto; }
+.bruce-hold { flex: none; }
+.bruce .stage { position: relative; flex: none; width: clamp(170px, 24vw, 250px); aspect-ratio: 500 / 700; overflow: hidden; border-radius: 50% / 46%; background: #111; cursor: pointer; padding: 0; border: 0; display: block;
   box-shadow: 0 10px 28px rgba(0, 0, 0, .35), 0 0 0 3px var(--panel); transition: filter .6s, transform .3s; }
 .bruce .stage:hover { transform: translateY(-3px); }
 .bruce .stage:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
-@media (max-width: 600px) { .bruce .stage { width: 104px; } }
+.bruce.corner .stage { width: 150px; }
+@media (max-width: 600px) { .bruce.corner .stage { width: 104px; } }
 .bruce .frame { position: absolute; width: 418.8%; height: 226.857%; left: -174%; top: -28.571%; transform-origin: 30% 45%; }
 .bruce .frame > * { position: absolute; display: block; max-width: none; }
 .bruce .head { left: 0; top: 0; width: 100%; height: 100%; }
@@ -222,11 +222,21 @@ tr.added td { color: var(--good); }
 .bruce .bubble.away { opacity: 0; transform: translateX(8px); pointer-events: none; }
 .bruce .bubble::after { content: ""; position: absolute; right: -9px; bottom: 22px; width: 16px; height: 16px; background: var(--panel); border-right: 1.5px solid var(--line); border-top: 1.5px solid var(--line); transform: rotate(45deg); transition: border-color .4s; }
 @media (max-width: 600px) { .bruce .bubble { width: min(240px, calc(100vw - 150px)); margin-bottom: 30px; } }
+.bruce:not(.corner):not(.big) .bubble { flex: 1 1 280px; width: auto; max-width: 480px; margin: 0; padding: 18px 22px; }
+.bruce:not(.corner):not(.big) .say { font-size: clamp(22px, 2.6vw, 32px); }
+.bruce:not(.corner):not(.big) .bubble::after { right: auto; left: -9px; bottom: auto; top: 50%; margin-top: -8px; transform: rotate(225deg); }
+.bruce:not(.corner) #bruce-hide { display: none; }
+@media (max-width: 700px) {
+  .bruce:not(.corner):not(.big) { flex-direction: column; gap: 16px; }
+  .bruce:not(.corner):not(.big) .bubble { flex: none; width: 100%; max-width: none; }
+  .bruce:not(.corner):not(.big) .bubble::after { left: 50%; top: -9px; margin: 0 0 0 -8px; transform: rotate(-45deg); }
+}
 .bruce .say { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 21px; line-height: 1.1; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
 .bruce .who { margin: 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .bruce .who span { display: flex; gap: 6px; }
 .bruce .who button { font-size: 11px; padding: 4px 8px; }
 .bruce.gone { display: none; }
+[hidden] { display: none !important; }
 .bruce.yes .bubble, .bruce.yes .bubble::after { border-color: var(--good); }
 .bruce.maybe .bubble, .bruce.maybe .bubble::after { border-color: var(--warn); }
 .bruce.no .bubble, .bruce.no .bubble::after { border-color: var(--led-1); }
@@ -242,7 +252,7 @@ tr.added td { color: var(--good); }
 .intro-wait .wrap, .intro .wrap, .intro .bruce-show { visibility: hidden; }
 .intro .bruce, .intro .intro-skip, .intro .party { visibility: visible; } /* these live inside .wrap */
 .intro body { overflow: hidden; }
-.bruce.big { inset: 0; display: block; z-index: 45; background: #0d0d0d; }
+.bruce.big { position: fixed; inset: 0; display: block; z-index: 45; background: #0d0d0d; }
 .bruce.big .stage { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; cursor: default; filter: none; }
 .bruce.big .stage:hover { transform: none; }
 .bruce.big .frame { animation: none !important; }
@@ -291,7 +301,51 @@ tr.added td { color: var(--good); }
 .party figcaption { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 6vw, 56px); text-transform: uppercase; color: #F1E9D2; letter-spacing: .02em; text-align: center; }
 @keyframes party-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .bruce .frame { animation: none !important; } .party { animation: none; } }
-@media (prefers-reduced-motion: reduce) { .busy::before { animation: none; } .led { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .busy::before { animation: none; } .st-bulb::before { transition: none; } }
+/* Screens */
+.screens { display: flex; gap: 8px; flex-wrap: wrap; }
+.screens button { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 16px; font-weight: 600; }
+.screens small { font: 400 11px/1 var(--font-mono); color: var(--muted); }
+.screen { display: flex; flex-direction: column; gap: 20px; }
+.studio-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.studio-top p { margin: 0; color: var(--muted); font-size: 14px; }
+.studio-link { align-self: flex-start; font-weight: 600; }
+.vgrid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; }
+.vleft { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.vleft .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 560px) { .vgrid { grid-template-columns: minmax(0, 1fr); } .striker { justify-self: center; } }
+/* High striker: mallet, pad, a pole with a climbing puck, and a bell at the top. */
+.striker { position: relative; width: 280px; height: 400px; flex: none; user-select: none; }
+.st-bell { position: absolute; top: 0; left: 165px; width: 62px; height: 54px; margin-left: -31px; transform-origin: 50% 0; }
+.st-bell svg { width: 100%; height: 100%; display: block; }
+.st-bell.ding { animation: st-ring 1s ease-out; }
+@keyframes st-ring { 0% { transform: rotate(0); } 12% { transform: rotate(-22deg); } 30% { transform: rotate(18deg); } 48% { transform: rotate(-12deg); } 66% { transform: rotate(7deg); } 84% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
+.st-ding { position: absolute; top: 2px; left: 200px; font: 800 28px/1 var(--font-display); text-transform: uppercase; color: var(--led-3); letter-spacing: .02em; opacity: 0; transform: scale(.6) rotate(8deg); text-shadow: 0 2px 0 rgba(0, 0, 0, .35); pointer-events: none; }
+.st-ding.show { animation: st-ding 1.3s ease-out; }
+@keyframes st-ding { 0% { opacity: 0; transform: scale(.5) rotate(8deg); } 15% { opacity: 1; transform: scale(1.25) rotate(8deg); } 70% { opacity: 1; transform: scale(1) rotate(8deg); } 100% { opacity: 0; transform: scale(1) rotate(8deg) translateY(-10px); } }
+.st-gauge { position: absolute; left: 0; right: 0; top: 62px; bottom: 84px; }
+.st-pole { position: absolute; left: 138px; width: 54px; top: 0; bottom: 0; border-radius: 27px 27px 0 0;
+  background: repeating-linear-gradient(180deg, #D3402A 0 22px, #F1E9D2 22px 44px); box-shadow: 0 4px 12px rgba(0, 0, 0, .3), inset 0 0 0 2px rgba(0, 0, 0, .25); }
+.st-track { position: absolute; inset: 8px 14px 0; border-radius: 12px 12px 0 0; background: #1b1511; box-shadow: inset 0 0 8px #000; }
+.st-puck { position: absolute; left: 50%; margin-left: -11px; width: 22px; height: 22px; border-radius: 50%; bottom: calc(var(--y, 0) * (100% - 22px));
+  background: radial-gradient(circle at 35% 30%, #fff3b0, #E2B92E 45%, #8a6416); box-shadow: 0 0 10px 2px rgba(226, 185, 46, .65); }
+.st-bulbs { position: absolute; left: 204px; width: 54px; top: 12px; bottom: 12px; display: flex; flex-direction: column-reverse; justify-content: space-between; }
+.st-bulb { display: flex; align-items: center; gap: 8px; height: 10px; }
+.st-bulb::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--led-off); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2); transition: background .12s, box-shadow .12s; }
+.st-bulb.on::before { background: var(--c); box-shadow: 0 0 8px 2px var(--c); }
+.st-bulb b { font: 600 10px/1 var(--font-mono); color: var(--muted); letter-spacing: .04em; white-space: nowrap; }
+.st-base { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; }
+.st-block { position: absolute; left: 0; right: 0; bottom: 0; height: 38px; border-radius: 6px; background: linear-gradient(#8a5a2b, #5b3a1a); box-shadow: 0 6px 12px rgba(0, 0, 0, .3), inset 0 2px 0 rgba(255, 255, 255, .18); }
+.st-pad { position: absolute; left: 22px; width: 64px; bottom: 38px; height: 14px; border-radius: 8px 8px 2px 2px; background: linear-gradient(#ff6a4d, #b8301b); box-shadow: 0 2px 0 rgba(0, 0, 0, .35); transform-origin: 50% 100%; }
+.st-pad.hit { animation: st-pad .45s ease-out; }
+@keyframes st-pad { 0% { transform: scaleY(.45); filter: brightness(1.6); } 100% { transform: scaleY(1); filter: none; } }
+.st-mallet { position: absolute; left: 37px; width: 104px; height: 46px; bottom: 52px; transform-origin: 100% 50%; transform: rotate(62deg); }
+.st-mallet::before { content: ""; position: absolute; left: 30px; right: 0; top: 18px; height: 10px; border-radius: 5px; background: linear-gradient(#d9a76a, #8a5a2b); }
+.st-mallet::after { content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 46px; border-radius: 8px; background: linear-gradient(90deg, #a8731f, #e2b92e 45%, #8a5a2b); box-shadow: 0 3px 0 rgba(0, 0, 0, .3); }
+.st-mallet.swing { animation: st-swing 1.2s forwards; }
+@keyframes st-swing { 0% { transform: rotate(62deg); animation-timing-function: ease-out; } 20% { transform: rotate(80deg); animation-timing-function: cubic-bezier(.7, 0, 1, .5); } 40% { transform: rotate(0deg); } 58% { transform: rotate(0deg); animation-timing-function: ease-in-out; } 100% { transform: rotate(62deg); } }
+@media (prefers-reduced-motion: reduce) { .st-mallet.swing, .st-pad.hit, .st-bell.ding, .st-ding.show { animation: none; } }
+
 </style>
 
 <div class="wrap">
@@ -299,6 +353,10 @@ tr.added td { color: var(--good); }
     <h1>Cowbell <span>Detector</span></h1>
     <p class="tag">A neural net trained on 800 drum-annotated songs</p>
   </header>
+  <nav class="screens" id="screens" aria-label="Screens">
+    <button type="button" id="nav-home" aria-pressed="true">Bruce</button>
+    <button type="button" id="nav-studio" aria-pressed="false">The studio<small>spectrogram · teach the model</small></button>
+  </nav>
 
   <aside class="bruce" id="bruce" hidden aria-label="Bruce, the producer">
     <div class="bubble away" id="bruce-bubble">
@@ -321,6 +379,7 @@ tr.added td { color: var(--good); }
       </div>
     </div>
   </aside>
+  <div class="bruce-hold" id="bruce-hold" hidden></div>
   <button class="intro-skip" id="intro-skip" type="button" hidden>Skip intro</button>
   <button class="intro-start" id="intro-start" type="button" hidden>Meet Bruce<small>Sound on</small></button>
   <button class="bruce-show" id="bruce-show" type="button" hidden>Bring back Bruce</button>
@@ -328,6 +387,7 @@ tr.added td { color: var(--good); }
     <figure><video id="party-video" muted playsinline hidden aria-label="The band playing with a lot of cowbell"></video><img id="party-gif" alt="The band playing with a lot of cowbell" hidden><figcaption>100% cowbell!</figcaption></figure>
   </div>
 
+  <div class="screen" id="screen-home">
   <div class="row">
     <section class="panel" aria-labelledby="src-h">
       <h2 id="src-h">Audio</h2>
@@ -354,26 +414,53 @@ tr.added td { color: var(--good); }
       <p class="now" id="now">Nothing loaded</p>
     </section>
 
-    <section class="panel" aria-labelledby="ver-h" aria-live="polite">
+    <section class="panel" aria-labelledby="ver-h">
       <h2 id="ver-h">Verdict</h2>
-      <div class="verdict">
-        <p class="big no" id="verdict">Listening…</p>
-        <p class="sub" id="verdict-sub">Analyzing the demo clip.</p>
+      <div class="vgrid">
+        <div class="vleft">
+          <div class="verdict" aria-live="polite">
+            <p class="big no" id="verdict">Listening…</p>
+            <p class="sub" id="verdict-sub">Analyzing the demo clip.</p>
+          </div>
+          <div class="meter-label"><span>Cowbell evidence</span><b id="conf">0%</b></div>
+          <dl class="stats">
+            <div><dt>Hits</dt><dd id="s-hits">–</dd></div>
+            <div><dt>Main pitch</dt><dd id="s-pitch">–</dd></div>
+            <div><dt>Busiest minute</dt><dd id="s-rate">–</dd></div>
+            <div><dt>Strongest hit</dt><dd id="s-onsets">–</dd></div>
+          </dl>
+          <button id="to-studio" type="button" class="studio-link">See how Bruce heard it →</button>
+        </div>
+        <div class="striker" id="striker" role="img" aria-label="Cowbell strength tester. The higher the puck climbs, the more cowbell.">
+          <div class="st-bell" id="st-bell"><svg viewBox="0 0 64 56" aria-hidden="true"><path d="M13 50 22 10Q23 4 28 4H36Q41 4 42 10L51 50Q52 54 47 54H17Q12 54 13 50Z" fill="#C9972B"/><path d="M25 12 20 48" stroke="#F6D77A" stroke-width="3" stroke-linecap="round" fill="none"/><ellipse cx="32" cy="11" rx="4.5" ry="2.2" fill="#5A3D0C"/><rect x="16" y="46" width="32" height="4" fill="#8A6416" opacity=".6"/></svg></div>
+          <span class="st-ding" id="st-ding" aria-hidden="true">Ding!</span>
+          <div class="st-gauge">
+            <div class="st-pole"><div class="st-track"><div class="st-puck" id="st-puck"></div></div></div>
+            <div class="st-bulbs" id="st-bulbs" aria-hidden="true"></div>
+          </div>
+          <div class="st-base">
+            <div class="st-block"></div>
+            <div class="st-pad" id="st-pad"></div>
+            <div class="st-mallet" id="st-mallet"></div>
+          </div>
+        </div>
       </div>
-      <div class="meter">
-        <div class="meter-label"><span>Cowbell evidence</span><b id="conf">0%</b></div>
-        <div class="leds" id="leds"></div>
-        <div class="led-nums" id="led-nums" aria-hidden="true"></div>
-      </div>
-      <dl class="stats">
-        <div><dt>Hits</dt><dd id="s-hits">–</dd></div>
-        <div><dt>Main pitch</dt><dd id="s-pitch">–</dd></div>
-        <div><dt>Busiest minute</dt><dd id="s-rate">–</dd></div>
-        <div><dt>Strongest hit</dt><dd id="s-onsets">–</dd></div>
-      </dl>
+    </section>
+  </div>
+  <section class="panel how" aria-labelledby="how-h">
+      <h2 id="how-h">How it listens</h2>
+      <ol>
+        <li>Turns the audio into a spectrogram: 64 frequency bands, one slice every 10 ms.</li>
+        <li>A small convolutional network reads it and scores every slice for "a cowbell was just hit here." It hears about 200 ms either side, so it catches the clank and the ring.</li>
+        <li>It learned from STAR Drums: 800 real songs whose drums were replayed on sampled acoustic kits, with every cowbell, ride bell and clave hit labeled.</li>
+        <li>Calls it cowbell when at least 10 hits land within one minute. 7 to 9 is a maybe.</li>
+      </ol>
+      <p id="how-note">Tested on 13 well-known cowbell songs, it says yes to 5 (Night Train, House of Jealous Lovers, Play That Funky Music, Little Sister, Mississippi Queen) and maybe to 2 (Don't Fear the Reaper, Drive My Car). It said no to all 15 rock songs without cowbell, All My Friends included. The cutoffs were picked looking at those same songs, so expect it to do a little worse on new music. It still misses Honky Tonk Women, New Body Rhumba and Daft Punk Is Playing at My House. Songs are analyzed up to 10 minutes. The demo cowbell is a VSCO-2 recording (CC0).</p>
     </section>
   </div>
 
+  <div class="screen" id="screen-studio" hidden>
+  <div class="studio-top"><button id="to-home" type="button">← Back to Bruce</button><p>Behind the board: look at what the model heard, and correct it.</p></div>
   <section class="panel" aria-labelledby="tl-h">
     <div class="tl-head">
       <h2 id="tl-h">Spectrogram</h2>
@@ -435,20 +522,9 @@ tr.added td { color: var(--good); }
     <div class="tstatus" id="share-status"></div>
   </section>
 
-  <div class="row bottom">
-    <section class="panel" aria-labelledby="hits-h">
+  <section class="panel" aria-labelledby="hits-h">
       <h2 id="hits-h">Detected hits</h2>
       <div id="hits"></div>
-    </section>
-    <section class="panel how" aria-labelledby="how-h">
-      <h2 id="how-h">How it listens</h2>
-      <ol>
-        <li>Turns the audio into a spectrogram: 64 frequency bands, one slice every 10 ms.</li>
-        <li>A small convolutional network reads it and scores every slice for "a cowbell was just hit here." It hears about 200 ms either side, so it catches the clank and the ring.</li>
-        <li>It learned from STAR Drums: 800 real songs whose drums were replayed on sampled acoustic kits, with every cowbell, ride bell and clave hit labeled.</li>
-        <li>Calls it cowbell when at least 10 hits land within one minute. 7 to 9 is a maybe.</li>
-      </ol>
-      <p id="how-note">Tested on 13 well-known cowbell songs, it says yes to 5 (Night Train, House of Jealous Lovers, Play That Funky Music, Little Sister, Mississippi Queen) and maybe to 2 (Don't Fear the Reaper, Drive My Car). It said no to all 15 rock songs without cowbell, All My Friends included. The cutoffs were picked looking at those same songs, so expect it to do a little worse on new music. It still misses Honky Tonk Women, New Body Rhumba and Daft Punk Is Playing at My House. Songs are analyzed up to 10 minutes. The demo cowbell is a VSCO-2 recording (CC0).</p>
     </section>
   </div>
 </div>
@@ -708,12 +784,64 @@ const CBDetect = (() => {
   }
   const audio = { ctx: null, buf: null, src: null, t0: 0, off: 0, playing: false, raf: 0 };
 
-  // LED meter: 16 steps, colored like a drum machine's step buttons.
-  const ledColors = ['--led-1', '--led-2', '--led-3', '--led-4'];
-  for (let i = 0; i < 16; i++) {
-    const d = document.createElement('div'); d.className = 'led'; d.dataset.c = ledColors[i >> 2]; $('#leds').appendChild(d);
-    const n = document.createElement('span'); n.textContent = i + 1; $('#led-nums').appendChild(n);
-  }
+  // High striker: a mallet hits the pad, the puck climbs the pole and the bulbs light up to the cowbell level (0-16).
+  // A full pole rings the bell.
+  const striker = (() => {
+    const puck = $('#st-puck'), mallet = $('#st-mallet'), pad = $('#st-pad'), bell = $('#st-bell'), ding = $('#st-ding'), conf = $('#conf');
+    const colors = ['--led-1', '--led-2', '--led-3', '--led-4'], tags = { 3: 'WEAK', 7: 'MORE!', 11: 'YEAH!', 15: 'GOLD!' };
+    for (let i = 0; i < 16; i++) {
+      const b = document.createElement('i'); b.className = 'st-bulb'; b.style.setProperty('--c', `var(${colors[i >> 2]})`);
+      if (tags[i]) b.innerHTML = `<b>${tags[i]}</b>`;
+      $('#st-bulbs').appendChild(b);
+    }
+    const bulbs = [...document.querySelectorAll('.st-bulb')], reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let cur = 0, raf = 0, timer = 0, lastId = null, want = { level: 0, pct: 0 }, ac = null;
+    function paint(v, level, pct) {
+      cur = v;
+      puck.style.setProperty('--y', (v / 16).toFixed(4));
+      const lit = Math.round(v);
+      bulbs.forEach((b, i) => b.classList.toggle('on', i < lit));
+      conf.textContent = (level ? Math.round(pct * Math.min(1, v / level)) : 0) + '%';
+    }
+    // The classic 808 cowbell: two square waves through a band-pass.
+    function clank() {
+      if (!navigator.userActivation || !navigator.userActivation.hasBeenActive) return;
+      try {
+        ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+        const t = ac.currentTime, g = ac.createGain(), f = ac.createBiquadFilter();
+        f.type = 'bandpass'; f.frequency.value = 2640; f.Q.value = 0.8;
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+        for (const hz of [540, 800]) { const o = ac.createOscillator(); o.type = 'square'; o.frequency.value = hz; o.connect(f); o.start(t); o.stop(t + 0.55); }
+        f.connect(g); g.connect(ac.destination);
+      } catch (e) {}
+    }
+    function ring() {
+      bell.classList.remove('ding'); ding.classList.remove('show'); void bell.offsetWidth;
+      bell.classList.add('ding'); ding.classList.add('show'); clank();
+    }
+    function rise(level, pct, ms) {
+      cancelAnimationFrame(raf);
+      const from = cur, t0 = performance.now(), done = () => { paint(level, level, pct); conf.textContent = pct + '%'; };
+      if (reduce.matches || from === level) { done(); return; }
+      const step = now => {
+        const k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+        paint(from + (level - from) * e, level, pct);
+        if (k < 1) raf = requestAnimationFrame(step); else { done(); if (level >= 16) ring(); }
+      };
+      raf = requestAnimationFrame(step);
+    }
+    // A new song gets the full swing; corrections to the same song just move the puck.
+    function set(level, pct, id, force) {
+      clearTimeout(timer); want = { level, pct };
+      const fresh = force || id !== lastId; lastId = id;
+      if (!fresh || reduce.matches) { rise(level, pct, 600); return; }
+      cancelAnimationFrame(raf); paint(0, level, pct); conf.textContent = '0%';
+      mallet.classList.remove('swing'); pad.classList.remove('hit'); bell.classList.remove('ding'); ding.classList.remove('show');
+      void mallet.offsetWidth; mallet.classList.add('swing');
+      timer = setTimeout(() => { pad.classList.add('hit'); rise(level, pct, 700 + level * 55); }, 480);
+    }
+    return { set, replay: () => set(want.level, want.pct, lastId, true) };
+  })();
 
   const fmtT = s => { const m = Math.floor(s / 60); return `${m}:${(s - m * 60).toFixed(1).padStart(4, '0')}`; };
   const fmtT2 = s => { const m = Math.floor(s / 60); return `${m}:${(s - m * 60).toFixed(2).padStart(5, '0')}`; };
@@ -749,11 +877,19 @@ const CBDetect = (() => {
     let ready = false, talking = 0, voice = false, last = { text: '', mood: '' }, awayTimer = 0, hidden = false;
     const isBig = () => el.classList.contains('big');
     try { hidden = localStorage.getItem('bruce-hidden') === '1'; } catch (e) {}
+    const isCorner = () => el.classList.contains('corner');
+    // "Hide Bruce" only applies on the studio screen, where he sits in the corner; at home he is the point of the page.
+    const applyHidden = () => { el.classList.toggle('gone', hidden && isCorner()); $('#bruce-show').hidden = !(hidden && isCorner() && ready); };
     const setHidden = h => {
-      hidden = h; el.classList.toggle('gone', h); $('#bruce-show').hidden = !h || !ready;
+      hidden = h; applyHidden();
       try { localStorage.setItem('bruce-hidden', h ? '1' : '0'); } catch (e) {}
-      if (h && window.speechSynthesis) speechSynthesis.cancel();
+      if (h && isCorner() && window.speechSynthesis) speechSynthesis.cancel();
     };
+    function setCorner(c) {
+      if (isBig() || leaving) return;
+      el.classList.toggle('corner', c); applyHidden();
+      if (c) clearTimeout(awayTimer); else bubble.classList.remove('away');
+    }
     $('#bruce-hide').addEventListener('click', () => setHidden(true));
     $('#bruce-show').addEventListener('click', () => { setHidden(false); line(last.text || pick('intro'), last.mood); });
     const again = () => { if (!isBig()) line(last.text || pick('intro'), last.mood); };
@@ -784,6 +920,9 @@ const CBDetect = (() => {
       lv12: ["Now that's what I'm talking about. That's cowbell!", 'Yes! You really explored the studio space on that one.', "That's the sound. That's the sound I need."],   // 12-14 (placeholders)
       lv15: ["Babies, before we're done here, y'all gonna be wearing gold-plated diapers."],   // 15-16
       // Said out of nowhere every so often.
+      studio: ["Welcome to the studio. Click a hit to hear it, then tell me: cowbell, or not?", "This is where the sausage gets made. Fix whatever the machine got wrong."],
+      studioEmpty: ["Nothing to look at yet. Bring me a song first."],
+      back: ["Back out front. Got another song for me?"],
       random: ['I gotta have more cowbell.', 'Guess what? I have a fever. And the only prescription is more cowbell.', 'Never question Bruce Dickinson.'],
     };
     const pick = k => LINES[k][Math.floor(Math.random() * LINES[k].length)];
@@ -830,9 +969,9 @@ const CBDetect = (() => {
       if (!ready) return Promise.resolve();
       if (leaving) { pending = [text, mood]; return Promise.resolve(); }
       last = { text, mood };
-      if (hidden && !isBig()) return Promise.resolve();
+      if (hidden && isCorner()) return Promise.resolve();
       clearTimeout(awayTimer); bubble.classList.remove('away');
-      if (!isBig()) awayTimer = setTimeout(() => { if (!bubble.matches(':hover')) bubble.classList.add('away'); }, 9000 + text.length * 45);
+      if (isCorner()) awayTimer = setTimeout(() => { if (!bubble.matches(':hover')) bubble.classList.add('away'); }, 9000 + text.length * 45);
       el.classList.remove('yes', 'maybe', 'no');
       if (mood) { void el.offsetWidth; el.classList.add(mood); }
       const id = ++typing, per = 45, speech = speak(text);
@@ -881,11 +1020,15 @@ const CBDetect = (() => {
       const stage = $('#bruce-stage'), vw = innerWidth, vh = innerHeight;
       const sc = parseFloat(frame.style.width) / 2094, fx = parseFloat(frame.style.left), fy = parseFloat(frame.style.top);
       const R = { x: fx + 870 * sc, y: fy + 200 * sc, w: 500 * sc, h: 700 * sc }; // the floating head's crop, on screen now
-      const w = matchMedia('(max-width: 600px)').matches ? 104 : 150, h = w * 1.4, k = w / R.w;
-      const tx = vw - Math.max(16, 0) - w, ty = vh - 16 - h;
       el.classList.remove('wide');
       $('#intro-skip').hidden = true; $('#intro-start').hidden = true; $('#mouth-note').textContent = '';
       document.documentElement.classList.remove('intro', 'intro-wait');
+      // He lands where he sits in the page. Measure that spot with the overlay off for a moment (no paint happens in between),
+      // and hold the room open until the layouts swap.
+      const hold = $('#bruce-hold');
+      el.classList.remove('big'); const sr = stage.getBoundingClientRect(), elh = el.offsetHeight; el.classList.add('big');
+      hold.style.height = elh + 'px'; hold.hidden = false;
+      const w = sr.width, h = sr.height, k = w / R.w, tx = sr.left, ty = sr.top;
       bubble.classList.add('away');
       const finish = () => {
         el.classList.remove('big');
@@ -893,8 +1036,10 @@ const CBDetect = (() => {
         frame.removeAttribute('style'); stage.style.transformOrigin = '';
         [...stage.getAnimations(), ...el.getAnimations({ subtree: false })].forEach(an => an.cancel());
         leaving = false;
-        setHidden(hidden);
-        if (pending) { const [t, m] = pending; pending = null; line(t, m); }
+        hold.hidden = true; hold.style.height = '';
+        applyHidden();
+        if (pending) { const [t, m] = pending; pending = null; line(t, m); } else line(pick('intro'));
+        striker.replay();
       };
       if (!stage.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
       leaving = true;
@@ -932,9 +1077,25 @@ const CBDetect = (() => {
         chatter();
       }, 45000 + Math.random() * 55000);
     })();
-    return { listening: () => line(pick('listening')), react, exitIntro, inIntro: isBig };
+    return { listening: () => line(pick('listening')), react, exitIntro, inIntro: isBig, setCorner, say: k => line(pick(k)) };
   })();
   window.bruceIntro = bruce.inIntro;
+  // Two screens: Bruce (home) and the studio (spectrogram, hits and teaching). Bruce moves to the corner for the studio.
+  function showScreen(name) {
+    if (bruce.inIntro()) return;
+    const studio = name === 'studio';
+    if ($('#screen-studio').hidden !== studio) return;
+    $('#screen-home').hidden = studio; $('#screen-studio').hidden = !studio;
+    $('#nav-home').setAttribute('aria-pressed', String(!studio)); $('#nav-studio').setAttribute('aria-pressed', String(studio));
+    bruce.setCorner(studio);
+    scrollTo(0, 0);
+    if (studio && state.res && !state.res.tooShort) { drawSpec(); renderHits(); updateTime(); }
+    bruce.say(studio ? (state.res ? 'studio' : 'studioEmpty') : 'back');
+  }
+  $('#nav-home').addEventListener('click', () => showScreen('home'));
+  $('#nav-studio').addEventListener('click', () => showScreen('studio'));
+  $('#to-studio').addEventListener('click', () => showScreen('studio'));
+  $('#to-home').addEventListener('click', () => showScreen('home'));
   let reactedTo = null, firstDemo = true;
 
   // 100% cowbell: play the clip once (5 s) over the page. Uses more-cowbell.mp4 (small) if it sits next to the page,
@@ -1085,8 +1246,8 @@ const CBDetect = (() => {
     const initial = firstDemo;
     if (reactedTo !== r.id) { reactedTo = r.id; if (firstDemo) firstDemo = false; else bruce.react(Math.round(sc.confidence * 16)); }
     const full = sc.confidence >= 1;
-    if (full && fullFor.get(r.id) === false && !initial) party.play();
-    if (full && !fullFor.has(r.id) && !initial) party.play();
+    // The reaction waits for the puck to reach the bell.
+    if (full && !initial && (fullFor.get(r.id) === false || !fullFor.has(r.id))) setTimeout(() => { if (state.res === r && r.view && r.view.confidence >= 1) party.play(); }, 2300);
     fullFor.set(r.id, full);
     v.className = 'big ' + sc.verdict;
     const w = Math.round(sc.windowCount), at = fmtT(sc.winStart).replace(/\.\d$/, '');
@@ -1104,9 +1265,7 @@ const CBDetect = (() => {
     }
     if (state.labels.size) sub.textContent += ` Includes your ${state.labels.size} correction${state.labels.size > 1 ? 's' : ''}.`;
     const pct = Math.round(sc.confidence * 100);
-    $('#conf').textContent = pct + '%';
-    const lit = Math.round(sc.confidence * 16);
-    document.querySelectorAll('.led').forEach((d, i) => { d.style.background = i < lit ? `var(${d.dataset.c})` : ''; });
+    striker.set(Math.round(sc.confidence * 16), pct, r.id);
     $('#s-hits').textContent = eff.length;
     $('#s-pitch').textContent = sc.main.freq ? `${hz(sc.main.freq)} Hz` : '–';
     $('#s-rate').textContent = Math.round(sc.windowCount);
