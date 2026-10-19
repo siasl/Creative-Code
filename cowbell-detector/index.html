@@ -486,6 +486,7 @@ tr.added td { color: var(--good); }
     <div class="selbar" id="selbar" hidden>
       <span class="sel-text" id="sel-text"></span>
       <button id="sel-find" type="button">Find cowbell here</button>
+      <button id="sel-yes" type="button" class="local-btn">Approve hits here as cowbell</button>
       <button id="sel-no" type="button" class="local-btn">Mark hits here as not cowbell</button>
       <button id="sel-zoom" type="button">Zoom to stretch</button>
       <button id="sel-clear" type="button">Clear</button>
@@ -1720,13 +1721,23 @@ const CBDetect = (() => {
     const res = $('#sel-result'); res.hidden = false; res.textContent = n ? `Marked ${n} hit${n > 1 ? 's' : ''} as not cowbell.` : 'No unlabeled hits in this stretch.';
     render(); if (n) saveLabels();
   }
+  // Says yes to every hit in the selected stretch (including suggested ones), replacing any earlier answer on them.
+  function approveStretch() {
+    const r = state.res; if (!r || sel.a == null) return;
+    const a = Math.min(sel.a, sel.b), b = Math.max(sel.a, sel.b);
+    let n = 0;
+    for (const o of [...r.hits, ...state.suggest]) if (o.t >= a && o.t <= b && labelNear(o.t) !== 1) { const k = frameOf(o.t); for (let d = -4; d <= 4; d++) state.labels.delete(k + d); state.labels.set(k, 1); n++; }
+    state.suggest = state.suggest.filter(q => q.t < a || q.t > b);
+    const res = $('#sel-result'); res.hidden = false; res.textContent = n ? `Approved ${n} hit${n > 1 ? 's' : ''} as cowbell.` : 'Every hit in this stretch is already approved.';
+    render(); if (n) saveLabels();
+  }
   function updateSelBar() {
     const bar = $('#selbar'), has = sel.a != null && Math.abs(sel.b - sel.a) >= 0.05;
     bar.hidden = !has;
     if (!has) { $('#sel-result').hidden = true; return; }
     const a = Math.min(sel.a, sel.b), b = Math.max(sel.a, sel.b);
     $('#sel-text').textContent = `${fmtMs(a)} – ${fmtMs(b)} (${(b - a).toFixed(2)} s)`;
-    $('#sel-no').hidden = !canLabel();
+    $('#sel-no').hidden = $('#sel-yes').hidden = !canLabel();
   }
 
   // Playback
@@ -1885,6 +1896,7 @@ const CBDetect = (() => {
   });
   $('#sel-find').addEventListener('click', findInStretch);
   $('#sel-no').addEventListener('click', rejectStretch);
+  $('#sel-yes').addEventListener('click', approveStretch);
   $('#sel-zoom').addEventListener('click', () => { const a = Math.min(sel.a, sel.b), b = Math.max(sel.a, sel.b), m = (b - a) * 0.05; setView(a - m, b + m); });
   $('#sel-clear').addEventListener('click', () => { sel.a = sel.b = null; state.suggest = []; updateSelBar(); render(); });
   $('#mark').addEventListener('click', () => addMissed(nowT()));
