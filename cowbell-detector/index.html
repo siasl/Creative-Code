@@ -1231,11 +1231,16 @@ const CBDetect = (() => {
     for (let i = 0; i < u8.length; i += 0x8000) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
     return { start, frames: end - start, patch: btoa(bin) };
   }
+  const statsLine = st => st.labels ? `${st.labels} labels shared by ${st.contributors} listener${st.contributors > 1 ? 's' : ''} so far.` : 'No labels shared yet. Yours could be the first.';
+  async function refreshShareStats(prefix = '') {
+    try { const res = await fetch(SHARE_API + '/stats'); if (res.ok) $('#share-status').textContent = prefix + statsLine(await res.json()); } catch (e) {}
+  }
   let shareTimer = 0;
   function shareLabels() {
     const r = state.res; if (!r) return;
     try { localStorage.setItem('cowbell-labels-' + r.id, JSON.stringify([...state.labels])); } catch (e) {}
     clearTimeout(shareTimer);
+    $('#share-status').textContent = 'Sending your labels…';
     shareTimer = setTimeout(async () => {
       if (state.res !== r) return;
       const sent = state.sent || (state.sent = new Map()), withPatch = state.sentPatch || (state.sentPatch = new Set());
@@ -1254,7 +1259,10 @@ const CBDetect = (() => {
         } catch (e) { fail = "couldn't reach the label server"; break; }
       }
       try { localStorage.setItem('cowbell-sent-' + r.id, JSON.stringify({ sent: [...sent], patch: [...withPatch] })); } catch (e) {}
-      if (changes.length) $('#share-status').textContent = fail ? `Some labels weren't sent (${fail}). They'll be retried on your next change.` : `Sent ${ok} label change${ok > 1 ? 's' : ''}. Thanks for helping.`;
+      if (changes.length) {
+        $('#share-status').textContent = fail ? `Some labels weren't sent (${fail}). They'll be retried on your next change.` : `Sent ${ok} label change${ok > 1 ? 's' : ''}. Thanks for helping.`;
+        if (!fail) refreshShareStats(`Sent ${ok} label change${ok > 1 ? 's' : ''}. `);
+      }
     }, 800);
   }
   async function initPublic() {
@@ -1278,7 +1286,7 @@ const CBDetect = (() => {
       state.shared = true;
       document.documentElement.classList.add('can-label');
       $('#share').hidden = false;
-      $('#share-status').textContent = st.labels ? `${st.labels} labels shared by ${st.contributors} listener${st.contributors > 1 ? 's' : ''} so far.` : 'No labels shared yet. Yours could be the first.';
+      $('#share-status').textContent = statsLine(st);
       if (state.res) { if (state.labelsFor !== state.res.id) await loadLabels(state.res); render(); }
     } catch (e) {}
   }

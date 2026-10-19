@@ -74,7 +74,7 @@
     200
    ],
    "parameters": {
-    "command": "=mkdir -p \"$HOME/.n8n-files\" && yt-dlp --no-playlist -f \"bestaudio[ext=m4a]/bestaudio\" --match-filter \"duration <= {{ $json.maxSeconds }} & !is_live\" --max-filesize 30M -o \"$HOME/.n8n-files/{{ $json.token }}.%(ext)s\" --print after_move:filepath --print \"after_move:%(title)s\" --no-simulate --quiet --no-warnings \"https://www.youtube.com/watch?v={{ $json.id }}\""
+    "command": "=d=\"$HOME/.n8n-files/cowbell-cache\"; id=\"{{ $json.id }}\"; mkdir -p \"$d\"; f=$(ls \"$d/$id\".m4a \"$d/$id\".webm \"$d/$id\".opus 2>/dev/null | head -1); if [ -n \"$f\" ] && [ -s \"$d/$id.title\" ]; then touch \"$f\"; echo \"$f\"; cat \"$d/$id.title\"; else out=$(yt-dlp --no-playlist -f \"bestaudio[ext=m4a]/bestaudio\" --match-filter \"duration <= {{ $json.maxSeconds }} & !is_live\" --max-filesize 30M -o \"$d/$id.%(ext)s\" --print after_move:filepath --print \"after_move:%(title)s\" --no-simulate --quiet --no-warnings \"https://www.youtube.com/watch?v=$id\") || exit $?; printf '%s\\n' \"$out\"; [ -n \"$out\" ] && printf '%s\\n' \"$out\" | sed -n 2p > \"$d/$id.title\"; fi; find \"$d\" -type f -mtime +30 -delete"
    },
    "onError": "continueRegularOutput"
   },
@@ -88,7 +88,7 @@
     200
    ],
    "parameters": {
-    "jsCode": "const v = $('Validate link').first().json;\nconst r = $input.first().json;\nconst lines = String(r.stdout || '').trim().split('\\n').map(s => s.trim()).filter(Boolean);\nconst path = lines.find(l => l.includes(v.token));\nif (!path) {\n  // A failed command arrives as { error } instead of { stderr } when the node continues on error.\n  const err = String(r.stderr || (r.error && (r.error.message || r.error.description || r.error)) || '');\n  // yt-dlp skips filtered videos (too long, live) quietly: clean exit, no file.\n  const tooLong = (r.exitCode === 0 || r.exitCode === undefined) && !/ERROR/.test(err);\n  return [{ json: { ok: false, status: tooLong ? 413 : 422,\n    error: tooLong ? 'That video is longer than 10 minutes, or a live stream. Try a single song.' : (err.split('\\n').filter(l => l.includes('ERROR')).pop() || \"yt-dlp couldn't download that video.\").replace(/^.*?ERROR: (\\[[^\\]]+\\] [A-Za-z0-9_-]+: )?/, ''),\n    origin: v.origin } }];\n}\nconst title = lines.filter(l => l !== path).pop() || 'YouTube audio';\nreturn [{ json: { ok: true, path, title, origin: v.origin, mime: path.endsWith('.webm') ? 'audio/webm' : 'audio/mp4' } }];"
+    "jsCode": "const v = $('Validate link').first().json;\nconst r = $input.first().json;\nconst lines = String(r.stdout || '').trim().split('\\n').map(s => s.trim()).filter(Boolean);\nconst path = lines.find(l => l.includes('/' + v.id + '.'));\nif (!path) {\n  // A failed command arrives as { error } instead of { stderr } when the node continues on error.\n  const err = String(r.stderr || (r.error && (r.error.message || r.error.description || r.error)) || '');\n  // yt-dlp skips filtered videos (too long, live) quietly: clean exit, no file.\n  const tooLong = (r.exitCode === 0 || r.exitCode === undefined) && !/ERROR/.test(err);\n  return [{ json: { ok: false, status: tooLong ? 413 : 422,\n    error: tooLong ? 'That video is longer than 10 minutes, or a live stream. Try a single song.' : (err.split('\\n').filter(l => l.includes('ERROR')).pop() || \"yt-dlp couldn't download that video.\").replace(/^.*?ERROR: (\\[[^\\]]+\\] [A-Za-z0-9_-]+: )?/, ''),\n    origin: v.origin } }];\n}\nconst title = lines.filter(l => l !== path).pop() || 'YouTube audio';\nreturn [{ json: { ok: true, path, title, origin: v.origin, mime: path.endsWith('.webm') ? 'audio/webm' : 'audio/mp4' } }];"
    }
   },
   {
@@ -182,20 +182,6 @@
      }
     }
    }
-  },
-  {
-   "id": "a522f51e-10a0-5a05-bbc0-eaeaf9a1d7d1",
-   "name": "Delete file",
-   "type": "n8n-nodes-base.executeCommand",
-   "typeVersion": 1,
-   "position": [
-    1760,
-    100
-   ],
-   "parameters": {
-    "command": "=rm -f \"{{ $('Check download').first().json.path }}\""
-   },
-   "onError": "continueRegularOutput"
   },
   {
    "id": "eaf0ac57-1fdf-5add-8f67-326d499b6f49",
@@ -337,17 +323,6 @@
     [
      {
       "node": "Read failed",
-      "type": "main",
-      "index": 0
-     }
-    ]
-   ]
-  },
-  "Send audio": {
-   "main": [
-    [
-     {
-      "node": "Delete file",
       "type": "main",
       "index": 0
      }
