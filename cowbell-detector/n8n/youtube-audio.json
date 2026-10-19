@@ -1,0 +1,374 @@
+{
+ "name": "Cowbell Detector: YouTube audio",
+ "nodes": [
+  {
+   "id": "b4ba0a78-8fad-5d8e-b066-e0ef08ecbbc4",
+   "name": "Webhook",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "parameters": {
+    "httpMethod": "GET",
+    "path": "cowbell-youtube",
+    "responseMode": "responseNode",
+    "options": {}
+   },
+   "webhookId": "ea4c5178-e92e-5456-9573-25baae7e985e"
+  },
+  {
+   "id": "a88fb7a0-759b-5c5d-8bfe-385bed0243ea",
+   "name": "Validate link",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    220,
+    300
+   ],
+   "parameters": {
+    "jsCode": "// Settings\nconst ALLOWED_ORIGINS = ['https://siasl.github.io', 'http://localhost:8808', 'http://localhost:8809'];\n// The audio is written for a moment to n8n's own files folder ($HOME/.n8n-files), which n8n lets workflows read by default.\nconst MAX_SECONDS = 600;       // longest video accepted\n\nconst req = $input.first().json;\nconst origin = (req.headers || {}).origin || '';\nif (origin && !ALLOWED_ORIGINS.includes(origin)) {\n  return [{ json: { ok: false, status: 403, error: 'This site is not allowed to use the downloader.', origin: ALLOWED_ORIGINS[0] } }];\n}\n// Only the 11-character video id is used; the link itself never reaches the command line.\nconst m = String((req.query || {}).url || '').match(/(?:[?&]v=|youtu\\.be\\/|\\/shorts\\/|\\/embed\\/|\\/live\\/)([A-Za-z0-9_-]{11})/);\nif (!m) return [{ json: { ok: false, status: 400, error: \"That doesn't look like a YouTube video link.\", origin: origin || ALLOWED_ORIGINS[0] } }];\nreturn [{ json: { ok: true, id: m[1], token: `cowbell-${m[1]}-${Date.now()}`, maxSeconds: MAX_SECONDS, origin: origin || ALLOWED_ORIGINS[0] } }];"
+   }
+  },
+  {
+   "id": "93c9466f-869f-534b-b02b-e0317e9331ce",
+   "name": "Link ok?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    440,
+    300
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "c1",
+       "leftValue": "={{ $json.ok }}",
+       "rightValue": true,
+       "operator": {
+        "type": "boolean",
+        "operation": "true",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "db2a1547-c2bf-5600-9f2c-8071a9216782",
+   "name": "Download audio",
+   "type": "n8n-nodes-base.executeCommand",
+   "typeVersion": 1,
+   "position": [
+    660,
+    200
+   ],
+   "parameters": {
+    "command": "=mkdir -p \"$HOME/.n8n-files\" && yt-dlp --no-playlist -f \"bestaudio[ext=m4a]/bestaudio\" --match-filter \"duration <= {{ $json.maxSeconds }} & !is_live\" --max-filesize 30M -o \"$HOME/.n8n-files/{{ $json.token }}.%(ext)s\" --print after_move:filepath --print \"after_move:%(title)s\" --no-simulate --quiet --no-warnings \"https://www.youtube.com/watch?v={{ $json.id }}\""
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "c710a614-08aa-5962-8abf-d9020720ca54",
+   "name": "Check download",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    880,
+    200
+   ],
+   "parameters": {
+    "jsCode": "const v = $('Validate link').first().json;\nconst r = $input.first().json;\nconst lines = String(r.stdout || '').trim().split('\\n').map(s => s.trim()).filter(Boolean);\nconst path = lines.find(l => l.includes(v.token));\nif (!path) {\n  // A failed command arrives as { error } instead of { stderr } when the node continues on error.\n  const err = String(r.stderr || (r.error && (r.error.message || r.error.description || r.error)) || '');\n  // yt-dlp skips filtered videos (too long, live) quietly: clean exit, no file.\n  const tooLong = (r.exitCode === 0 || r.exitCode === undefined) && !/ERROR/.test(err);\n  return [{ json: { ok: false, status: tooLong ? 413 : 422,\n    error: tooLong ? 'That video is longer than 10 minutes, or a live stream. Try a single song.' : (err.split('\\n').filter(l => l.includes('ERROR')).pop() || \"yt-dlp couldn't download that video.\").replace(/^.*?ERROR: (\\[[^\\]]+\\] [A-Za-z0-9_-]+: )?/, ''),\n    origin: v.origin } }];\n}\nconst title = lines.filter(l => l !== path).pop() || 'YouTube audio';\nreturn [{ json: { ok: true, path, title, origin: v.origin, mime: path.endsWith('.webm') ? 'audio/webm' : 'audio/mp4' } }];"
+   }
+  },
+  {
+   "id": "3397a7bf-96e7-509c-893c-0e2dfbb6da93",
+   "name": "Downloaded?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    1100,
+    200
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "c2",
+       "leftValue": "={{ $json.ok }}",
+       "rightValue": true,
+       "operator": {
+        "type": "boolean",
+        "operation": "true",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "63c07f54-a0e2-5ed8-ad8b-7ed6c7c71ed8",
+   "name": "Read audio file",
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1,
+   "position": [
+    1320,
+    100
+   ],
+   "parameters": {
+    "operation": "read",
+    "fileSelector": "={{ $json.path }}",
+    "options": {}
+   },
+   "onError": "continueErrorOutput"
+  },
+  {
+   "id": "e46111f7-2866-5313-a969-f1497011a6f6",
+   "name": "Send audio",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    1540,
+    100
+   ],
+   "parameters": {
+    "respondWith": "binary",
+    "options": {
+     "responseHeaders": {
+      "entries": [
+       {
+        "name": "Access-Control-Allow-Origin",
+        "value": "={{ $('Check download').first().json.origin }}"
+       },
+       {
+        "name": "Access-Control-Expose-Headers",
+        "value": "X-Title"
+       },
+       {
+        "name": "Vary",
+        "value": "Origin"
+       },
+       {
+        "name": "Content-Type",
+        "value": "={{ $('Check download').first().json.mime }}"
+       },
+       {
+        "name": "X-Title",
+        "value": "={{ encodeURIComponent($('Check download').first().json.title) }}"
+       },
+       {
+        "name": "Cache-Control",
+        "value": "no-store"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "a522f51e-10a0-5a05-bbc0-eaeaf9a1d7d1",
+   "name": "Delete file",
+   "type": "n8n-nodes-base.executeCommand",
+   "typeVersion": 1,
+   "position": [
+    1760,
+    100
+   ],
+   "parameters": {
+    "command": "=rm -f \"{{ $('Check download').first().json.path }}\""
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "eaf0ac57-1fdf-5add-8f67-326d499b6f49",
+   "name": "Send error",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    1320,
+    400
+   ],
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ { error: $json.error } }}",
+    "options": {
+     "responseCode": "={{ $json.status }}",
+     "responseHeaders": {
+      "entries": [
+       {
+        "name": "Access-Control-Allow-Origin",
+        "value": "={{ $json.origin }}"
+       },
+       {
+        "name": "Access-Control-Expose-Headers",
+        "value": "X-Title"
+       },
+       {
+        "name": "Vary",
+        "value": "Origin"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "7161e88e-4808-5411-99c6-c966a6245116",
+   "name": "Read failed",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1540,
+    260
+   ],
+   "parameters": {
+    "jsCode": "return [{ json: { ok: false, status: 500, error: \"The server downloaded the song but couldn't read it. Check that n8n can read files in ~/.n8n-files.\", origin: $('Check download').first().json.origin } }];"
+   }
+  }
+ ],
+ "connections": {
+  "Webhook": {
+   "main": [
+    [
+     {
+      "node": "Validate link",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Validate link": {
+   "main": [
+    [
+     {
+      "node": "Link ok?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Link ok?": {
+   "main": [
+    [
+     {
+      "node": "Download audio",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Send error",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Download audio": {
+   "main": [
+    [
+     {
+      "node": "Check download",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Check download": {
+   "main": [
+    [
+     {
+      "node": "Downloaded?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Downloaded?": {
+   "main": [
+    [
+     {
+      "node": "Read audio file",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Send error",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read audio file": {
+   "main": [
+    [
+     {
+      "node": "Send audio",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Read failed",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Send audio": {
+   "main": [
+    [
+     {
+      "node": "Delete file",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read failed": {
+   "main": [
+    [
+     {
+      "node": "Send error",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {},
+ "active": false
+}

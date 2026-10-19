@@ -692,6 +692,8 @@ const CBDetect = (() => {
   const canLabel = () => state.local || state.shared;
   // Public page: labels go to this collector (set by build_site.py); empty means labeling stays local-only.
   const SHARE_API = ((document.querySelector('meta[name="cowbell-share-api"]') || {}).content || '').replace(/\/$/, '');
+  // Public page: YouTube downloads through this endpoint (an n8n workflow running yt-dlp; set by build_site.py).
+  const YT_API = (document.querySelector('meta[name="cowbell-youtube-api"]') || {}).content || '';
   // Your corrections for the current song, keyed by 10 ms frame: 1 = cowbell, 0 = not cowbell.
   const frameOf = t => Math.round(t * 100);
   const labelNear = t => { const k = frameOf(t); for (let d = 0; d <= 4; d++) { if (state.labels.has(k + d)) return state.labels.get(k + d); if (state.labels.has(k - d)) return state.labels.get(k - d); } return undefined; };
@@ -814,9 +816,13 @@ const CBDetect = (() => {
       if (v) u.voice = v;
       u.rate = 0.95; u.pitch = 0.8;
       const id = flap(60000);
-      u.onend = u.onerror = () => { if (talking === id) { talking = 0; target = 0; } };
-      speechSynthesis.speak(u);
-      return true;
+      // Resolves when he stops talking. Chrome sometimes never fires onend on long lines, so there's a cap.
+      return new Promise(resolve => {
+        const done = () => { clearTimeout(cap); if (talking === id) { talking = 0; target = 0; } resolve(); };
+        const cap = setTimeout(done, 3000 + text.length * 120);
+        u.onend = u.onerror = done;
+        speechSynthesis.speak(u);
+      });
     }
     let typing = 0, leaving = false, pending = null, lastSpoke = 0;
     // Says a line; resolves when the caption has finished typing.
@@ -829,15 +835,17 @@ const CBDetect = (() => {
       if (!isBig()) awayTimer = setTimeout(() => { if (!bubble.matches(':hover')) bubble.classList.add('away'); }, 9000 + text.length * 45);
       el.classList.remove('yes', 'maybe', 'no');
       if (mood) { void el.offsetWidth; el.classList.add(mood); }
-      const id = ++typing, per = 45, spoken = speak(text);
+      const id = ++typing, per = 45, speech = speak(text);
       lastSpoke = performance.now() + text.length * per;
-      if (!spoken) flap(text.length * per + 150);
+      if (!speech) flap(text.length * per + 150);
       say.textContent = '';
-      return new Promise(resolve => {
+      const typed = new Promise(resolve => {
         let i = 0;
         const type = () => { if (typing !== id) return resolve(); i++; say.textContent = text.slice(0, i); if (i < text.length) setTimeout(type, per); else resolve(); };
         type();
       });
+      // Done when both the caption and the voice have finished.
+      return Promise.all([typed, speech || null]);
     }
     // Full screen: scale the photo to the window, centred on his face with room for the open mouth.
     function layoutBig() {
@@ -861,7 +869,7 @@ const CBDetect = (() => {
       }
       await wait(500); if (!stillIntro()) return;
       await line(pick('hello'));
-      await wait(1300); if (!stillIntro()) return;
+      await wait(1000); if (!stillIntro()) return; // one beat before the next line
       await line(pick('golden'));
       await wait(200); if (!stillIntro()) return;
       el.classList.add('wide');
@@ -1034,27 +1042,34 @@ const CBDetect = (() => {
     note.append(win ? `Opened the converter in a new tab. Download the MP3 there, then ${where}. ` : '', a, win ? '' : ` to download the MP3, then ${where}.`);
   }
 
-  // YouTube links download through the local server (server.py) when it's running.
+  // YouTube links download through the local server (server.py) when it's running, else through the
+  // YouTube endpoint (n8n workflow) if the site has one, else they open the converter site.
   async function handleYouTube(url) {
-    if (!state.local) { openConverter(url); return; }
-    state.demo = null;
-    $('#demo-yes').setAttribute('aria-pressed', 'false');
-    $('#demo-no').setAttribute('aria-pressed', 'false');
+    if (!state.local && !YT_API) { openConverter(url); return; }
+    if (!state.local && !YT_LINK.test(url)) { openConverter(url); return; }
+    const endpoint = state.local ? 'api/youtube?url=' : YT_API + (YT_API.includes('?') ? '&' : '?') + 'url=';
     $('#yt-go').disabled = true;
     setBusy('Downloading the audio from YouTube. This takes a few seconds.');
     try {
-      const res = await fetch('api/youtube?url=' + encodeURIComponent(url));
+      const res = await fetch(endpoint + encodeURIComponent(url));
       if (!res.ok) {
         let msg = `The download failed (${res.status}).`;
         try { msg = (await res.json()).error || msg; } catch (e) {}
-        setError(msg); return;
+        setError(msg);
+        // Downloader missing or broken (not a problem with the link): offer the converter instead.
+        if (!state.local && (res.status === 404 || res.status >= 500)) openConverter(url);
+        return;
       }
+      state.demo = null;
+      $('#demo-yes').setAttribute('aria-pressed', 'false');
+      $('#demo-no').setAttribute('aria-pressed', 'false');
       const title = decodeURIComponent(res.headers.get('X-Title') || 'YouTube audio');
       setBusy(`Decoding ${title}.`);
       await decodeAndSet(await res.arrayBuffer(), title);
     } catch (e) {
       console.error(e);
-      setError("Couldn't reach the local server. Check that python3 server.py is still running.");
+      if (state.local) setError("Couldn't reach the local server. Check that python3 server.py is still running.");
+      else { setError("The YouTube downloader isn't answering right now."); openConverter(url); }
     } finally {
       $('#yt-go').disabled = false;
     }
@@ -1244,7 +1259,8 @@ const CBDetect = (() => {
   }
   async function initPublic() {
     $('#yt-url').disabled = false; $('#yt-go').disabled = false; $('#yt-go').textContent = 'Get MP3';
-    $('#yt-note').textContent = 'Opens vavel.pl with your link filled in. Download the MP3 there, then drop it in the box above.';
+    $('#yt-note').textContent = YT_API ? 'Paste a YouTube link and Bruce grabs the audio. Videos up to 10 minutes.' : 'Opens vavel.pl with your link filled in. Download the MP3 there, then drop it in the box above.';
+    if (YT_API) $('#yt-go').textContent = 'Analyze';
     // A published model.json next to the page (GitHub Pages) replaces the built-in weights.
     try {
       const res = await fetch('model.json', { cache: 'no-cache' });

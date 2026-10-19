@@ -27,6 +27,7 @@ def main():
     head = ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             + (f'<meta name="cowbell-share-api" content="{api}">\n' if api else '')
+            + (f'<meta name="cowbell-youtube-api" content="{cfg["youtube_api"]}">\n' if cfg.get("youtube_api") else '')
             + '<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>\n')
     (SITE / "index.html").write_text(head + (ROOT / "index.html").read_text(encoding="utf-8"), encoding="utf-8")
     model = DATA / "models" / "current.json"
