@@ -1,0 +1,19 @@
+name = "cowbell-labels"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+
+[vars]
+# Comma-separated origins allowed to submit labels: your GitHub Pages site (and local testing).
+ALLOWED_ORIGINS = "https://siasl.github.io,http://localhost:8809"
+# Submissions accepted per sender per hour.
+HOURLY_LIMIT = "400"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cowbell-labels"
+# Filled in by `npx wrangler d1 create cowbell-labels` (see README.md).
+database_id = "2595ad85-07da-4391-ad93-719291243e33"
+
+# Secrets (set with `npx wrangler secret put NAME`, never committed):
+#   ADMIN_TOKEN  password your Mac uses to download contributions
+#   IP_SALT      any random string, so stored IP hashes can't be reversed
