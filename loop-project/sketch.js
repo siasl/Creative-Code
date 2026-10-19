@@ -345,7 +345,7 @@ function circularInOut (t) {
   }
 }
 //chat GPT wrote this function in totality becuase I realized I wanted to add "more juice" right before class
-// and having a background that shakes with the text seemed like a good way to do that. 
+// and having a background that shakes with the text seemed like a good way to do that.
 function drawTriangleWavePattern (
   waveLength = 80,
   amplitude = 20,
