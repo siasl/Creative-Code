@@ -56,6 +56,8 @@ def main():
             print("Nothing changed since the last publish.")
             return
         git("commit", "-m", "Update Cowbell Detector")
+        # GitHub can hold commits made on its own site (e.g. the CNAME for a custom domain); take them in first.
+        subprocess.run(["git", "-C", str(SITE), "pull", "--rebase", "-q", "origin", "main"], check=False)
         git("push", "-u", "origin", "main")
         print("Pushed. GitHub Pages updates within a minute or two.")
 
