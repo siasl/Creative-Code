@@ -4,7 +4,7 @@ compatibility_date = "2025-09-01"
 
 [vars]
 # Comma-separated origins allowed to submit labels: your GitHub Pages site (and local testing).
-ALLOWED_ORIGINS = "https://siasl.github.io,http://localhost:8809"
+ALLOWED_ORIGINS = "https://cowbell.silashowe.com,https://siasl.github.io,http://localhost:8809"
 # Submissions accepted per sender per hour.
 HOURLY_LIMIT = "400"
 
