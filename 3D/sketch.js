@@ -1,3 +1,21 @@
+/**
+ * I wanted to play around with Gaussian splats for this project. P5 doesn't support it natively, so I needed to explore alternative ways to 
+ * render a point cloud. In December, I vibe coded an app that would allow you to use Apple's SHARP model for comverting images into splats.
+ * From that app, you could export at PLY file. I discovered that you can convert a PLY into a CSV online. That CSV just had a list of all of
+ * the points in the PLY. So, my original verison of this sketch was one where I loaded all of the individual points and drew a shape for each one.
+ * It worked, but there were major performance issues. At that point, I consulted with AI to see how I could run this without nearly crashing my computer.
+ * That's how I landed on using .bin files, which essentially take all of the points and turn them into a super long number. Each point is represented by 7 numbers, 
+ * which are the x, y, z coordinates and the r, g, b, a values. I was still having performance issues, so I turned to AI again to see if there was a better way to draw this.
+ * It came up with using a shader to draw all of the points. It worked much better this way.
+ * I then wanted to add some more "Creative" elements to the sketch and landed on giving the points a little bit of motion and zooming the camera in to it. 
+ * I think there's a lot more that I could do to up the creativity here. I want to explore more shader effects. 
+ * You can move the camera around in the sketch with your mouse, which can help to see the 3D effects especially well. 
+ * Some other interesting pieces related to this that exists are some projects that will run the sharp model directly in browser. This is one of them: https://github.com/pristinaai/Sharp-Onnx-webgpu
+ * If I were to try and flesh this out further, I would explore converting an image into a point cloud directly in the browser and then rendering it with a shader. I think that would be a really cool project to explore.
+ * 
+ * The version that exists in the P5 editor has a smaller point cloud, because of file size limitations. The version that exists in this repo has a much larger point cloud, which is why it takes a while to load.
+ * It can be accessed here: https://siasl.github.io/Creative-Code/3D/
+ */
 let cloud
 let pointShader
 let cam
